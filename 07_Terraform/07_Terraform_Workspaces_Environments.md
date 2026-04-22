@@ -1,6 +1,6 @@
-# 07 — Workspaces & Environment Management
+# ☁️ 07 — Workspaces & Environment Management
 
-## 1. Terraform Workspaces
+## 📌 1. Terraform Workspaces
 
 Workspaces let you maintain **multiple state files** within the same configuration directory. Each workspace has its own `.tfstate`.
 
@@ -31,7 +31,7 @@ terraform workspace delete dev
 
 ______________________________________________________________________
 
-## 2. Using Workspace Name in Configuration
+## 📌 2. Using Workspace Name in Configuration
 
 ```hcl
 # Use terraform.workspace in your config
@@ -86,7 +86,7 @@ resource "azurerm_mssql_database" "main" {
 
 ______________________________________________________________________
 
-## 3. Environment Strategy — Separate Directories (Recommended for Production)
+## 📌 3. Environment Strategy — Separate Directories (Recommended for Production)
 
 Workspaces are simple but can become risky at scale. A more robust pattern uses **separate directories per environment**.
 
@@ -116,7 +116,7 @@ infrastructure/
     └── ...
 ```
 
-### environments/dev/dev.auto.tfvars
+### 🔹 environments/dev/dev.auto.tfvars
 
 ```hcl
 environment    = "dev"
@@ -136,7 +136,7 @@ subnets = {
 }
 ```
 
-### environments/prod/prod.auto.tfvars
+### 🔹 environments/prod/prod.auto.tfvars
 
 ```hcl
 environment    = "prod"
@@ -158,7 +158,7 @@ subnets = {
 
 ______________________________________________________________________
 
-## 4. Promote from Dev → Staging → Prod
+## 📌 4. Promote from Dev → Staging → Prod
 
 ```bash
 #!/bin/bash
@@ -193,7 +193,7 @@ echo "Promotion to $TARGET_ENV complete!"
 
 ______________________________________________________________________
 
-## 5. Managing Multiple Azure Subscriptions
+## 📌 5. Managing Multiple Azure Subscriptions
 
 ```hcl
 # providers.tf — multi-subscription setup
@@ -234,7 +234,7 @@ resource "azurerm_resource_group" "prod" {
 
 ______________________________________________________________________
 
-## 6. State File per Environment — Backend Pattern
+## 📌 6. State File per Environment — Backend Pattern
 
 ```hcl
 # environments/dev/backend.tf
@@ -270,7 +270,7 @@ terraform {
 
 ______________________________________________________________________
 
-## 7. Environment Variables for CI Targeting
+## 📌 7. Environment Variables for CI Targeting
 
 ```bash
 # scripts/tf-env.sh — switch Terraform context for a given environment
@@ -303,7 +303,7 @@ echo "Terraform context set to: $ENV"
 
 ______________________________________________________________________
 
-## 8. Workspace vs Separate Directories
+## 📌 8. Workspace vs Separate Directories
 
 | Factor | Workspaces | Separate Directories |
 |--------|-----------|---------------------|
@@ -317,7 +317,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Summary
+## 📌 Summary
 
 ```
 Small team, simple infra?
@@ -329,3 +329,8 @@ Large team, complex infra, multiple subscriptions?
 Maximum control and DRY?
   → Terragrunt with environment hierarchy
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

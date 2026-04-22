@@ -1,6 +1,6 @@
-# 07 — Shell Scripting for DevOps
+# 🐧 07 — Shell Scripting for DevOps
 
-## 1. Script Anatomy & Best Practices
+## 📌 1. Script Anatomy & Best Practices
 
 ```bash
 #!/bin/bash
@@ -28,7 +28,7 @@ error(){ echo "[$(date '+%Y-%m-%d %H:%M:%S')] [ERROR] $*" | tee -a "$LOG_FILE" >
 
 ______________________________________________________________________
 
-## 2. Variables
+## 📌 2. Variables
 
 ```bash
 # Basic variables (no spaces around =)
@@ -83,7 +83,7 @@ echo ${STR:8:7}           # substring from pos 8, len 7: service
 
 ______________________________________________________________________
 
-## 3. Arrays
+## 📌 3. Arrays
 
 ```bash
 # Indexed array
@@ -119,7 +119,7 @@ for line in "${LINES[@]}"; do echo "$line"; done
 
 ______________________________________________________________________
 
-## 4. Conditionals
+## 📌 4. Conditionals
 
 ```bash
 # if / elif / else
@@ -177,7 +177,7 @@ esac
 
 ______________________________________________________________________
 
-## 5. Loops
+## 📌 5. Loops
 
 ```bash
 # for loop
@@ -234,7 +234,7 @@ done
 
 ______________________________________________________________________
 
-## 6. Functions
+## 📌 6. Functions
 
 ```bash
 # Basic function
@@ -292,7 +292,7 @@ wait_for_service() {
 
 ______________________________________________________________________
 
-## 7. Input / Output & Redirection
+## 📌 7. Input / Output & Redirection
 
 ```bash
 # Redirection
@@ -347,7 +347,7 @@ done
 
 ______________________________________________________________________
 
-## 8. Error Handling
+## 📌 8. Error Handling
 
 ```bash
 #!/bin/bash
@@ -396,9 +396,9 @@ retry 3 5 curl -sf https://api.example.com/health
 
 ______________________________________________________________________
 
-## 9. Complete Real-Time DevOps Scripts
+## 📌 9. Complete Real-Time DevOps Scripts
 
-### Deployment Script
+### 🔹 Deployment Script
 
 ```bash
 #!/bin/bash
@@ -470,7 +470,7 @@ log "Cleaned up old releases (keeping $ROLLBACK_KEEP)"
 log "Deployment complete: $NEW_RELEASE"
 ```
 
-### Health Check Script
+### 🔹 Health Check Script
 
 ```bash
 #!/bin/bash
@@ -513,7 +513,7 @@ echo "All checks passed."
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Concept | Example |
 |---------|---------|
@@ -529,3 +529,8 @@ ______________________________________________________________________
 | Silent read | `read -sp "Password: " PASS` |
 | Discard output | `cmd > /dev/null 2>&1` |
 | Check command exists | `command -v cmd &>/dev/null` |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

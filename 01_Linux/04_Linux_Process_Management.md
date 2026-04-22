@@ -1,6 +1,6 @@
-# 04 — Process Management
+# 🐧 04 — Process Management
 
-## 1. Viewing Processes
+## 📌 1. Viewing Processes
 
 ```bash
 # Snapshot of all processes
@@ -38,7 +38,7 @@ pstree 1234         # tree rooted at PID 1234
 
 ______________________________________________________________________
 
-## 2. top and htop
+## 📌 2. top and htop
 
 ```bash
 # top — real-time process monitor
@@ -75,7 +75,7 @@ htop -p 1234
 # U     show user processes
 ```
 
-### Reading top Header
+### 🔹 Reading top Header
 
 ```
 top - 14:32:15 up 10 days, 3:22,  2 users,  load average: 0.52, 0.48, 0.44
@@ -95,7 +95,7 @@ MiB Swap:  2.0 total,   1.8 free,   0.2 used.   6.5 avail Mem
 
 ______________________________________________________________________
 
-## 3. Signals and kill
+## 📌 3. Signals and kill
 
 ```bash
 # List all signals
@@ -136,7 +136,7 @@ sudo nginx -s reload
 
 ______________________________________________________________________
 
-## 4. Process Priority (nice / renice)
+## 📌 4. Process Priority (nice / renice)
 
 ```bash
 # Nice values: -20 (highest priority) to 19 (lowest priority)
@@ -157,7 +157,7 @@ ps -eo pid,ni,pri,cmd | grep java
 
 ______________________________________________________________________
 
-## 5. Background & Foreground Jobs
+## 📌 5. Background & Foreground Jobs
 
 ```bash
 # Run in background
@@ -195,7 +195,7 @@ Ctrl+B, D                         # detach
 
 ______________________________________________________________________
 
-## 6. systemctl & systemd
+## 📌 6. systemctl & systemd
 
 ```bash
 # Service management
@@ -236,7 +236,7 @@ sudo systemctl mask nginx
 sudo systemctl unmask nginx
 ```
 
-### Writing a Custom systemd Service
+### 🔹 Writing a Custom systemd Service
 
 ```ini
 # /etc/systemd/system/payment-service.service
@@ -281,7 +281,7 @@ sudo systemctl status payment-service
 
 ______________________________________________________________________
 
-## 7. journalctl — systemd Log Viewer
+## 📌 7. journalctl — systemd Log Viewer
 
 ```bash
 # View all logs
@@ -327,7 +327,7 @@ journalctl -u nginx --since today --output=json | jq '.MESSAGE' | head -20
 
 ______________________________________________________________________
 
-## 8. cron — Scheduled Jobs
+## 📌 8. cron — Scheduled Jobs
 
 ```bash
 # Edit crontab for current user
@@ -377,7 +377,7 @@ grep CRON /var/log/syslog
 journalctl -u cron
 ```
 
-### Real-Time Scenario: Production cron jobs
+### 🔹 Real-Time Scenario: Production cron jobs
 
 ```bash
 # /etc/cron.d/payment-service
@@ -400,7 +400,7 @@ MAILTO=devops-alerts@company.com
 
 ______________________________________________________________________
 
-## 9. at — One-Time Scheduled Jobs
+## 📌 9. at — One-Time Scheduled Jobs
 
 ```bash
 # Schedule a one-time job
@@ -427,7 +427,7 @@ echo "/opt/scripts/maintenance-mode-off.sh" | at 4:00 AM
 
 ______________________________________________________________________
 
-## 10. Process Limits and Resource Control
+## 📌 10. Process Limits and Resource Control
 
 ```bash
 # View resource usage of a command
@@ -443,7 +443,7 @@ cat /sys/fs/cgroup/system.slice/payment-service.service/cpu.max
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -459,3 +459,8 @@ ______________________________________________________________________
 | `journalctl -fu svc` | Follow service logs |
 | `crontab -e` | Edit scheduled jobs |
 | `systemctl daemon-reload` | Reload after unit file edit |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

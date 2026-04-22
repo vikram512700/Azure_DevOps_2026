@@ -1,10 +1,10 @@
-# Git for DevOps Engineers — Complete Reference
+# 🐙 Git for DevOps Engineers — Complete Reference
 
 A structured guide covering Git from fundamentals to advanced DevOps workflows with real-world scenarios.
 
 ______________________________________________________________________
 
-## Index
+## 📌 Index
 
 | File | Topics Covered |
 |------|---------------|
@@ -20,7 +20,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Quick Reference Card
+## 📌 Quick Reference Card
 
 ```bash
 # Daily DevOps Git Cycle

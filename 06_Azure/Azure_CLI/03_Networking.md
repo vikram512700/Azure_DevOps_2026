@@ -1,6 +1,6 @@
-# Azure CLI for DevOps - Part 3: Networking
+# ☁️ Azure CLI for DevOps - Part 3: Networking
 
-## 1. Virtual Networks (VNet)
+## 📌 1. Virtual Networks (VNet)
 
 ```bash
 # Scenario: Create network for microservices architecture
@@ -27,7 +27,7 @@ az network vnet list -g rg-prod --output table
 az network vnet subnet list -g rg-prod --vnet-name vnet-prod --output table
 ```
 
-## 2. Network Security Groups (NSG)
+## 📌 2. Network Security Groups (NSG)
 
 ```bash
 # Scenario: Secure web tier - allow only HTTP/HTTPS/SSH
@@ -62,7 +62,7 @@ az network vnet subnet update \
 az network nsg rule list -g rg-prod --nsg-name nsg-web-tier --output table
 ```
 
-## 3. Public IP & Load Balancer
+## 📌 3. Public IP & Load Balancer
 
 ```bash
 # Create public IP
@@ -101,7 +101,7 @@ az network lb inbound-nat-rule create \
   --frontend-ip-name frontend-web
 ```
 
-## 4. Application Gateway (Layer 7 LB)
+## 📌 4. Application Gateway (Layer 7 LB)
 
 ```bash
 # Scenario: Path-based routing for microservices
@@ -126,7 +126,7 @@ az network application-gateway url-path-map create \
   --default-http-settings web-settings
 ```
 
-## 5. VNet Peering
+## 📌 5. VNet Peering
 
 ```bash
 # Scenario: Connect Dev and Prod VNets
@@ -151,7 +151,7 @@ az network vnet peering create \
 az network vnet peering list -g rg-dev --vnet-name vnet-dev --output table
 ```
 
-## 6. DNS Zones
+## 📌 6. DNS Zones
 
 ```bash
 # Scenario: Manage DNS for your application
@@ -174,7 +174,7 @@ az network private-dns link vnet create \
   --registration-enabled true
 ```
 
-## 7. Azure Firewall
+## 📌 7. Azure Firewall
 
 ```bash
 # Scenario: Central firewall for hub-spoke network
@@ -204,3 +204,8 @@ az network firewall network-rule create \
   --source-addresses 10.0.0.0/16 \
   --priority 200 --action Allow
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

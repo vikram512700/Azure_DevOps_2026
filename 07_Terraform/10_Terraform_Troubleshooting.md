@@ -1,6 +1,6 @@
-# 10 — Terraform Troubleshooting & Recovery
+# ☁️ 10 — Terraform Troubleshooting & Recovery
 
-## 1. Debug Logging
+## 📌 1. Debug Logging
 
 ```bash
 # Enable detailed logging
@@ -26,11 +26,11 @@ grep "Response" terraform.log | grep "Status: 4"   # 4xx errors
 
 ______________________________________________________________________
 
-## 2. Common Errors & Fixes
+## 📌 2. Common Errors & Fixes
 
 ______________________________________________________________________
 
-### Error: `Error: A resource with the ID "..." already exists`
+### 🔹 Error: `Error: A resource with the ID "..." already exists`
 
 ```
 Error: A resource with the ID "/subscriptions/.../resourceGroups/rg-payment-dev" 
@@ -48,7 +48,7 @@ terraform plan
 
 ______________________________________________________________________
 
-### Error: `Error: context deadline exceeded` or timeout
+### 🔹 Error: `Error: context deadline exceeded` or timeout
 
 ```bash
 # Fix 1: Increase timeout via environment variable (seconds)
@@ -65,7 +65,7 @@ terraform apply -target=azurerm_kubernetes_cluster.main
 
 ______________________________________________________________________
 
-### Error: `Error: Provider "hashicorp/azurerm" is incompatible`
+### 🔹 Error: `Error: Provider "hashicorp/azurerm" is incompatible`
 
 ```bash
 # Fix: Clean .terraform and reinit
@@ -78,7 +78,7 @@ terraform init -upgrade
 
 ______________________________________________________________________
 
-### Error: `Error: Backend configuration changed`
+### 🔹 Error: `Error: Backend configuration changed`
 
 ```
 Error: Backend configuration changed
@@ -95,7 +95,7 @@ terraform init -migrate-state
 
 ______________________________________________________________________
 
-### Error: `Error: Error locking state: Error acquiring the state lock`
+### 🔹 Error: `Error: Error locking state: Error acquiring the state lock`
 
 ```
 Error: Error locking state: Error acquiring the state lock
@@ -124,7 +124,7 @@ ps aux | grep terraform
 
 ______________________________________________________________________
 
-### Error: `Error: Invalid index`
+### 🔹 Error: `Error: Invalid index`
 
 ```
 Error: Invalid index
@@ -143,7 +143,7 @@ terraform console
 
 ______________________________________________________________________
 
-### Error: `Error: Insufficient permissions`
+### 🔹 Error: `Error: Insufficient permissions`
 
 ```
 Error: authorization.RoleAssignmentsClient#Create: 
@@ -168,7 +168,7 @@ az role assignment list --assignee "$SP_CLIENT_ID" --output table
 
 ______________________________________________________________________
 
-### Error: `Resource already exists in a different resource group`
+### 🔹 Error: `Resource already exists in a different resource group`
 
 ```bash
 # Resources like VNet peerings, DNS zones — check correct scope
@@ -181,7 +181,7 @@ data "azurerm_virtual_network" "existing" {
 
 ______________________________________________________________________
 
-### Error: `Error: creating Key Vault: Code="VaultAlreadyExists"`
+### 🔹 Error: `Error: creating Key Vault: Code="VaultAlreadyExists"`
 
 ```bash
 # Azure Key Vault names are globally unique AND soft-delete keeps them after destroy
@@ -193,7 +193,7 @@ az keyvault purge --name "kv-payment-prod-abc123" --location "East US"
 
 ______________________________________________________________________
 
-### Error: `Storage account name too long or invalid`
+### 🔹 Error: `Storage account name too long or invalid`
 
 ```bash
 # Storage accounts: 3-24 characters, lowercase letters and numbers only, globally unique
@@ -205,9 +205,9 @@ locals {
 
 ______________________________________________________________________
 
-## 3. State Recovery Scenarios
+## 📌 3. State Recovery Scenarios
 
-### Scenario: Corrupted or accidentally deleted state
+### 🔹 Scenario: Corrupted or accidentally deleted state
 
 ```bash
 # If using Azure Blob backend — recover from versioning
@@ -234,7 +234,7 @@ terraform state push recovered.tfstate
 
 ______________________________________________________________________
 
-### Scenario: Resource deleted in Azure but still in state
+### 🔹 Scenario: Resource deleted in Azure but still in state
 
 ```bash
 # terraform plan shows: "will be created" for resource that was deleted manually
@@ -251,7 +251,7 @@ terraform plan
 
 ______________________________________________________________________
 
-### Scenario: Rename a resource without destroying it
+### 🔹 Scenario: Rename a resource without destroying it
 
 ```bash
 # You renamed a resource block in your .tf file
@@ -278,7 +278,7 @@ terraform plan
 
 ______________________________________________________________________
 
-### Scenario: Import all resources from an existing Azure environment
+### 🔹 Scenario: Import all resources from an existing Azure environment
 
 ```bash
 #!/bin/bash
@@ -315,7 +315,7 @@ terraform plan
 
 ______________________________________________________________________
 
-## 4. terraform taint (Deprecated — use -replace)
+## 📌 4. terraform taint (Deprecated — use -replace)
 
 ```bash
 # Force a resource to be destroyed and recreated on next apply
@@ -334,7 +334,7 @@ terraform apply -replace="azurerm_linux_virtual_machine.app[0]" -auto-approve
 
 ______________________________________________________________________
 
-## 5. terraform console — Interactive Expression Testing
+## 📌 5. terraform console — Interactive Expression Testing
 
 ```bash
 terraform console
@@ -374,7 +374,7 @@ terraform console
 
 ______________________________________________________________________
 
-## 6. terraform graph — Visualize Dependencies
+## 📌 6. terraform graph — Visualize Dependencies
 
 ```bash
 # Generate dependency graph (DOT format)
@@ -388,7 +388,7 @@ sudo apt install graphviz
 
 ______________________________________________________________________
 
-## 7. Upgrading Provider Versions
+## 📌 7. Upgrading Provider Versions
 
 ```bash
 # Check current provider versions
@@ -416,7 +416,7 @@ terraform plan
 
 ______________________________________________________________________
 
-## 8. Quick Diagnostic Checklist
+## 📌 8. Quick Diagnostic Checklist
 
 ```
 Terraform apply failing?
@@ -443,7 +443,7 @@ Resource provider not registered?
 
 ______________________________________________________________________
 
-## 9. Emergency Commands
+## 📌 9. Emergency Commands
 
 ```bash
 # "State is broken" toolkit:
@@ -462,7 +462,7 @@ terraform plan -destroy -target=<resource>  # preview destroying one resource
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Problem | Command |
 |---------|---------|
@@ -478,3 +478,8 @@ ______________________________________________________________________
 | Test expressions | `terraform console` |
 | Reinitialize after backend change | `terraform init -reconfigure` |
 | Upgrade providers | `terraform init -upgrade` |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

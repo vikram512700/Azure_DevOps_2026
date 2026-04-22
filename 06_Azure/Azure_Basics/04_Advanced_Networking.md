@@ -4,9 +4,9 @@
 
 ______________________________________________________________________
 
-## 1️⃣ Azure App Gateway & WAF
+## 📌 1️⃣ Azure App Gateway & WAF
 
-### What is Azure Application Gateway?
+### 🔹 What is Azure Application Gateway?
 
 > 💡 **Think of it like a smart receptionist at the front door:**
 >
@@ -14,7 +14,7 @@ ______________________________________________________________________
 > - App Gateway = "Oh you want /api? Go to API servers. Want /images? Go to image servers."\
 >   It understands **HTTP/HTTPS** (Layer 7 = smart routing).
 
-### App Gateway Features:
+### 🔹 App Gateway Features:
 
 | Feature | What it does | Benefit |
 |---------|-------------|---------|
@@ -24,7 +24,7 @@ ______________________________________________________________________
 | **Autoscaling** | Handles traffic spikes | No manual scaling |
 | **WAF** | Blocks attacks | Security |
 
-### Real Scenario — Path-Based Routing:
+### 🔹 Real Scenario — Path-Based Routing:
 
 ```
 User requests: myapp.com/api/orders  → routes to  API Server pool
@@ -32,12 +32,12 @@ User requests: myapp.com/images/...  → routes to  Image Server pool
 User requests: myapp.com/            → routes to  Web Server pool
 ```
 
-### What is WAF (Web Application Firewall)?
+### 🔹 What is WAF (Web Application Firewall)?
 
 > 💡 **WAF = Bodyguard for your web app.**\
 > It blocks common attacks BEFORE they reach your servers.
 
-### Attacks WAF Blocks:
+### 🔹 Attacks WAF Blocks:
 
 | Attack | What it is | Example |
 |--------|-----------|---------|
@@ -47,7 +47,7 @@ User requests: myapp.com/            → routes to  Web Server pool
 | **DDoS** | Flood server with traffic | 1M requests/second |
 | **OWASP Top 10** | Top 10 web vulnerabilities | Industry standard |
 
-### Create App Gateway with WAF:
+### 🔹 Create App Gateway with WAF:
 
 ```bash
 # Create public IP for App Gateway
@@ -81,16 +81,16 @@ az network application-gateway waf-config set \
 
 ______________________________________________________________________
 
-## 2️⃣ Azure Load Balancer
+## 📌 2️⃣ Azure Load Balancer
 
-### What is Azure Load Balancer?
+### 🔹 What is Azure Load Balancer?
 
 > 💡 **Think of it like a call center manager:**\
 > 1000 calls come in. Manager assigns: Call 1 → Agent 1, Call 2 → Agent 2, Call 3 → Agent 3...\
 > No single agent gets overwhelmed.\
 > If Agent 2 is sick (down), manager skips Agent 2.
 
-### App Gateway vs Load Balancer:
+### 🔹 App Gateway vs Load Balancer:
 
 | | Load Balancer | App Gateway |
 |-|--------------|-------------|
@@ -101,7 +101,7 @@ ______________________________________________________________________
 | Cost | 💲 Cheaper | 💲💲 More expensive |
 | Use for | Any TCP traffic, DB, VMs | Web apps, APIs |
 
-### Real Scenario — Load Balancer for Web VMs:
+### 🔹 Real Scenario — Load Balancer for Web VMs:
 
 ```
 Users from Internet
@@ -115,7 +115,7 @@ Users from Internet
   [VM1: web-01]  [VM2: web-02]  [VM3: web-03]
 ```
 
-### Create a Load Balancer:
+### 🔹 Create a Load Balancer:
 
 ```bash
 # Create public IP
@@ -152,22 +152,22 @@ az network lb rule create \
 
 ______________________________________________________________________
 
-## 3️⃣ Azure DNS
+## 📌 3️⃣ Azure DNS
 
-### What is DNS?
+### 🔹 What is DNS?
 
 > 💡 **DNS = Phone book of the internet.**\
 > You type `myapp.com` → DNS tells your browser → "That's IP 40.112.72.205"\
 > Without DNS, you'd have to type the IP address everywhere.
 
-### Azure DNS Features:
+### 🔹 Azure DNS Features:
 
 - Host your domain's DNS in Azure
 - Works with all Azure services
 - Very fast and globally distributed
 - Supports **private DNS** (for internal resolution only)
 
-### Real Scenario: Your domain `myshop.com`
+### 🔹 Real Scenario: Your domain `myshop.com`
 
 ```
 www.myshop.com     → Load Balancer IP (40.x.x.x)
@@ -175,7 +175,7 @@ api.myshop.com     → API server IP (40.x.x.y)
 mail.myshop.com    → Email server (CNAME to mail provider)
 ```
 
-### Create DNS Zone and Records:
+### 🔹 Create DNS Zone and Records:
 
 ```bash
 # Create DNS Zone (for myshop.com)
@@ -211,7 +211,7 @@ az network dns record-set list \
   --output table
 ```
 
-### Private DNS (Internal resolution in VNet):
+### 🔹 Private DNS (Internal resolution in VNet):
 
 ```bash
 # Scenario: DB server is known internally as "db.internal.myshop.com"
@@ -240,9 +240,9 @@ az network private-dns record-set a add-record \
 
 ______________________________________________________________________
 
-## 4️⃣ Azure Firewall
+## 📌 4️⃣ Azure Firewall
 
-### What is Azure Firewall?
+### 🔹 What is Azure Firewall?
 
 > 💡 **Think of it like the building's main security checkpoint:**
 >
@@ -252,7 +252,7 @@ ______________________________________________________________________
 > Azure Firewall sits at the center and **all traffic flows through it**.\
 > It can **inspect, log, and filter** everything centrally.
 
-### NSG vs Azure Firewall:
+### 🔹 NSG vs Azure Firewall:
 
 | | NSG | Azure Firewall |
 |-|-----|----------------|
@@ -264,7 +264,7 @@ ______________________________________________________________________
 | Cost | Free | 💲 Expensive |
 | Best for | Every subnet | Hub-spoke enterprise networks |
 
-### Real Scenario — Hub-Spoke with Firewall:
+### 🔹 Real Scenario — Hub-Spoke with Firewall:
 
 ```
 spoke-vnet (your app) → ALL traffic → hub-vnet firewall → Internet
@@ -274,7 +274,7 @@ spoke-vnet (your app) → ALL traffic → hub-vnet firewall → Internet
                                   Allows only approved URLs
 ```
 
-### Create Azure Firewall:
+### 🔹 Create Azure Firewall:
 
 ```bash
 # Create dedicated firewall subnet (must be named AzureFirewallSubnet!)
@@ -312,16 +312,16 @@ az network firewall application-rule create \
 
 ______________________________________________________________________
 
-## 5️⃣ Virtual Network Peering
+## 📌 5️⃣ Virtual Network Peering
 
-### What is VNet Peering?
+### 🔹 What is VNet Peering?
 
 > 💡 **Think of two separate buildings wanting to share a private corridor:**\
 > By default, VNet-A and VNet-B are **completely isolated**.\
 > VNet Peering = add a **private tunnel** between them.\
 > Traffic stays on Microsoft's backbone network (**fast, private, no internet**).
 
-### Real Scenario — Dev and Prod sharing a service:
+### 🔹 Real Scenario — Dev and Prod sharing a service:
 
 ```
 vnet-dev (10.0.0.0/16)   ←→  vnet-prod (10.1.0.0/16)
@@ -331,7 +331,7 @@ After peering:
 dev-vm (10.0.1.10) can reach prod-db (10.1.3.10) directly!
 ```
 
-### Create VNet Peering (Must do BOTH directions!):
+### 🔹 Create VNet Peering (Must do BOTH directions!):
 
 ```bash
 # Get VNet IDs
@@ -367,16 +367,16 @@ az network vnet peering list -g rg-dev --vnet-name vnet-dev --output table
 
 ______________________________________________________________________
 
-## 6️⃣ VPN Gateway
+## 📌 6️⃣ VPN Gateway
 
-### What is a VPN Gateway?
+### 🔹 What is a VPN Gateway?
 
 > 💡 **Think of it like a secure tunnel under the ocean:**\
 > Your office is in India. Your Azure VNet is in East US.\
 > VPN Gateway creates an **encrypted tunnel** over the internet between them.\
 > Everything inside the tunnel is private and secure.
 
-### VPN Types:
+### 🔹 VPN Types:
 
 | Type | Use For | Example |
 |------|---------|---------|
@@ -384,7 +384,7 @@ ______________________________________________________________________
 | **Point-to-Site (P2S)** | Connect one laptop to Azure | Remote dev ↔ Azure VNet |
 | **VNet-to-VNet** | Connect two Azure VNets in different regions | EastUS ↔ WestEurope |
 
-### Site-to-Site VPN (Office ↔ Azure):
+### 🔹 Site-to-Site VPN (Office ↔ Azure):
 
 ```
 🏢 Office Network (192.168.0.0/24)
@@ -394,7 +394,7 @@ ______________________________________________________________________
 Office employees can access Azure VMs like they're on the same network!
 ```
 
-### Create VPN Gateway (Site-to-Site):
+### 🔹 Create VPN Gateway (Site-to-Site):
 
 ```bash
 # Step 1: Create Gateway Subnet (required, must be named GatewaySubnet)
@@ -437,7 +437,7 @@ az network vpn-connection show \
   --query connectionStatus -o tsv
 ```
 
-### VNet Peering vs VPN Gateway:
+### 🔹 VNet Peering vs VPN Gateway:
 
 | | VNet Peering | VPN Gateway |
 |-|--------------|-------------|
@@ -483,3 +483,8 @@ VPN Gateway   = Encrypted tunnel: Office ↔ Azure (over internet)
 1. 5 developers work remotely. They need access to Azure VMs. What type of VPN?
 
    > **Answer**: Point-to-Site (P2S) VPN Gateway 💻
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

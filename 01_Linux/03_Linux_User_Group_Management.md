@@ -1,6 +1,6 @@
-# 03 — User & Group Management
+# 🐧 03 — User & Group Management
 
-## 1. Key System Files
+## 📌 1. Key System Files
 
 ```
 /etc/passwd   – User accounts (username:x:UID:GID:comment:home:shell)
@@ -23,7 +23,7 @@ grep "^vikram" /etc/passwd
 
 ______________________________________________________________________
 
-## 2. User Management
+## 📌 2. User Management
 
 ```bash
 # Create user (interactive home dir, shell defaults)
@@ -68,7 +68,7 @@ getent passwd vikram                       # query user database
 finger vikram                              # detailed info (if installed)
 ```
 
-### System (Service) Users
+### 🔹 System (Service) Users
 
 ```bash
 # Create a system user for running a service (no login, no home)
@@ -87,7 +87,7 @@ grep payment-svc /etc/passwd
 
 ______________________________________________________________________
 
-## 3. Group Management
+## 📌 3. Group Management
 
 ```bash
 # Create group
@@ -122,7 +122,7 @@ id -Gn vikram
 
 ______________________________________________________________________
 
-## 4. Switching Users
+## 📌 4. Switching Users
 
 ```bash
 # Switch to root
@@ -155,7 +155,7 @@ lastlog                 # last login for all users
 
 ______________________________________________________________________
 
-## 5. Password Policy
+## 📌 5. Password Policy
 
 ```bash
 # /etc/login.defs — system-wide defaults
@@ -190,7 +190,7 @@ sudo usermod -U vikram   # unlock (alternative)
 
 ______________________________________________________________________
 
-## 6. SSH Access Control
+## 📌 6. SSH Access Control
 
 ```bash
 # /etc/ssh/sshd_config — restrict SSH access
@@ -234,7 +234,7 @@ sudo chmod 440 /etc/sudoers.d/deployer
 
 ______________________________________________________________________
 
-## 7. User Session Limits (PAM / limits.conf)
+## 📌 7. User Session Limits (PAM / limits.conf)
 
 ```bash
 # /etc/security/limits.conf
@@ -272,9 +272,9 @@ ulimit -c unlimited  # core dumps
 
 ______________________________________________________________________
 
-## 8. Real-Time Scenarios
+## 📌 8. Real-Time Scenarios
 
-### Scenario 1: Onboarding a New DevOps Engineer
+### 🔹 Scenario 1: Onboarding a New DevOps Engineer
 
 ```bash
 #!/bin/bash
@@ -305,7 +305,7 @@ echo "User $USERNAME created. Groups: $GROUPS"
 id "$USERNAME"
 ```
 
-### Scenario 2: Audit All Users with Shell Access
+### 🔹 Scenario 2: Audit All Users with Shell Access
 
 ```bash
 #!/bin/bash
@@ -324,7 +324,7 @@ echo "Recently logged-in users:"
 last -n 20 | head -20
 ```
 
-### Scenario 3: Lock All Unused Service Accounts
+### 🔹 Scenario 3: Lock All Unused Service Accounts
 
 ```bash
 #!/bin/bash
@@ -340,7 +340,7 @@ done
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -357,3 +357,8 @@ ______________________________________________________________________
 | `lastb` | Failed login attempts |
 | `ulimit -a` | Show session limits |
 | `sudo visudo` | Safely edit sudoers |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

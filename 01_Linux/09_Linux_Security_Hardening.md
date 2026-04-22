@@ -1,6 +1,6 @@
-# 09 — Linux Security Hardening
+# 🐧 09 — Linux Security Hardening
 
-## 1. SSH Hardening
+## 📌 1. SSH Hardening
 
 ```bash
 # /etc/ssh/sshd_config — production hardening
@@ -72,7 +72,7 @@ sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
 
 ______________________________________________________________________
 
-## 2. fail2ban — Brute Force Protection
+## 📌 2. fail2ban — Brute Force Protection
 
 ```bash
 # Install
@@ -127,7 +127,7 @@ sudo tail -f /var/log/fail2ban.log
 
 ______________________________________________________________________
 
-## 3. Firewall Hardening (Default Deny)
+## 📌 3. Firewall Hardening (Default Deny)
 
 ```bash
 # UFW — default deny, allow only needed ports
@@ -166,7 +166,7 @@ sudo iptables-save > /etc/iptables/rules.v4
 
 ______________________________________________________________________
 
-## 4. SELinux (RHEL/CentOS/Amazon Linux)
+## 📌 4. SELinux (RHEL/CentOS/Amazon Linux)
 
 ```bash
 # Check SELinux status
@@ -217,7 +217,7 @@ sudo restorecon -Rv /opt/app/public/
 
 ______________________________________________________________________
 
-## 5. AppArmor (Ubuntu/Debian)
+## 📌 5. AppArmor (Ubuntu/Debian)
 
 ```bash
 # AppArmor status
@@ -244,7 +244,7 @@ sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.nginx
 
 ______________________________________________________________________
 
-## 6. auditd — System Auditing
+## 📌 6. auditd — System Auditing
 
 ```bash
 # Install
@@ -310,7 +310,7 @@ sudo aureport --failed                           # failed events
 
 ______________________________________________________________________
 
-## 7. System Hardening Checklist
+## 📌 7. System Hardening Checklist
 
 ```bash
 #!/bin/bash
@@ -355,7 +355,7 @@ find / -perm -4000 -type f 2>/dev/null | grep -v -E "/usr/bin/sudo|/usr/bin/pass
 
 ______________________________________________________________________
 
-## 8. Automatic Security Updates
+## 📌 8. Automatic Security Updates
 
 ```bash
 # Ubuntu — unattended-upgrades
@@ -390,7 +390,7 @@ sudo systemctl enable --now dnf-automatic-install.timer
 
 ______________________________________________________________________
 
-## 9. Secrets & Sensitive File Management
+## 📌 9. Secrets & Sensitive File Management
 
 ```bash
 # Never store secrets in scripts — use env vars or secrets managers
@@ -422,7 +422,7 @@ DB_PASSWORD=$(vault kv get -field=password secret/prod/payment/db)
 
 ______________________________________________________________________
 
-## Summary Hardening Checklist
+## 📌 Summary Hardening Checklist
 
 ```
 SSH:
@@ -454,3 +454,8 @@ Filesystem:
   ✓ /tmp has noexec,nosuid mount options
   ✓ Secrets not in scripts (use env files or vaults)
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

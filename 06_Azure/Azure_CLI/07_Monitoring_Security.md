@@ -1,6 +1,6 @@
-# Azure CLI for DevOps - Part 7: Monitoring, Security & IAM
+# ☁️ Azure CLI for DevOps - Part 7: Monitoring, Security & IAM
 
-## 1. Azure Monitor & Log Analytics
+## 📌 1. Azure Monitor & Log Analytics
 
 ```bash
 # Create Log Analytics Workspace
@@ -46,7 +46,7 @@ az monitor app-insights query \
   --analytics-query "requests | where resultCode >= 500 | summarize count() by name"
 ```
 
-## 2. Diagnostic Settings
+## 📌 2. Diagnostic Settings
 
 ```bash
 # Scenario: Send VM metrics and logs to Log Analytics
@@ -62,7 +62,7 @@ az monitor diagnostic-settings list \
   --resource /subscriptions/.../virtualMachines/web-01 --output table
 ```
 
-## 3. Azure RBAC (Role-Based Access Control)
+## 📌 3. Azure RBAC (Role-Based Access Control)
 
 ```bash
 # List built-in roles
@@ -110,7 +110,7 @@ az role assignment delete \
   --scope /subscriptions/<sub-id>/resourceGroups/rg-prod
 ```
 
-## 4. Service Principals & Managed Identities
+## 📌 4. Service Principals & Managed Identities
 
 ```bash
 # Create service principal for CI/CD
@@ -143,7 +143,7 @@ az keyvault set-policy \
   --secret-permissions get list
 ```
 
-## 5. Azure Policy
+## 📌 5. Azure Policy
 
 ```bash
 # List policy definitions
@@ -169,7 +169,7 @@ az policy state list \
   --query "[?complianceState=='NonCompliant'].{Resource:resourceId}" -o table
 ```
 
-## 6. Azure Locks
+## 📌 6. Azure Locks
 
 ```bash
 # Scenario: Prevent accidental deletion of production resources
@@ -193,7 +193,7 @@ az lock list --resource-group rg-prod --output table
 az lock delete --name "readonly-prod-db" --resource-group rg-prod
 ```
 
-## 7. Activity Log & Audit
+## 📌 7. Activity Log & Audit
 
 ```bash
 # Scenario: Who deleted the VM last week?
@@ -209,3 +209,8 @@ az monitor activity-log list \
   --query "[?category.value=='Administrative' && level=='Warning'].{Op:operationName.localizedValue, Who:caller, When:eventTimestamp}" \
   --output table
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

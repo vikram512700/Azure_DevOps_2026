@@ -4,7 +4,7 @@
 
 ______________________________________________________________________
 
-## 1️⃣ Virtualization Recap
+## 📌 1️⃣ Virtualization Recap
 
 > 💡 **Think of it like this:**\
 > Imagine one powerful physical server in a data center.\
@@ -19,7 +19,7 @@ One Physical Server (Real Hardware)
 └── 🖥️  VM 3 → Your CI/CD Build Agent (Ubuntu)
 ```
 
-### Before vs After Virtualization:
+### 🔹 Before vs After Virtualization:
 
 | Before (Old Way) | After (Virtualization) |
 |------------------|----------------------|
@@ -28,7 +28,7 @@ One Physical Server (Real Hardware)
 | Weeks to provision | Minutes to provision |
 | Expensive | Cost-efficient |
 
-### Key Terms:
+### 🔹 Key Terms:
 
 - **Hypervisor** = Software that creates and manages VMs (Azure uses **Hyper-V**)
 - **Host** = Physical machine running the hypervisor
@@ -36,9 +36,9 @@ One Physical Server (Real Hardware)
 
 ______________________________________________________________________
 
-## 2️⃣ Create a Virtual Machine in Azure
+## 📌 2️⃣ Create a Virtual Machine in Azure
 
-### What You Choose When Creating a VM:
+### 🔹 What You Choose When Creating a VM:
 
 | Setting | What it means | Example |
 |---------|--------------|---------|
@@ -51,7 +51,7 @@ ______________________________________________________________________
 | **Public IP** | Accessible from internet? | Yes for web servers |
 | **Disk** | Storage type | Premium SSD (fast), Standard HDD (cheap) |
 
-### VM Size Guide for Beginners:
+### 🔹 VM Size Guide for Beginners:
 
 | Size | CPU | RAM | Use For | Cost |
 |------|-----|-----|---------|------|
@@ -88,7 +88,7 @@ az vm create \
   --admin-password 'MyP@ss123!'
 ```
 
-### VM Management Commands:
+### 🔹 VM Management Commands:
 
 ```bash
 # See all your VMs with status
@@ -115,9 +115,9 @@ az vm delete -g rg-webapp-dev -n web-server-01 --yes
 
 ______________________________________________________________________
 
-## 3️⃣ Connect to the Virtual Machine
+## 📌 3️⃣ Connect to the Virtual Machine
 
-### Linux VM — Connect via SSH:
+### 🔹 Linux VM — Connect via SSH:
 
 ```bash
 # Step 1: Get the public IP of your VM
@@ -135,7 +135,7 @@ ssh azureuser@40.112.72.205
 az ssh vm -g rg-webapp-dev -n web-server-01
 ```
 
-### Windows VM — Connect via RDP:
+### 🔹 Windows VM — Connect via RDP:
 
 ```bash
 # Get the IP
@@ -147,7 +147,7 @@ az vm show -g rg-webapp-dev -n win-server-01 \
 # Mac: Download "Microsoft Remote Desktop" from App Store
 ```
 
-### Run Commands on VM WITHOUT logging in:
+### 🔹 Run Commands on VM WITHOUT logging in:
 
 ```bash
 # Scenario: Quick check if the app is running
@@ -169,7 +169,7 @@ az vm run-command invoke \
 
 ______________________________________________________________________
 
-## 4️⃣ Deploy Your First App on an Azure VM
+## 📌 4️⃣ Deploy Your First App on an Azure VM
 
 ### 🛒 Real Scenario: Deploy a Node.js Web App
 
@@ -255,7 +255,7 @@ az vm extension set \
 
 ______________________________________________________________________
 
-## 5️⃣ VM Scale Sets (VMSS) for Autoscaling
+## 📌 5️⃣ VM Scale Sets (VMSS) for Autoscaling
 
 > 💡 **Think of it like this:**\
 > You own a pizza shop.\
@@ -276,7 +276,7 @@ After peak — CPU < 30% (VMSS removes VMs):
   [VM1] [VM2]
 ```
 
-### Create a VM ScaleSet:
+### 🔹 Create a VM ScaleSet:
 
 ```bash
 az vmss create \
@@ -291,7 +291,7 @@ az vmss create \
   --upgrade-policy-mode Automatic
 ```
 
-### Set Up Auto Scaling Rules:
+### 🔹 Set Up Auto Scaling Rules:
 
 ```bash
 # Create autoscale setting
@@ -319,7 +319,7 @@ az monitor autoscale rule create \
   --scale in 1
 ```
 
-### VMSS Management:
+### 🔹 VMSS Management:
 
 ```bash
 # See all VM instances in the scale set
@@ -332,7 +332,7 @@ az vmss scale -g rg-webapp-prod -n vmss-web --new-capacity 8
 az vmss update-instances -g rg-webapp-prod -n vmss-web --instance-ids "*"
 ```
 
-### Single VM vs VMSS:
+### 🔹 Single VM vs VMSS:
 
 | | Single VM | VM ScaleSet (VMSS) |
 |-|-----------|---------------------|
@@ -369,3 +369,8 @@ Deallocate      = Stop VM and stop paying for it
 1. You want to install Docker on 50 VMs without SSHing into each one. What do you use?
 
    > **Answer**: VM Extension or `az vm run-command` 🤖
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

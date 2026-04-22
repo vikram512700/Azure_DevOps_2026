@@ -1,8 +1,8 @@
-# 04 — Merging, Rebasing & Cherry-Pick
+# 🐙 04 — Merging, Rebasing & Cherry-Pick
 
-## 1. Merge Strategies
+## 📌 1. Merge Strategies
 
-### Fast-Forward Merge
+### 🔹 Fast-Forward Merge
 
 ```
 Before:
@@ -24,7 +24,7 @@ git merge --ff-only feature/payments
 git merge --no-ff feature/payments
 ```
 
-### No-Fast-Forward Merge (Recommended for feature branches)
+### 🔹 No-Fast-Forward Merge (Recommended for feature branches)
 
 ```
 Before:
@@ -44,7 +44,7 @@ git merge --no-ff feature/payments -m "feat: merge payment gateway feature [JIRA
 
 ______________________________________________________________________
 
-## 2. Merge Conflict Resolution
+## 📌 2. Merge Conflict Resolution
 
 ```bash
 # When a merge hits conflicts:
@@ -75,7 +75,7 @@ git commit --no-edit                # accept default message
 git merge --abort
 ```
 
-### Using a Merge Tool
+### 🔹 Using a Merge Tool
 
 ```bash
 # Configure your merge tool
@@ -93,7 +93,7 @@ git mergetool
 git clean -f *.orig
 ```
 
-### Real-Time Scenario: Merge conflict in a Helm values file
+### 🔹 Real-Time Scenario: Merge conflict in a Helm values file
 
 ```bash
 git merge release/2.4.0
@@ -119,9 +119,9 @@ git commit -m "chore: resolve merge conflict in helm values — keep prod replic
 
 ______________________________________________________________________
 
-## 3. Rebase
+## 📌 3. Rebase
 
-### What is Rebase?
+### 🔹 What is Rebase?
 
 Rebase re-applies your commits on top of another branch's tip, giving a **linear history**.
 
@@ -154,7 +154,7 @@ git rebase --continue
 git rebase --skip
 ```
 
-### Interactive Rebase (Clean up commits before PR)
+### 🔹 Interactive Rebase (Clean up commits before PR)
 
 ```bash
 # Squash, reorder, edit last 4 commits
@@ -182,7 +182,7 @@ squash 9e8f7d6 test: add webhook tests
 # edit    = pause to amend the commit
 ```
 
-### Real-Time Scenario: Preparing a clean PR
+### 🔹 Real-Time Scenario: Preparing a clean PR
 
 ```bash
 # You have 6 WIP commits on your feature branch
@@ -206,7 +206,7 @@ git push --force-with-lease origin feature/JIRA-789-add-2fa
 
 ______________________________________________________________________
 
-## 4. Cherry-Pick
+## 📌 4. Cherry-Pick
 
 Cherry-pick applies a specific commit from one branch to another.
 
@@ -233,7 +233,7 @@ git cherry-pick --continue
 git cherry-pick --abort
 ```
 
-### Real-Time Scenario: Backporting a security fix to an older release
+### 🔹 Real-Time Scenario: Backporting a security fix to an older release
 
 ```bash
 # A critical security fix was committed to main as commit a3f1c9b
@@ -253,7 +253,7 @@ git tag -a v2.3.2 -m "Security patch: CVE-2024-1234 backport"
 git push origin v2.3.2
 ```
 
-### Real-Time Scenario: Pulling a fix from develop to main without full merge
+### 🔹 Real-Time Scenario: Pulling a fix from develop to main without full merge
 
 ```bash
 # Specific bug fix on develop: commit hash b9f3d2a
@@ -267,7 +267,7 @@ git push origin main
 
 ______________________________________________________________________
 
-## 5. Squash Merge (GitHub/GitLab PR Strategy)
+## 📌 5. Squash Merge (GitHub/GitLab PR Strategy)
 
 ```bash
 # Squash all commits from feature branch into one on main
@@ -279,7 +279,7 @@ git commit -m "feat: complete payment gateway integration [JIRA-789]"
 
 ______________________________________________________________________
 
-## 6. Octopus Merge (Multiple branches at once)
+## 📌 6. Octopus Merge (Multiple branches at once)
 
 ```bash
 # Merge multiple feature branches simultaneously (rare but valid)
@@ -289,7 +289,7 @@ git merge feature/auth feature/payments feature/notifications
 
 ______________________________________________________________________
 
-## 7. Merge vs Rebase Decision Guide
+## 📌 7. Merge vs Rebase Decision Guide
 
 | Scenario | Recommendation |
 |----------|---------------|
@@ -301,13 +301,13 @@ ______________________________________________________________________
 | Open source PR | Squash or rebase |
 | CI pipeline sync | `pull --rebase` |
 
-### The Golden Rule of Rebase
+### 🔹 The Golden Rule of Rebase
 
 > **Never rebase a branch that others are working on.** Rebase rewrites commit hashes, which causes diverged history for any teammate who has the old commits.
 
 ______________________________________________________________________
 
-## 8. Real-Time Scenario: Resolving a complex 3-way conflict in a microservice
+## 📌 8. Real-Time Scenario: Resolving a complex 3-way conflict in a microservice
 
 ```bash
 # main has been updated 15 commits ahead while feature was being developed
@@ -332,7 +332,7 @@ git push --force-with-lease origin feature/JIRA-789
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -345,3 +345,8 @@ ______________________________________________________________________
 | `git cherry-pick --abort` | Cancel cherry-pick |
 | `git merge --squash` | Flatten branch into one commit |
 | `git mergetool` | Launch visual merge tool |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

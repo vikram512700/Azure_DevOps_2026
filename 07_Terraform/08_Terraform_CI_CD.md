@@ -1,6 +1,6 @@
-# 08 — Terraform in CI/CD Pipelines
+# ☁️ 08 — Terraform in CI/CD Pipelines
 
-## 1. GitHub Actions — Full Terraform Pipeline
+## 📌 1. GitHub Actions — Full Terraform Pipeline
 
 ```yaml
 # .github/workflows/terraform.yml
@@ -176,7 +176,7 @@ jobs:
 
 ______________________________________________________________________
 
-## 2. OIDC Authentication (No Secrets — Best Practice)
+## 📌 2. OIDC Authentication (No Secrets — Best Practice)
 
 ```yaml
 # Using Workload Identity Federation — no client secrets stored in GitHub
@@ -227,7 +227,7 @@ az ad app federated-credential create \
 
 ______________________________________________________________________
 
-## 3. Azure DevOps Pipeline
+## 📌 3. Azure DevOps Pipeline
 
 ```yaml
 # azure-pipelines.yml
@@ -386,7 +386,7 @@ stages:
 
 ______________________________________________________________________
 
-## 4. Atlantis — Terraform Pull Request Automation
+## 📌 4. Atlantis — Terraform Pull Request Automation
 
 Atlantis runs Terraform plan on PR and lets reviewers approve + apply from PR comments.
 
@@ -443,7 +443,7 @@ atlantis apply -p payment-dev    # apply specific project
 
 ______________________________________________________________________
 
-## 5. Scheduled Drift Detection
+## 📌 5. Scheduled Drift Detection
 
 ```yaml
 # .github/workflows/drift-detection.yml
@@ -498,7 +498,7 @@ jobs:
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Approach | Best For |
 |----------|---------|
@@ -507,3 +507,8 @@ ______________________________________________________________________
 | Atlantis | GitOps-style, PR-driven apply workflow |
 | Scheduled drift detection | Catch manual Azure portal changes |
 | OIDC (no secrets) | Most secure — no client secrets in CI |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

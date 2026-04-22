@@ -1,6 +1,6 @@
-# 05 — Terraform Modules
+# ☁️ 05 — Terraform Modules
 
-## 1. What is a Module?
+## 📌 1. What is a Module?
 
 A module is a **container for multiple resources** that are used together. Every Terraform configuration is technically a module (the root module). Child modules are reusable building blocks.
 
@@ -21,7 +21,7 @@ Root Module (your working directory)
 
 ______________________________________________________________________
 
-## 2. Module Directory Structure
+## 📌 2. Module Directory Structure
 
 ```
 modules/
@@ -49,9 +49,9 @@ Root:
 
 ______________________________________________________________________
 
-## 3. Writing a Reusable Module — Networking Example
+## 📌 3. Writing a Reusable Module — Networking Example
 
-### modules/networking/variables.tf
+### 🔹 modules/networking/variables.tf
 
 ```hcl
 variable "resource_group_name" {
@@ -104,7 +104,7 @@ variable "tags" {
 }
 ```
 
-### modules/networking/main.tf
+### 🔹 modules/networking/main.tf
 
 ```hcl
 locals {
@@ -159,7 +159,7 @@ resource "azurerm_subnet_network_security_group_association" "main" {
 }
 ```
 
-### modules/networking/outputs.tf
+### 🔹 modules/networking/outputs.tf
 
 ```hcl
 output "vnet_id" {
@@ -190,7 +190,7 @@ output "nsg_ids" {
 
 ______________________________________________________________________
 
-## 4. Calling a Module from Root
+## 📌 4. Calling a Module from Root
 
 ```hcl
 # main.tf (root)
@@ -248,7 +248,7 @@ output "vnet_id" {
 
 ______________________________________________________________________
 
-## 5. Module Versioning — Git Source
+## 📌 5. Module Versioning — Git Source
 
 ```hcl
 # Pin to a specific git tag (production best practice)
@@ -272,7 +272,7 @@ module "key_vault" {
 
 ______________________________________________________________________
 
-## 6. Terraform Registry Modules (Public)
+## 📌 6. Terraform Registry Modules (Public)
 
 ```hcl
 # Official Azure modules from registry.terraform.io
@@ -301,7 +301,7 @@ module "aks" {
 
 ______________________________________________________________________
 
-## 7. Module Composition — Complete Project Layout
+## 📌 7. Module Composition — Complete Project Layout
 
 ```
 infrastructure/
@@ -338,11 +338,11 @@ infrastructure/
 
 ______________________________________________________________________
 
-## 8. Terragrunt — DRY Wrapper for Terraform
+## 📌 8. Terragrunt — DRY Wrapper for Terraform
 
 Terragrunt eliminates backend config duplication and enables hierarchical configurations.
 
-### Directory Structure with Terragrunt
+### 🔹 Directory Structure with Terragrunt
 
 ```
 infrastructure/
@@ -363,7 +363,7 @@ infrastructure/
     └── ...
 ```
 
-### Root terragrunt.hcl
+### 🔹 Root terragrunt.hcl
 
 ```hcl
 # infrastructure/terragrunt.hcl
@@ -410,7 +410,7 @@ remote_state {
 }
 ```
 
-### Environment terragrunt.hcl
+### 🔹 Environment terragrunt.hcl
 
 ```hcl
 # infrastructure/dev/terragrunt.hcl
@@ -427,7 +427,7 @@ inputs = {
 }
 ```
 
-### Module terragrunt.hcl
+### 🔹 Module terragrunt.hcl
 
 ```hcl
 # infrastructure/dev/networking/terragrunt.hcl
@@ -479,7 +479,7 @@ terragrunt run-all apply --terragrunt-include-dir "networking" --terragrunt-incl
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Concept | Description |
 |---------|-------------|
@@ -492,3 +492,8 @@ ______________________________________________________________________
 | `modules/x/outputs.tf` | Module exported values |
 | Terragrunt `run-all apply` | Apply all modules in dependency order |
 | Terragrunt `dependency` | Reference another module's outputs |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

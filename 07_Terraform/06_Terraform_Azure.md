@@ -1,6 +1,6 @@
-# 06 — Terraform with Azure — Production Examples
+# ☁️ 06 — Terraform with Azure — Production Examples
 
-## 1. Resource Naming Convention
+## 📌 1. Resource Naming Convention
 
 ```hcl
 # Azure recommended naming: <type>-<project>-<env>-<region-short>
@@ -28,7 +28,7 @@ locals {
 
 ______________________________________________________________________
 
-## 2. Resource Group
+## 📌 2. Resource Group
 
 ```hcl
 resource "azurerm_resource_group" "main" {
@@ -53,7 +53,7 @@ resource "azurerm_resource_group" "main" {
 
 ______________________________________________________________________
 
-## 3. Virtual Network, Subnets & NSG
+## 📌 3. Virtual Network, Subnets & NSG
 
 ```hcl
 resource "azurerm_virtual_network" "main" {
@@ -115,7 +115,7 @@ resource "azurerm_subnet_network_security_group_association" "app" {
 
 ______________________________________________________________________
 
-## 4. Azure Key Vault
+## 📌 4. Azure Key Vault
 
 ```hcl
 data "azurerm_client_config" "current" {}
@@ -169,7 +169,7 @@ resource "azurerm_key_vault_secret" "db_password" {
 
 ______________________________________________________________________
 
-## 5. Azure Container Registry (ACR)
+## 📌 5. Azure Container Registry (ACR)
 
 ```hcl
 resource "azurerm_container_registry" "main" {
@@ -218,7 +218,7 @@ output "acr_login_server" {
 
 ______________________________________________________________________
 
-## 6. Azure Kubernetes Service (AKS)
+## 📌 6. Azure Kubernetes Service (AKS)
 
 ```hcl
 resource "azurerm_user_assigned_identity" "aks_control_plane" {
@@ -348,7 +348,7 @@ output "aks_host" {
 
 ______________________________________________________________________
 
-## 7. Azure SQL Database
+## 📌 7. Azure SQL Database
 
 ```hcl
 resource "azurerm_mssql_server" "main" {
@@ -430,7 +430,7 @@ resource "azurerm_private_endpoint" "sql" {
 
 ______________________________________________________________________
 
-## 8. Azure Storage Account
+## 📌 8. Azure Storage Account
 
 ```hcl
 resource "random_string" "sa_suffix" {
@@ -487,7 +487,7 @@ resource "azurerm_storage_container" "app_data" {
 
 ______________________________________________________________________
 
-## 9. Azure App Service (Web App)
+## 📌 9. Azure App Service (Web App)
 
 ```hcl
 resource "azurerm_service_plan" "main" {
@@ -579,7 +579,7 @@ resource "azurerm_monitor_autoscale_setting" "app" {
 
 ______________________________________________________________________
 
-## 10. Log Analytics & Application Insights
+## 📌 10. Log Analytics & Application Insights
 
 ```hcl
 resource "azurerm_log_analytics_workspace" "main" {
@@ -614,7 +614,7 @@ output "app_insights_instrumentation_key" {
 
 ______________________________________________________________________
 
-## 11. Complete outputs.tf for a Full Stack Deployment
+## 📌 11. Complete outputs.tf for a Full Stack Deployment
 
 ```hcl
 # Networking
@@ -646,3 +646,8 @@ output "app_insights_connection_string" {
   sensitive = true
 }
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

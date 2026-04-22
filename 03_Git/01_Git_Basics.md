@@ -1,6 +1,6 @@
-# 01 — Git Basics
+# 🐙 01 — Git Basics
 
-## 1. Installation & Verification
+## 📌 1. Installation & Verification
 
 ```bash
 # Linux (Ubuntu/Debian)
@@ -20,7 +20,7 @@ git --version
 
 ______________________________________________________________________
 
-## 2. First-Time Global Configuration
+## 📌 2. First-Time Global Configuration
 
 ```bash
 git config --global user.name  "Vikram Akula"
@@ -38,7 +38,7 @@ git config --list
 git config user.name
 ```
 
-### Real-Time Scenario: Setting up a new EC2 instance for a CI runner
+### 🔹 Real-Time Scenario: Setting up a new EC2 instance for a CI runner
 
 ```bash
 # On a fresh Jenkins/GitLab runner EC2 instance
@@ -51,7 +51,7 @@ git config --global core.sshCommand "ssh -i /home/ubuntu/.ssh/deploy_key -o Stri
 
 ______________________________________________________________________
 
-## 3. Initializing a Repository
+## 📌 3. Initializing a Repository
 
 ```bash
 # Initialize a new local repo
@@ -65,7 +65,7 @@ git init -b main
 git init --bare /srv/repos/my-app.git
 ```
 
-### Real-Time Scenario: Bootstrapping a new microservice repo
+### 🔹 Real-Time Scenario: Bootstrapping a new microservice repo
 
 ```bash
 mkdir payment-service && cd payment-service
@@ -82,7 +82,7 @@ git push -u origin main
 
 ______________________________________________________________________
 
-## 4. Staging and Committing
+## 📌 4. Staging and Committing
 
 ```bash
 # Check working tree status
@@ -113,7 +113,7 @@ git commit --amend -m "feat: add payment gateway integration (stripe)"
 git commit --amend --no-edit   # keep same message, add staged files
 ```
 
-### Commit Message Convention (Conventional Commits — used in CI/CD)
+### 🔹 Commit Message Convention (Conventional Commits — used in CI/CD)
 
 ```
 <type>(<scope>): <short description>
@@ -138,7 +138,7 @@ Examples:
 
 ______________________________________________________________________
 
-## 5. Viewing History
+## 📌 5. Viewing History
 
 ```bash
 # Full log
@@ -172,7 +172,7 @@ git log --grep="payment"
 git log --pretty=format:"%h %ad %s [%an]" --date=short
 ```
 
-### Real-Time Scenario: Finding who introduced a breaking change in prod
+### 🔹 Real-Time Scenario: Finding who introduced a breaking change in prod
 
 ```bash
 git log --oneline --since="2 days ago" --author-date-order
@@ -187,7 +187,7 @@ git log --oneline --follow -- src/payment/processor.js
 
 ______________________________________________________________________
 
-## 6. Viewing Differences
+## 📌 6. Viewing Differences
 
 ```bash
 # Working tree vs staging area (unstaged changes)
@@ -216,7 +216,7 @@ git diff HEAD~3 HEAD -- src/app.js
 
 ______________________________________________________________________
 
-## 7. .gitignore
+## 📌 7. .gitignore
 
 ```bash
 # Create a .gitignore at repo root
@@ -265,7 +265,7 @@ git check-ignore -v path/to/file
 git add -f config/special.env
 ```
 
-### Real-Time Scenario: Accidentally committed .env file
+### 🔹 Real-Time Scenario: Accidentally committed .env file
 
 ```bash
 # Remove from tracking without deleting the file
@@ -287,7 +287,7 @@ git push origin --force --all
 
 ______________________________________________________________________
 
-## 8. Git Objects & Internals (Know for Interviews)
+## 📌 8. Git Objects & Internals (Know for Interviews)
 
 ```bash
 # Every commit, tree, blob has a SHA-1 hash
@@ -312,7 +312,7 @@ git cat-file -s a3f1c9b
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -325,3 +325,8 @@ ______________________________________________________________________
 | `git log --oneline --graph` | Visual history |
 | `git diff --staged` | Review staged changes |
 | `git rm --cached` | Untrack a file |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

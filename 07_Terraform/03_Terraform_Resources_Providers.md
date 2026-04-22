@@ -1,6 +1,6 @@
-# 03 — Resources, Providers & Meta-Arguments
+# ☁️ 03 — Resources, Providers & Meta-Arguments
 
-## 1. Resource Block Anatomy
+## 📌 1. Resource Block Anatomy
 
 ```hcl
 resource "<PROVIDER>_<TYPE>" "<LOCAL_NAME>" {
@@ -29,7 +29,7 @@ resource "<PROVIDER>_<TYPE>" "<LOCAL_NAME>" {
 }
 ```
 
-### Resource Reference Syntax
+### 🔹 Resource Reference Syntax
 
 ```hcl
 # Reference another resource's attribute
@@ -48,7 +48,7 @@ resource "azurerm_subnet" "app" {
 
 ______________________________________________________________________
 
-## 2. count — Create Multiple Identical Resources
+## 📌 2. count — Create Multiple Identical Resources
 
 ```hcl
 # Create 3 VMs
@@ -99,7 +99,7 @@ resource "azurerm_monitor_diagnostic_setting" "main" {
 
 ______________________________________________________________________
 
-## 3. for_each — Create Resources from a Map or Set
+## 📌 3. for_each — Create Resources from a Map or Set
 
 `for_each` is preferred over `count` when resources are distinct — removing one doesn't shift indexes.
 
@@ -166,7 +166,7 @@ resource "azurerm_network_security_rule" "rules" {
 
 ______________________________________________________________________
 
-## 4. depends_on — Explicit Dependencies
+## 📌 4. depends_on — Explicit Dependencies
 
 Terraform auto-detects dependencies from references. Use `depends_on` only when the dependency is implicit (e.g., IAM permission needed before resource creation).
 
@@ -201,7 +201,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 
 ______________________________________________________________________
 
-## 5. lifecycle — Control Resource Behavior
+## 📌 5. lifecycle — Control Resource Behavior
 
 ```hcl
 resource "azurerm_mssql_server" "main" {
@@ -257,7 +257,7 @@ resource "azurerm_linux_virtual_machine" "app" {
 
 ______________________________________________________________________
 
-## 6. Provider Configuration & Aliases
+## 📌 6. Provider Configuration & Aliases
 
 ```hcl
 # Single provider
@@ -322,7 +322,7 @@ terraform {
 
 ______________________________________________________________________
 
-## 7. The random Provider (Common Pattern)
+## 📌 7. The random Provider (Common Pattern)
 
 ```hcl
 # Random suffix for globally unique Azure resource names (Storage Accounts, Key Vaults)
@@ -366,7 +366,7 @@ resource "azurerm_key_vault_secret" "db_password" {
 
 ______________________________________________________________________
 
-## 8. Real-Time Scenario: Multi-Environment Resource Tags
+## 📌 8. Real-Time Scenario: Multi-Environment Resource Tags
 
 ```hcl
 # versions.tf
@@ -421,7 +421,7 @@ resource "azurerm_mssql_database" "main" {
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Meta-Argument | Purpose |
 |---------------|---------|
@@ -435,3 +435,8 @@ ______________________________________________________________________
 | `lifecycle.create_before_destroy` | Zero-downtime replacement |
 | `lifecycle.precondition` | Validate inputs before apply |
 | `provider = azurerm.alias` | Use alternate provider configuration |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

@@ -1,6 +1,6 @@
-# 06 — Advanced Git Commands
+# 🐙 06 — Advanced Git Commands
 
-## 1. git stash
+## 📌 1. git stash
 
 Stash saves your uncommitted changes and gives you a clean working tree.
 
@@ -45,7 +45,7 @@ git stash clear
 git stash branch feature/stashed-work stash@{0}
 ```
 
-### Real-Time Scenario: Urgent hotfix interrupts feature work
+### 🔹 Real-Time Scenario: Urgent hotfix interrupts feature work
 
 ```bash
 # You're mid-feature when a P1 alert fires in production
@@ -68,7 +68,7 @@ git stash pop
 
 ______________________________________________________________________
 
-## 2. Git Tags
+## 📌 2. Git Tags
 
 ```bash
 # List tags
@@ -107,7 +107,7 @@ git checkout v2.1.0
 git checkout -b release/2.1.x v2.1.0
 ```
 
-### Real-Time Scenario: Automated release tagging in CI
+### 🔹 Real-Time Scenario: Automated release tagging in CI
 
 ```bash
 #!/bin/bash
@@ -127,7 +127,7 @@ echo "Tagged and pushed: $TAG"
 
 ______________________________________________________________________
 
-## 3. git bisect (Binary Search for Bugs)
+## 📌 3. git bisect (Binary Search for Bugs)
 
 ```bash
 # Start bisect session
@@ -159,7 +159,7 @@ git bisect run ./tests/check-payment.sh
 # Script must exit 0 for good, non-zero for bad
 ```
 
-### Real-Time Scenario: Performance regression in production
+### 🔹 Real-Time Scenario: Performance regression in production
 
 ```bash
 # Performance test shows API latency doubled since last month
@@ -179,7 +179,7 @@ git bisect run bash -c 'npm test -- --testNamePattern="payment API latency"'
 
 ______________________________________________________________________
 
-## 4. git blame
+## 📌 4. git blame
 
 ```bash
 # Show who changed each line of a file
@@ -201,7 +201,7 @@ git blame -C src/payment/processor.js
 git blame v2.0.0 -- src/payment/processor.js
 ```
 
-### Real-Time Scenario: Who broke the prod config?
+### 🔹 Real-Time Scenario: Who broke the prod config?
 
 ```bash
 git blame -L 1,20 config/database.yml
@@ -214,7 +214,7 @@ git show 7e8f9a0b
 
 ______________________________________________________________________
 
-## 5. git submodules
+## 📌 5. git submodules
 
 ```bash
 # Add a submodule
@@ -241,7 +241,7 @@ rm -rf .git/modules/libs/shared
 git commit -m "chore: remove shared-lib submodule"
 ```
 
-### Real-Time Scenario: Shared Terraform modules as submodule
+### 🔹 Real-Time Scenario: Shared Terraform modules as submodule
 
 ```bash
 # Main infra repo uses shared terraform modules
@@ -256,7 +256,7 @@ terraform plan
 
 ______________________________________________________________________
 
-## 6. Git Hooks
+## 📌 6. Git Hooks
 
 Hooks are scripts that run automatically on Git events. Located in `.git/hooks/`.
 
@@ -268,7 +268,7 @@ ls .git/hooks/
 # post-merge        post-receive    update
 ```
 
-### pre-commit hook (run linting and tests before commit)
+### 🔹 pre-commit hook (run linting and tests before commit)
 
 ```bash
 cat > .git/hooks/pre-commit << 'EOF'
@@ -297,7 +297,7 @@ EOF
 chmod +x .git/hooks/pre-commit
 ```
 
-### commit-msg hook (enforce Conventional Commits)
+### 🔹 commit-msg hook (enforce Conventional Commits)
 
 ```bash
 cat > .git/hooks/commit-msg << 'EOF'
@@ -316,7 +316,7 @@ EOF
 chmod +x .git/hooks/commit-msg
 ```
 
-### Sharing hooks with the team (Husky for Node.js projects)
+### 🔹 Sharing hooks with the team (Husky for Node.js projects)
 
 ```bash
 npm install --save-dev husky
@@ -331,7 +331,7 @@ npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
 
 ______________________________________________________________________
 
-## 7. git shortlog & Statistics
+## 📌 7. git shortlog & Statistics
 
 ```bash
 # Summary of commits per author
@@ -353,7 +353,7 @@ git log --name-only --pretty=format: | sort | uniq -c | sort -rn | head -20
 
 ______________________________________________________________________
 
-## 8. git archive (Export without .git)
+## 📌 8. git archive (Export without .git)
 
 ```bash
 # Export current HEAD as a tar.gz (no .git directory)
@@ -366,7 +366,7 @@ git archive --format=zip v2.1.0 > release-v2.1.0.zip
 git archive HEAD:src/ --format=tar.gz > src-only.tar.gz
 ```
 
-### Real-Time Scenario: Creating a release artifact in CI
+### 🔹 Real-Time Scenario: Creating a release artifact in CI
 
 ```bash
 #!/bin/bash
@@ -382,7 +382,7 @@ sha256sum "payment-service-${VERSION}.tar.gz" > "payment-service-${VERSION}.tar.
 
 ______________________________________________________________________
 
-## 9. git worktree (Multiple Working Trees)
+## 📌 9. git worktree (Multiple Working Trees)
 
 ```bash
 # Create a second working tree for a different branch
@@ -399,7 +399,7 @@ cd ../hotfix-tree
 git worktree remove ../hotfix-tree
 ```
 
-### Real-Time Scenario: Working on a hotfix while mid-feature
+### 🔹 Real-Time Scenario: Working on a hotfix while mid-feature
 
 ```bash
 # Instead of stashing, use a worktree
@@ -415,7 +415,7 @@ cd ../main-repo
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -428,3 +428,8 @@ ______________________________________________________________________
 | `git archive HEAD` | Export repo without .git |
 | `git worktree add` | Multiple working directories |
 | `.git/hooks/pre-commit` | Auto checks before commit |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

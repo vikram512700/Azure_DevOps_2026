@@ -4,7 +4,7 @@
 
 ______________________________________________________________________
 
-## 1️⃣ Why Learn Python for DevOps?
+## 📌 1️⃣ Why Learn Python for DevOps?
 
 > 💡 **Think of it like this:**\
 > Bash is great for quick commands.\
@@ -19,9 +19,9 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## 2️⃣ Core Concepts (Fast Track)
+## 📌 2️⃣ Core Concepts (Fast Track)
 
-### Variables & Data Types
+### 🔹 Variables & Data Types
 
 ```python
 server_name = "web-01"       # String
@@ -31,7 +31,7 @@ servers = ["web-01", "db-01"] # List (Array)
 config = {"port": 80}        # Dictionary (Key-Value)
 ```
 
-### Loops (Doing things multiple times)
+### 🔹 Loops (Doing things multiple times)
 
 ```python
 servers = ["web-01", "web-02", "db-01"]
@@ -40,7 +40,7 @@ for server in servers:
     print(f"Starting server: {server}")
 ```
 
-### If/Else Statements (Logic)
+### 🔹 If/Else Statements (Logic)
 
 ```python
 cpu_usage = 85
@@ -53,9 +53,9 @@ else:
 
 ______________________________________________________________________
 
-## 3️⃣ Real-World DevOps Scripts
+## 📌 3️⃣ Real-World DevOps Scripts
 
-### Scenario 1: Running Shell Commands inside Python
+### 🔹 Scenario 1: Running Shell Commands inside Python
 
 *Sometimes you need to run regular Linux commands inside your Python script.*
 
@@ -69,7 +69,7 @@ print("Disk Space Report:")
 print(result.stdout)
 ```
 
-### Scenario 2: Working with JSON
+### 🔹 Scenario 2: Working with JSON
 
 *DevOps is 90% dealing with JSON. Let's read a config.*
 
@@ -87,7 +87,7 @@ if data['uptime_days'] > 30:
     print("Consider patching and rebooting soon.")
 ```
 
-### Scenario 3: Checking if a Website is UP
+### 🔹 Scenario 3: Checking if a Website is UP
 
 *Using the `requests` library to monitor a site.*
 
@@ -121,3 +121,8 @@ ______________________________________________________________________
    > **Answer**: The `requests` library. 🌐
 1. You want to run a simple `ls -l` command from Python. What module do you import?
    > **Answer**: `import subprocess` 🖥️
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

@@ -1,8 +1,8 @@
-# Azure CLI for DevOps - Part 8: Advanced & Real-Time Scripts
+# ☁️ Azure CLI for DevOps - Part 8: Advanced & Real-Time Scripts
 
-## 1. Infrastructure as Code with CLI Scripts
+## 📌 1. Infrastructure as Code with CLI Scripts
 
-### Full Environment Setup Script
+### 🔹 Full Environment Setup Script
 
 ```bash
 #!/bin/bash
@@ -42,7 +42,7 @@ az webapp config appsettings set -g $RG -n "${SERVICE}-${ENV}" \
 echo "=== Environment $ENV ready for $SERVICE ==="
 ```
 
-### Environment Teardown Script
+### 🔹 Environment Teardown Script
 
 ```bash
 #!/bin/bash
@@ -59,7 +59,7 @@ if [ "$confirm" = "yes" ]; then
 fi
 ```
 
-## 2. Cost Management Scripts
+## 📌 2. Cost Management Scripts
 
 ```bash
 # Scenario: Get cost breakdown by resource group
@@ -86,7 +86,7 @@ az disk list --query "[?managedBy==null].{Name:name, Size:diskSizeGb, RG:resourc
 az disk list --query "[?managedBy==null].[id]" -o tsv | xargs -I {} az disk delete --ids {} --yes
 ```
 
-## 3. Disaster Recovery Scripts
+## 📌 3. Disaster Recovery Scripts
 
 ```bash
 # Scenario: Backup all Key Vault secrets
@@ -114,7 +114,7 @@ az sql db replica set-primary \
   -g rg-dr -s sqlsrv-dr -n db-ecommerce
 ```
 
-## 4. Multi-Subscription Management
+## 📌 4. Multi-Subscription Management
 
 ```bash
 # Scenario: Apply security baseline across all subscriptions
@@ -135,7 +135,7 @@ for SUB_ID in $(az account list --query "[].id" -o tsv); do
 done
 ```
 
-## 5. Terraform Backend Setup
+## 📌 5. Terraform Backend Setup
 
 ```bash
 # Scenario: Set up Azure backend for Terraform state
@@ -165,7 +165,7 @@ echo "  container_name       = \"$CONTAINER\""
 echo "  key                  = \"terraform.tfstate\""
 ```
 
-## 6. Health Check Script
+## 📌 6. Health Check Script
 
 ```bash
 #!/bin/bash
@@ -203,7 +203,7 @@ az lock list --query "[].{Name:name, Level:level, RG:resourceGroup}" -o table
 echo "=== Health Check Complete ==="
 ```
 
-## 7. Quick Reference - Common DevOps Tasks
+## 📌 7. Quick Reference - Common DevOps Tasks
 
 ```bash
 # SSH into Azure VM
@@ -240,7 +240,7 @@ az provider list --query "[?registrationState=='Registered'].namespace" -o table
 az provider register --namespace Microsoft.ContainerService --wait
 ```
 
-## 8. Azure Bicep (IaC) with CLI
+## 📌 8. Azure Bicep (IaC) with CLI
 
 ```bash
 # Build Bicep to ARM
@@ -269,7 +269,7 @@ az bicep decompile --file template.json
 
 ______________________________________________________________________
 
-## Quick Cheat Sheet
+## 📌 Quick Cheat Sheet
 
 | Task | Command |
 |------|---------|
@@ -283,3 +283,8 @@ ______________________________________________________________________
 | Assign role | `az role assignment create --assignee <user> --role <role>` |
 | Stream logs | `az webapp log tail -g <rg> -n <name>` |
 | Run on VM | `az vm run-command invoke -g <rg> -n <vm> --command-id RunShellScript --scripts "..."` |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

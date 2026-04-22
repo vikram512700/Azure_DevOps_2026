@@ -1,10 +1,10 @@
-# Terraform for DevOps Engineers — Complete Reference (Azure)
+# ☁️ Terraform for DevOps Engineers — Complete Reference (Azure)
 
 A structured guide covering Terraform from fundamentals to advanced production patterns with real-world **Azure** scenarios.
 
 ______________________________________________________________________
 
-## Index
+## 📌 Index
 
 | File | Topics Covered |
 |------|---------------|
@@ -21,7 +21,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Quick Reference Card
+## 📌 Quick Reference Card
 
 ```bash
 # Core workflow

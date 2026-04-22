@@ -1,8 +1,8 @@
-# 09 — Terraform Best Practices
+# ☁️ 09 — Terraform Best Practices
 
-## 1. Project Structure Standards
+## 📌 1. Project Structure Standards
 
-### Recommended File Layout
+### 🔹 Recommended File Layout
 
 ```
 infrastructure/
@@ -34,7 +34,7 @@ infrastructure/
         └── terraform.yml
 ```
 
-### Standard File Responsibilities
+### 🔹 Standard File Responsibilities
 
 ```
 main.tf       → resources and module calls (no variables declared here)
@@ -49,7 +49,7 @@ backend.tf    → remote backend configuration
 
 ______________________________________________________________________
 
-## 2. Naming Conventions
+## 📌 2. Naming Conventions
 
 ```hcl
 # Azure resource naming: lowercase, hyphens, no underscores
@@ -91,7 +91,7 @@ resource "azurerm_resource_group" "main" { ... }
 
 ______________________________________________________________________
 
-## 3. Variable Design
+## 📌 3. Variable Design
 
 ```hcl
 # Always add description and type
@@ -139,7 +139,7 @@ variable "location" {
 
 ______________________________________________________________________
 
-## 4. Tagging Strategy
+## 📌 4. Tagging Strategy
 
 ```hcl
 # locals.tf — centralized tagging
@@ -172,9 +172,9 @@ resource "azurerm_resource_group" "main" {
 
 ______________________________________________________________________
 
-## 5. Security Best Practices
+## 📌 5. Security Best Practices
 
-### Never Store Secrets in Code
+### 🔹 Never Store Secrets in Code
 
 ```hcl
 # BAD — secret in code
@@ -228,7 +228,7 @@ tfplan
 # .terraform.lock.hcl → always commit
 ```
 
-### Use Sensitive Outputs
+### 🔹 Use Sensitive Outputs
 
 ```hcl
 output "aks_kube_config" {
@@ -239,9 +239,9 @@ output "aks_kube_config" {
 
 ______________________________________________________________________
 
-## 6. Linting & Static Analysis
+## 📌 6. Linting & Static Analysis
 
-### TFLint
+### 🔹 TFLint
 
 ```bash
 # Install
@@ -278,7 +278,7 @@ tflint --init
 tflint --recursive
 ```
 
-### Checkov — Security & Compliance
+### 🔹 Checkov — Security & Compliance
 
 ```bash
 # Install
@@ -303,7 +303,7 @@ resource "azurerm_storage_account" "main" {
 }
 ```
 
-### Terraform-docs — Auto Documentation
+### 🔹 Terraform-docs — Auto Documentation
 
 ```bash
 # Install
@@ -330,7 +330,7 @@ terraform-docs --config .terraform-docs.yml modules/networking/
 
 ______________________________________________________________________
 
-## 7. Testing with Terratest
+## 📌 7. Testing with Terratest
 
 ```go
 // test/networking_test.go
@@ -387,7 +387,7 @@ go test -v -run TestNetworkingModule -timeout 20m
 
 ______________________________________________________________________
 
-## 8. Drift Detection & Compliance
+## 📌 8. Drift Detection & Compliance
 
 ```bash
 # Detect drift (check if Azure resources changed outside Terraform)
@@ -412,7 +412,7 @@ az policy assignment create \
 
 ______________________________________________________________________
 
-## 9. Resource Lifecycle Best Practices
+## 📌 9. Resource Lifecycle Best Practices
 
 ```hcl
 # Production databases: always prevent destroy
@@ -452,7 +452,7 @@ resource "azurerm_linux_web_app" "main" {
 
 ______________________________________________________________________
 
-## 10. Version Constraints
+## 📌 10. Version Constraints
 
 ```hcl
 # Terraform version — use >= minimum with no upper bound
@@ -481,7 +481,7 @@ terraform {
 
 ______________________________________________________________________
 
-## Summary Checklist
+## 📌 Summary Checklist
 
 ```
 Code Quality:
@@ -512,3 +512,8 @@ Operations:
   ✓ Common tags on all resources
   ✓ Log Analytics workspace connected
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

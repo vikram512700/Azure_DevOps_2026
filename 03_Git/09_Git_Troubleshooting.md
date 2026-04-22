@@ -1,10 +1,10 @@
-# 09 — Git Troubleshooting & Performance
+# 🐙 09 — Git Troubleshooting & Performance
 
-## 1. Common Errors & Fixes
+## 📌 1. Common Errors & Fixes
 
 ______________________________________________________________________
 
-### Error: `Your local changes would be overwritten by merge`
+### 🔹 Error: `Your local changes would be overwritten by merge`
 
 ```bash
 # You have uncommitted changes and tried to pull/checkout
@@ -27,7 +27,7 @@ git pull --rebase origin main
 
 ______________________________________________________________________
 
-### Error: `fatal: refusing to merge unrelated histories`
+### 🔹 Error: `fatal: refusing to merge unrelated histories`
 
 ```bash
 # Happens when two repos have no common commit ancestry
@@ -43,7 +43,7 @@ git pull origin main --allow-unrelated-histories
 
 ______________________________________________________________________
 
-### Error: `rejected — non-fast-forward`
+### 🔹 Error: `rejected — non-fast-forward`
 
 ```bash
 error: failed to push some refs to 'origin'
@@ -61,7 +61,7 @@ git push --force-with-lease origin feature/my-branch
 
 ______________________________________________________________________
 
-### Error: `cannot lock ref` or `loose object` errors
+### 🔹 Error: `cannot lock ref` or `loose object` errors
 
 ```bash
 error: cannot lock ref 'refs/remotes/origin/feature/x': is at ... but expected ...
@@ -78,7 +78,7 @@ git gc --aggressive --prune=now
 
 ______________________________________________________________________
 
-### Error: Detached HEAD
+### 🔹 Error: Detached HEAD
 
 ```bash
 # You're on a commit, not a branch
@@ -96,7 +96,7 @@ git log --oneline -1
 
 ______________________________________________________________________
 
-### Error: `CONFLICT (modify/delete)` during merge
+### 🔹 Error: `CONFLICT (modify/delete)` during merge
 
 ```bash
 CONFLICT (modify/delete): src/old-api.js deleted in feature/cleanup
@@ -115,7 +115,7 @@ git commit
 
 ______________________________________________________________________
 
-### Error: `index.lock file exists`
+### 🔹 Error: `index.lock file exists`
 
 ```bash
 fatal: Unable to create '.git/index.lock': File exists.
@@ -131,7 +131,7 @@ ps aux | grep git
 
 ______________________________________________________________________
 
-### Error: SSL Certificate Problem
+### 🔹 Error: SSL Certificate Problem
 
 ```bash
 fatal: unable to access 'https://github.com/...': SSL certificate problem
@@ -152,7 +152,7 @@ git remote set-url origin git@github.com:org/repo.git
 
 ______________________________________________________________________
 
-### Error: `Permission denied (publickey)`
+### 🔹 Error: `Permission denied (publickey)`
 
 ```bash
 git@github.com: Permission denied (publickey).
@@ -175,11 +175,11 @@ ssh -T git@github.com
 
 ______________________________________________________________________
 
-## 2. Recovery Scenarios
+## 📌 2. Recovery Scenarios
 
 ______________________________________________________________________
 
-### Recover a Deleted Branch
+### 🔹 Recover a Deleted Branch
 
 ```bash
 # Find the last commit SHA of the deleted branch via reflog
@@ -200,7 +200,7 @@ git switch -c feature/deleted-branch origin/feature/deleted-branch
 
 ______________________________________________________________________
 
-### Recover a Dropped Stash
+### 🔹 Recover a Dropped Stash
 
 ```bash
 # Stash objects remain in git objects for ~90 days
@@ -216,7 +216,7 @@ git branch recovered-stash <hash>
 
 ______________________________________________________________________
 
-### Undo a Pushed Merge to Main
+### 🔹 Undo a Pushed Merge to Main
 
 ```bash
 # The merge commit on main: e9f1c2b
@@ -231,7 +231,7 @@ git push origin main
 
 ______________________________________________________________________
 
-### Restore a Single File from a Previous Commit
+### 🔹 Restore a Single File from a Previous Commit
 
 ```bash
 # Restore a specific file to how it was 3 commits ago
@@ -250,7 +250,7 @@ git commit -m "fix: restore processor.js to working state"
 
 ______________________________________________________________________
 
-### Split a Large Commit into Multiple Smaller Ones
+### 🔹 Split a Large Commit into Multiple Smaller Ones
 
 ```bash
 # Reset the last commit (keep changes staged/unstaged)
@@ -273,11 +273,11 @@ git commit -m "chore: update package.json dependencies"
 
 ______________________________________________________________________
 
-## 3. Large Repository Optimization
+## 📌 3. Large Repository Optimization
 
 ______________________________________________________________________
 
-### Shallow Clone for Speed
+### 🔹 Shallow Clone for Speed
 
 ```bash
 # Full clone of a large repo: 5 minutes → 15 seconds
@@ -292,7 +292,7 @@ git fetch --unshallow
 
 ______________________________________________________________________
 
-### Sparse Checkout (Monorepos — checkout only what you need)
+### 🔹 Sparse Checkout (Monorepos — checkout only what you need)
 
 ```bash
 # Clone without checking out files
@@ -317,7 +317,7 @@ git sparse-checkout list
 
 ______________________________________________________________________
 
-### Git LFS (Large File Storage)
+### 🔹 Git LFS (Large File Storage)
 
 ```bash
 # Install git-lfs
@@ -348,7 +348,7 @@ git push --force --all
 
 ______________________________________________________________________
 
-### Garbage Collection & Repo Maintenance
+### 🔹 Garbage Collection & Repo Maintenance
 
 ```bash
 # Standard cleanup
@@ -375,7 +375,7 @@ git prune --expire now
 
 ______________________________________________________________________
 
-## 4. Debugging Tips
+## 📌 4. Debugging Tips
 
 ```bash
 # Enable verbose git output
@@ -403,7 +403,7 @@ git rev-parse --is-shallow-repository
 
 ______________________________________________________________________
 
-## 5. Git Aliases for DevOps Productivity
+## 📌 5. Git Aliases for DevOps Productivity
 
 ```bash
 # Add these to ~/.gitconfig under [alias]
@@ -432,7 +432,7 @@ git recent      # branches by last commit
 
 ______________________________________________________________________
 
-## 6. Quick Diagnostic Checklist
+## 📌 6. Quick Diagnostic Checklist
 
 ```
 Git command failing? Run through this checklist:
@@ -451,7 +451,7 @@ Git command failing? Run through this checklist:
 
 ______________________________________________________________________
 
-## Summary: Emergency Commands
+## 📌 Summary: Emergency Commands
 
 ```bash
 # "I broke everything" toolkit:
@@ -466,3 +466,8 @@ git clean -fd                       # remove all untracked files
 rm -f .git/index.lock               # remove stale lock
 git gc --prune=now                  # clean up objects
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

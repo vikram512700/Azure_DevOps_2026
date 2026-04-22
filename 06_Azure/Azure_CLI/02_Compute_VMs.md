@@ -1,6 +1,6 @@
-# Azure CLI for DevOps - Part 2: Compute & Virtual Machines
+# ☁️ Azure CLI for DevOps - Part 2: Compute & Virtual Machines
 
-## 1. Create a Virtual Machine
+## 📌 1. Create a Virtual Machine
 
 ```bash
 # Scenario: Spin up a Linux build server
@@ -25,7 +25,7 @@ az vm create \
   --public-ip-sku Standard
 ```
 
-## 2. VM Management
+## 📌 2. VM Management
 
 ```bash
 # List all VMs with status
@@ -55,7 +55,7 @@ az vm list-sizes --location eastus --output table
 az vm delete -g rg-devops -n build-server-01 --yes
 ```
 
-## 3. VM Disks
+## 📌 3. VM Disks
 
 ```bash
 # Add a data disk
@@ -81,7 +81,7 @@ az snapshot create \
   --source build-data-disk
 ```
 
-## 4. VM Extensions (Run Scripts on VMs)
+## 📌 4. VM Extensions (Run Scripts on VMs)
 
 ```bash
 # Scenario: Install Docker on VM after creation
@@ -109,7 +109,7 @@ az vm run-command invoke \
   --scripts "df -h && free -m && uptime"
 ```
 
-## 5. VM Images & Snapshots
+## 📌 5. VM Images & Snapshots
 
 ```bash
 # List available images
@@ -131,7 +131,7 @@ az vm create -g rg-devops -n new-server \
   --generate-ssh-keys
 ```
 
-## 6. VM Scale Sets (VMSS)
+## 📌 6. VM Scale Sets (VMSS)
 
 ```bash
 # Scenario: Auto-scaling web tier for e-commerce app
@@ -177,7 +177,7 @@ az vmss update -g rg-prod -n vmss-web-tier --set virtualMachineProfile.storagePr
 az vmss update-instances -g rg-prod -n vmss-web-tier --instance-ids "*"
 ```
 
-## 7. Availability Sets
+## 📌 7. Availability Sets
 
 ```bash
 # Scenario: Ensure high availability for database VMs
@@ -195,3 +195,8 @@ az vm create -g rg-prod -n db-server-01 \
   --admin-username azureuser \
   --generate-ssh-keys
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

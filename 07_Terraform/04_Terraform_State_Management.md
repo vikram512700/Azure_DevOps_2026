@@ -1,6 +1,6 @@
-# 04 — Terraform State Management
+# ☁️ 04 — Terraform State Management
 
-## 1. What is Terraform State?
+## 📌 1. What is Terraform State?
 
 The state file (`terraform.tfstate`) is Terraform's source of truth — it maps your HCL configuration to real Azure resources.
 
@@ -23,9 +23,9 @@ State records:
 
 ______________________________________________________________________
 
-## 2. Remote Backend — Azure Blob Storage
+## 📌 2. Remote Backend — Azure Blob Storage
 
-### Backend Configuration (backend.tf)
+### 🔹 Backend Configuration (backend.tf)
 
 ```hcl
 # backend.tf
@@ -40,7 +40,7 @@ terraform {
 }
 ```
 
-### Bootstrap the Backend (run once)
+### 🔹 Bootstrap the Backend (run once)
 
 ```bash
 #!/bin/bash
@@ -97,7 +97,7 @@ echo '  }'
 echo '}'
 ```
 
-### Initialize with Backend Config
+### 🔹 Initialize with Backend Config
 
 ```bash
 # Inline (useful in CI where backend.tf is generic)
@@ -116,7 +116,7 @@ terraform init -reconfigure
 
 ______________________________________________________________________
 
-## 3. State Locking
+## 📌 3. State Locking
 
 Azure Blob backend uses **blob leases** for locking — only one `apply` can run at a time.
 
@@ -143,7 +143,7 @@ terraform force-unlock "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 
 ______________________________________________________________________
 
-## 4. State File Structure (Understand for Troubleshooting)
+## 📌 4. State File Structure (Understand for Troubleshooting)
 
 ```json
 {
@@ -181,9 +181,9 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## 5. State Commands
+## 📌 5. State Commands
 
-### Viewing State
+### 🔹 Viewing State
 
 ```bash
 # List all resources tracked in state
@@ -206,7 +206,7 @@ terraform state pull
 terraform state pull | jq '.resources[] | .type' | sort | uniq
 ```
 
-### Moving State
+### 🔹 Moving State
 
 ```bash
 # Rename a resource in state (after refactoring code)
@@ -232,7 +232,7 @@ terraform workspace select prod
 terraform state push /tmp/staging.tfstate   # CAUTION: overwrites prod state
 ```
 
-### Removing State
+### 🔹 Removing State
 
 ```bash
 # Remove a resource from state WITHOUT destroying it in Azure
@@ -244,7 +244,7 @@ terraform state rm module.aks
 # After rm: the real Azure resource still exists, Terraform just doesn't track it
 ```
 
-### Importing Existing Resources
+### 🔹 Importing Existing Resources
 
 ```bash
 # Add an existing Azure resource to Terraform state
@@ -265,7 +265,7 @@ terraform import 'azurerm_subnet.app["snet-app"]' \
 # If it shows changes: update your HCL to match
 ```
 
-### Import Block (Terraform 1.5+ — declarative import)
+### 🔹 Import Block (Terraform 1.5+ — declarative import)
 
 ```hcl
 # import.tf — import existing resources declaratively
@@ -289,7 +289,7 @@ terraform apply
 
 ______________________________________________________________________
 
-## 6. Multiple State Files — Project Structure
+## 📌 6. Multiple State Files — Project Structure
 
 ```
 terraform/
@@ -316,7 +316,7 @@ terraform/
 
 ______________________________________________________________________
 
-## 7. Remote State Data Source — Read Another Layer's State
+## 📌 7. Remote State Data Source — Read Another Layer's State
 
 ```hcl
 # In 03-aks/main.tf — read subnet IDs from the networking state
@@ -345,7 +345,7 @@ output "aks_subnet_id" {
 
 ______________________________________________________________________
 
-## 8. State Security Best Practices
+## 📌 8. State Security Best Practices
 
 ```bash
 # 1. Enable storage account encryption (enabled by default in Azure)
@@ -372,7 +372,7 @@ az monitor diagnostic-settings create \
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -385,3 +385,8 @@ ______________________________________________________________________
 | `terraform force-unlock <id>` | Break stuck state lock |
 | `terraform init -migrate-state` | Move local state to remote |
 | `data "terraform_remote_state"` | Read another layer's state |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

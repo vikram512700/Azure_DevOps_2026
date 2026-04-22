@@ -1,6 +1,6 @@
-# 07 — Git Workflows for DevOps
+# 🐙 07 — Git Workflows for DevOps
 
-## 1. Overview of Common Workflows
+## 📌 1. Overview of Common Workflows
 
 | Workflow | Best For | Release Cadence |
 |----------|----------|----------------|
@@ -11,11 +11,11 @@
 
 ______________________________________________________________________
 
-## 2. Trunk-Based Development (TBD)
+## 📌 2. Trunk-Based Development (TBD)
 
 The most common workflow in elite DevOps shops (Google, Netflix, Amazon).
 
-### Rules
+### 🔹 Rules
 
 - **One main branch** (`main` / `trunk`) — always deployable
 - **Short-lived feature branches** — merge within 1-2 days
@@ -28,7 +28,7 @@ main: ──o──o──o──o──o──o──o──o──  (deploy ea
         feat feat   feat  (max 1-2 days old, then merge)
 ```
 
-### Daily Workflow
+### 🔹 Daily Workflow
 
 ```bash
 # Start of day — sync trunk
@@ -54,7 +54,7 @@ gh pr create --title "feat(api): add rate limiter [JIRA-901]" --base main
 # if (featureFlags.isEnabled('rate_limiter', userId)) { ... }
 ```
 
-### Real-Time Scenario: CI gate on Trunk-Based
+### 🔹 Real-Time Scenario: CI gate on Trunk-Based
 
 ```yaml
 # .github/workflows/ci.yml
@@ -96,7 +96,7 @@ jobs:
 
 ______________________________________________________________________
 
-## 3. GitHub Flow
+## 📌 3. GitHub Flow
 
 Simple, pull-request-centric workflow. Ideal for web apps with continuous delivery.
 
@@ -106,7 +106,7 @@ main: ──o──────────────────o────
               feature/X──  (PR review → merge → auto-deploy)
 ```
 
-### Steps
+### 🔹 Steps
 
 ```bash
 # 1. Branch from main
@@ -134,7 +134,7 @@ gh pr merge --squash --delete-branch
 
 ______________________________________________________________________
 
-## 4. GitFlow
+## 📌 4. GitFlow
 
 Structured workflow with dedicated branches for each phase. Good for versioned software.
 
@@ -148,7 +148,7 @@ develop: ──o──o──o──o─│────────────�
            feat feat  release/2.0.0     feat feat
 ```
 
-### Branch Types
+### 🔹 Branch Types
 
 | Branch | Purpose | Source | Merges Into |
 |--------|---------|--------|-------------|
@@ -158,7 +158,7 @@ develop: ──o──o──o──o─│────────────�
 | `release/*` | Release prep | `develop` | `main` + `develop` |
 | `hotfix/*` | Production fixes | `main` | `main` + `develop` |
 
-### Full GitFlow Cycle
+### 🔹 Full GitFlow Cycle
 
 ```bash
 # Setup (first time)
@@ -218,7 +218,7 @@ git push origin main develop --tags
 
 ______________________________________________________________________
 
-## 5. GitOps Workflow (Infrastructure as Code)
+## 📌 5. GitOps Workflow (Infrastructure as Code)
 
 GitOps uses Git as the single source of truth for infrastructure state. An operator (ArgoCD, Flux) reconciles cluster state with the repo.
 
@@ -232,7 +232,7 @@ Developer → PR → Review → Merge to main
                          Reconciliation loop keeps cluster in sync
 ```
 
-### Repository Structure
+### 🔹 Repository Structure
 
 ```
 infra-repo/
@@ -250,7 +250,7 @@ infra-repo/
     └── common configs
 ```
 
-### GitOps Workflow in Practice
+### 🔹 GitOps Workflow in Practice
 
 ```bash
 # 1. Change image tag to trigger deployment
@@ -274,7 +274,7 @@ git push origin main
 # ArgoCD reverts cluster to previous state automatically
 ```
 
-### Automated Image Promotion
+### 🔹 Automated Image Promotion
 
 ```bash
 # ci/update-image-tag.sh — called by CI pipeline after build
@@ -299,9 +299,9 @@ git push origin main
 
 ______________________________________________________________________
 
-## 6. Multi-Repo vs Monorepo
+## 📌 6. Multi-Repo vs Monorepo
 
-### Monorepo with Selective CI
+### 🔹 Monorepo with Selective CI
 
 ```bash
 # Trigger CI only for changed services
@@ -320,7 +320,7 @@ fi
 
 ______________________________________________________________________
 
-## 7. Branch Naming & Protection Rules (Enterprise)
+## 📌 7. Branch Naming & Protection Rules (Enterprise)
 
 ```bash
 # GitHub branch protection via CLI
@@ -345,7 +345,7 @@ gh api repos/org/payment-service/branches/main/protection \
 EOF
 ```
 
-### CODEOWNERS File
+### 🔹 CODEOWNERS File
 
 ```bash
 cat > .github/CODEOWNERS << 'EOF'
@@ -366,7 +366,7 @@ EOF
 
 ______________________________________________________________________
 
-## Summary: Workflow Selection Guide
+## 📌 Summary: Workflow Selection Guide
 
 ```
 Team size < 5, web app, continuous deploy?
@@ -381,3 +381,8 @@ High-frequency deploys, feature flags, CI at every commit?
 Infrastructure / Kubernetes / IaC?
   → GitOps (ArgoCD / Flux)
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

@@ -70,3 +70,8 @@ ______________________________________________________________________
 ______________________________________________________________________
 
 > 💡 **Tip for Interviews**: Don't just build these — document them! Create a neat GitHub README with architecture diagrams (using draw.io) and instructions on how to run your code. This is what hiring managers want to see!
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

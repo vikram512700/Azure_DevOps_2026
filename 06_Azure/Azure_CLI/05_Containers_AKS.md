@@ -1,6 +1,6 @@
-# Azure CLI for DevOps - Part 5: Containers & Kubernetes (AKS)
+# ☁️ Azure CLI for DevOps - Part 5: Containers & Kubernetes (AKS)
 
-## 1. Azure Container Registry (ACR)
+## 📌 1. Azure Container Registry (ACR)
 
 ```bash
 # Create container registry
@@ -33,7 +33,7 @@ az acr task create -r acrprod2026 -n purge-old-images \
   --schedule "0 0 * * *" --context /dev/null
 ```
 
-## 2. Azure Container Instances (ACI)
+## 📌 2. Azure Container Instances (ACI)
 
 ```bash
 # Scenario: Run a quick one-off container (CI runner, batch job)
@@ -65,7 +65,7 @@ az container create -g rg-dev -n web-with-sidecar \
   --file container-group.yaml
 ```
 
-## 3. Azure Kubernetes Service (AKS) - Cluster Management
+## 📌 3. Azure Kubernetes Service (AKS) - Cluster Management
 
 ```bash
 # Scenario: Create production AKS cluster
@@ -97,7 +97,7 @@ az aks list --output table
 az aks browse -g rg-prod -n aks-prod
 ```
 
-## 4. AKS Node Pool Management
+## 📌 4. AKS Node Pool Management
 
 ```bash
 # Add a node pool for GPU workloads
@@ -134,7 +134,7 @@ az aks nodepool list -g rg-prod --cluster-name aks-prod --output table
 az aks nodepool delete -g rg-prod --cluster-name aks-prod -n gpupool
 ```
 
-## 5. AKS Cluster Operations
+## 📌 5. AKS Cluster Operations
 
 ```bash
 # Upgrade cluster
@@ -164,7 +164,7 @@ az aks kollect -g rg-prod -n aks-prod \
 az aks update -g rg-prod -n aks-prod --attach-acr acrprod2026
 ```
 
-## 6. AKS + Helm Integration
+## 📌 6. AKS + Helm Integration
 
 ```bash
 # Scenario: Deploy NGINX Ingress Controller via Helm
@@ -181,3 +181,8 @@ helm install cert-manager jetstack/cert-manager \
   --namespace cert-manager --create-namespace \
   --set installCRDs=true
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

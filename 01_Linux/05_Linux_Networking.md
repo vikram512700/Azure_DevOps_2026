@@ -1,6 +1,6 @@
-# 05 — Linux Networking
+# 🐧 05 — Linux Networking
 
-## 1. Network Interface Management
+## 📌 1. Network Interface Management
 
 ```bash
 # Show all interfaces with addresses
@@ -37,7 +37,7 @@ ifconfig eth0 up/down
 
 ______________________________________________________________________
 
-## 2. Routing
+## 📌 2. Routing
 
 ```bash
 # View routing table
@@ -78,7 +78,7 @@ tracepath 8.8.8.8            # no root required
 
 ______________________________________________________________________
 
-## 3. DNS
+## 📌 3. DNS
 
 ```bash
 # DNS resolution tools
@@ -125,7 +125,7 @@ cat /etc/nsswitch.conf | grep hosts         # check resolution order
 
 ______________________________________________________________________
 
-## 4. Port and Socket Inspection
+## 📌 4. Port and Socket Inspection
 
 ```bash
 # ss — modern socket statistics (replaces netstat)
@@ -166,7 +166,7 @@ fuser 8080/tcp
 
 ______________________________________________________________________
 
-## 5. curl and wget
+## 📌 5. curl and wget
 
 ```bash
 # curl — transfer data from/to URLs
@@ -215,7 +215,7 @@ wget --retry-connrefused --tries=3 https://...  # retry
 
 ______________________________________________________________________
 
-## 6. SSH — Secure Shell
+## 📌 6. SSH — Secure Shell
 
 ```bash
 # Basic connection
@@ -275,9 +275,9 @@ ssh prod-app
 
 ______________________________________________________________________
 
-## 7. Firewall Management
+## 📌 7. Firewall Management
 
-### UFW (Ubuntu)
+### 🔹 UFW (Ubuntu)
 
 ```bash
 # Enable/disable
@@ -313,7 +313,7 @@ sudo ufw logging on
 sudo ufw logging high
 ```
 
-### firewalld (RHEL/CentOS/Amazon Linux)
+### 🔹 firewalld (RHEL/CentOS/Amazon Linux)
 
 ```bash
 # Start and enable
@@ -345,7 +345,7 @@ sudo firewall-cmd --set-default-zone=public
 sudo firewall-cmd --zone=trusted --add-source=10.0.0.0/8
 ```
 
-### iptables (raw — understanding fundamentals)
+### 🔹 iptables (raw — understanding fundamentals)
 
 ```bash
 # List rules
@@ -370,7 +370,7 @@ sudo iptables-save > /etc/iptables/rules.v4
 
 ______________________________________________________________________
 
-## 8. Network Diagnostics
+## 📌 8. Network Diagnostics
 
 ```bash
 # ping — test connectivity
@@ -415,7 +415,7 @@ dmesg | grep -i error | tail -20
 
 ______________________________________________________________________
 
-## 9. Network Configuration Files
+## 📌 9. Network Configuration Files
 
 ```bash
 # Ubuntu (Netplan)
@@ -443,7 +443,7 @@ cat /etc/services | grep http
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -459,3 +459,8 @@ ______________________________________________________________________
 | `ufw allow 80/tcp` | Open firewall port (Ubuntu) |
 | `firewall-cmd --add-service=http` | Open firewall (RHEL) |
 | `lsof -i :8080` | Who's using port 8080 |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

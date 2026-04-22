@@ -1,6 +1,6 @@
-# 05 — Undoing Changes
+# 🐙 05 — Undoing Changes
 
-## Decision Tree
+## 📌 Decision Tree
 
 ```
 Need to undo something?
@@ -23,7 +23,7 @@ Need to undo something?
 
 ______________________________________________________________________
 
-## 1. Discard Working Tree Changes
+## 📌 1. Discard Working Tree Changes
 
 ```bash
 # Discard changes to a specific file (restore from last commit)
@@ -41,7 +41,7 @@ git clean -fd                      # delete untracked files + directories
 git clean -fdx                     # also delete gitignored files (careful!)
 ```
 
-### Real-Time Scenario: Accidentally modified a config file during testing
+### 🔹 Real-Time Scenario: Accidentally modified a config file during testing
 
 ```bash
 # You edited helm/values-dev.yaml by mistake
@@ -53,7 +53,7 @@ git status
 
 ______________________________________________________________________
 
-## 2. Unstage Files (keep changes)
+## 📌 2. Unstage Files (keep changes)
 
 ```bash
 # Unstage a specific file
@@ -67,7 +67,7 @@ git reset HEAD                     # classic
 
 ______________________________________________________________________
 
-## 3. git reset
+## 📌 3. git reset
 
 `reset` moves HEAD (and the branch pointer) to a different commit.
 
@@ -98,7 +98,7 @@ git reset --hard a3f1c9b
 git reset --hard origin/main
 ```
 
-### Real-Time Scenario: Committed a password by accident (not yet pushed)
+### 🔹 Real-Time Scenario: Committed a password by accident (not yet pushed)
 
 ```bash
 # Immediately unstage and reset
@@ -119,7 +119,7 @@ git commit -m "chore: add db config template (no secrets)"
 
 ______________________________________________________________________
 
-## 4. git revert (Safe for shared branches)
+## 📌 4. git revert (Safe for shared branches)
 
 `revert` creates a **new commit** that undoes a previous one. It never rewrites history — safe for main/production branches.
 
@@ -143,7 +143,7 @@ git revert -m 1 <merge-commit-hash>   # keep parent 1 (main branch side)
 git revert -n a3f1c9b
 ```
 
-### Real-Time Scenario: Rolling back a bad deployment on main
+### 🔹 Real-Time Scenario: Rolling back a bad deployment on main
 
 ```bash
 # The commit e9f1c2b broke the payment API in production
@@ -163,7 +163,7 @@ git checkout -b fix/currency-conversion-bug e9f1c2b
 
 ______________________________________________________________________
 
-## 5. git reflog (Your Safety Net)
+## 📌 5. git reflog (Your Safety Net)
 
 `reflog` records every position HEAD has been, even after resets and rebases. This is your **undo for the undo**.
 
@@ -190,7 +190,7 @@ git reflog show feature/payments
 # Reflog entries expire after 90 days by default
 ```
 
-### Real-Time Scenario: Accidentally ran git reset --hard
+### 🔹 Real-Time Scenario: Accidentally ran git reset --hard
 
 ```bash
 # Disaster! You ran git reset --hard and lost 3 commits
@@ -210,7 +210,7 @@ git reset --hard a3f1c9b   # exact SHA from reflog
 
 ______________________________________________________________________
 
-## 6. git restore (Modern — Git 2.23+)
+## 📌 6. git restore (Modern — Git 2.23+)
 
 ```bash
 # Discard working tree changes (replaces: git checkout -- <file>)
@@ -231,9 +231,9 @@ git restore --source origin/main -- helm/values-prod.yaml
 
 ______________________________________________________________________
 
-## 7. Removing Sensitive Data from History
+## 📌 7. Removing Sensitive Data from History
 
-### Using git filter-repo (Recommended)
+### 🔹 Using git filter-repo (Recommended)
 
 ```bash
 # Install
@@ -257,7 +257,7 @@ git push origin --force --tags
 git fetch && git reset --hard origin/main
 ```
 
-### Using BFG Repo-Cleaner (Alternative)
+### 🔹 Using BFG Repo-Cleaner (Alternative)
 
 ```bash
 # Download BFG
@@ -278,7 +278,7 @@ git push --force
 
 ______________________________________________________________________
 
-## 8. Comparison Table
+## 📌 8. Comparison Table
 
 | Scenario | Command | Rewrites History? | Safe for Remote? |
 |----------|---------|-------------------|-----------------|
@@ -293,7 +293,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Summary: Safe vs Dangerous
+## 📌 Summary: Safe vs Dangerous
 
 ```
 SAFE (can always undo):
@@ -303,3 +303,8 @@ DANGEROUS (rewrites history — coordinate with team first):
   git reset --hard, git rebase, git commit --amend (after push),
   git filter-repo / BFG, git push --force
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

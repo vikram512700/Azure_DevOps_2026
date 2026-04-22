@@ -1,6 +1,6 @@
-# 08 — Git in DevOps CI/CD Pipelines
+# 🐙 08 — Git in DevOps CI/CD Pipelines
 
-## 1. GitHub Actions — Full Pipeline
+## 📌 1. GitHub Actions — Full Pipeline
 
 ```yaml
 # .github/workflows/main.yml
@@ -158,7 +158,7 @@ jobs:
 
 ______________________________________________________________________
 
-## 2. Jenkins Pipeline (Declarative)
+## 📌 2. Jenkins Pipeline (Declarative)
 
 ```groovy
 // Jenkinsfile
@@ -329,7 +329,7 @@ pipeline {
 
 ______________________________________________________________________
 
-## 3. GitLab CI/CD Pipeline
+## 📌 3. GitLab CI/CD Pipeline
 
 ```yaml
 # .gitlab-ci.yml
@@ -427,7 +427,7 @@ deploy-production:
 
 ______________________________________________________________________
 
-## 4. Git Commit SHA in Docker Labels
+## 📌 4. Git Commit SHA in Docker Labels
 
 ```dockerfile
 # Dockerfile
@@ -460,7 +460,7 @@ docker build \
 
 ______________________________________________________________________
 
-## 5. Useful Git Commands in CI Scripts
+## 📌 5. Useful Git Commands in CI Scripts
 
 ```bash
 #!/bin/bash
@@ -506,7 +506,7 @@ fi
 
 ______________________________________________________________________
 
-## 6. Semantic Versioning with Git Tags (Automated)
+## 📌 6. Semantic Versioning with Git Tags (Automated)
 
 ```bash
 #!/bin/bash
@@ -541,7 +541,7 @@ git push origin "$NEW_TAG"
 
 ______________________________________________________________________
 
-## 7. Git Hooks for CI Quality Gates
+## 📌 7. Git Hooks for CI Quality Gates
 
 ```bash
 # .git/hooks/pre-push — prevent pushing broken code
@@ -570,7 +570,7 @@ exit 0
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Concept | Tool/Command |
 |---------|-------------|
@@ -582,3 +582,8 @@ ______________________________________________________________________
 | Auto-bump semver | Analyze commits with `git log` |
 | Bake git info into Docker | `--build-arg GIT_COMMIT=` |
 | Trigger deploy on merge | GitHub Actions `on: push: branches:` |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

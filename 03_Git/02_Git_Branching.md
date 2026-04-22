@@ -1,6 +1,6 @@
-# 02 — Git Branching
+# 🐙 02 — Git Branching
 
-## 1. Understanding Branches
+## 📌 1. Understanding Branches
 
 A branch is a lightweight movable pointer to a commit. `HEAD` is a special pointer that tells Git which branch you're currently on.
 
@@ -12,7 +12,7 @@ feature             o──o──o  (HEAD)
 
 ______________________________________________________________________
 
-## 2. Creating and Switching Branches
+## 📌 2. Creating and Switching Branches
 
 ```bash
 # List local branches (* = current)
@@ -45,7 +45,7 @@ git switch -c feature/payments origin/feature/payments
 
 ______________________________________________________________________
 
-## 3. Branch Naming Conventions (DevOps Standard)
+## 📌 3. Branch Naming Conventions (DevOps Standard)
 
 ```
 main              – production-ready code
@@ -59,7 +59,7 @@ chore/<task>      – maintenance     e.g. chore/upgrade-node-18
 
 ______________________________________________________________________
 
-## 4. Renaming and Deleting Branches
+## 📌 4. Renaming and Deleting Branches
 
 ```bash
 # Rename current branch
@@ -83,7 +83,7 @@ git fetch --prune
 git remote prune origin
 ```
 
-### Real-Time Scenario: Cleaning up after a sprint
+### 🔹 Real-Time Scenario: Cleaning up after a sprint
 
 ```bash
 # List branches merged into main (safe to delete)
@@ -98,7 +98,7 @@ git fetch --prune
 
 ______________________________________________________________________
 
-## 5. Tracking Branches
+## 📌 5. Tracking Branches
 
 ```bash
 # Set upstream for an existing branch
@@ -118,7 +118,7 @@ git branch -vv
 
 ______________________________________________________________________
 
-## 6. Comparing Branches
+## 📌 6. Comparing Branches
 
 ```bash
 # Show commits in feature but NOT in main
@@ -138,7 +138,7 @@ git rev-list --count main..feature/payments   # commits ahead
 git rev-list --count feature/payments..main   # commits behind
 ```
 
-### Real-Time Scenario: Pre-merge branch review in CI pipeline
+### 🔹 Real-Time Scenario: Pre-merge branch review in CI pipeline
 
 ```bash
 # In a Jenkins/GitHub Actions pipeline — check if feature is too far behind main
@@ -151,7 +151,7 @@ fi
 
 ______________________________________________________________________
 
-## 7. Branch Protection (Concept + GitHub CLI)
+## 📌 7. Branch Protection (Concept + GitHub CLI)
 
 ```bash
 # Using GitHub CLI to add branch protection
@@ -168,7 +168,7 @@ gh api repos/org/payment-service/branches --jq '.[] | select(.protected==true) |
 
 ______________________________________________________________________
 
-## 8. Detached HEAD State
+## 📌 8. Detached HEAD State
 
 ```bash
 # Checkout a specific commit (enters detached HEAD)
@@ -186,7 +186,7 @@ git switch main
 
 ______________________________________________________________________
 
-## 9. Real-Time Scenario: Feature Branch Workflow (Full Cycle)
+## 📌 9. Real-Time Scenario: Feature Branch Workflow (Full Cycle)
 
 ```bash
 # 1. Sync main before branching
@@ -229,7 +229,7 @@ git push origin --delete feature/JIRA-789-add-2fa
 
 ______________________________________________________________________
 
-## 10. Real-Time Scenario: Hotfix on Production
+## 📌 10. Real-Time Scenario: Hotfix on Production
 
 ```bash
 # Production is broken — create hotfix from the production tag
@@ -262,7 +262,7 @@ git push origin --delete hotfix/CVE-2024-log4j
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -275,3 +275,8 @@ ______________________________________________________________________
 | `git branch -vv` | Show tracking info |
 | `git rev-list --count` | Count ahead/behind commits |
 | `git fetch --prune` | Remove stale remote refs |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

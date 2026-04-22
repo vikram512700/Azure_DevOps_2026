@@ -1,6 +1,6 @@
-# Azure CLI for DevOps - Part 6: CI/CD, DevOps & App Services
+# ☁️ Azure CLI for DevOps - Part 6: CI/CD, DevOps & App Services
 
-## 1. Azure DevOps CLI
+## 📌 1. Azure DevOps CLI
 
 ```bash
 # Install DevOps extension
@@ -48,7 +48,7 @@ az devops service-endpoint azurerm create \
   --name "Azure-Production"
 ```
 
-## 2. Azure App Service
+## 📌 2. Azure App Service
 
 ```bash
 # Create App Service Plan
@@ -111,7 +111,7 @@ az webapp log config \
 az webapp log tail -g rg-prod -n myapp-api-prod
 ```
 
-## 3. Deployment Slots (Blue-Green Deployment)
+## 📌 3. Deployment Slots (Blue-Green Deployment)
 
 ```bash
 # Scenario: Zero-downtime deployment using slots
@@ -143,7 +143,7 @@ az webapp config appsettings set \
   --slot-settings SLOT_NAME=staging
 ```
 
-## 4. Azure Functions
+## 📌 4. Azure Functions
 
 ```bash
 # Create Function App
@@ -171,7 +171,7 @@ az functionapp show -g rg-prod -n func-order-processor --output table
 az functionapp function list -g rg-prod -n func-order-processor --output table
 ```
 
-## 5. Azure Key Vault
+## 📌 5. Azure Key Vault
 
 ```bash
 # Create Key Vault
@@ -223,7 +223,7 @@ az keyvault secret delete --vault-name kv-prod-2026 --name old-secret
 az keyvault secret purge --vault-name kv-prod-2026 --name old-secret
 ```
 
-## 6. Azure Container Apps
+## 📌 6. Azure Container Apps
 
 ```bash
 # Scenario: Serverless container hosting for microservices
@@ -264,3 +264,8 @@ az containerapp update \
   --scale-rule-type http \
   --scale-rule-http-concurrency 50
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

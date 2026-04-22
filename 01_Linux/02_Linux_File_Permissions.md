@@ -1,6 +1,6 @@
-# 02 — Linux File Permissions
+# 🐧 02 — Linux File Permissions
 
-## 1. Understanding Permission Bits
+## 📌 1. Understanding Permission Bits
 
 ```
 -rwxr-xr--  1  vikram  devops  4096  Apr 22  script.sh
@@ -19,7 +19,7 @@ Execute     x       1      Run as program     Enter (cd into) directory
 None        -       0      No permission      No permission
 ```
 
-### Octal Examples
+### 🔹 Octal Examples
 
 ```
 rwx rwx rwx = 777   (full access — dangerous!)
@@ -33,7 +33,7 @@ rwx --x --x = 711   (owner full, others execute-only)
 
 ______________________________________________________________________
 
-## 2. chmod — Change Permissions
+## 📌 2. chmod — Change Permissions
 
 ```bash
 # Symbolic mode
@@ -66,7 +66,7 @@ chmod 644 ~/.ssh/known_hosts
 
 ______________________________________________________________________
 
-## 3. chown — Change Ownership
+## 📌 3. chown — Change Ownership
 
 ```bash
 # Change owner
@@ -100,7 +100,7 @@ sudo chmod -R 770 /var/log/payment-service/
 
 ______________________________________________________________________
 
-## 4. umask — Default Permission Mask
+## 📌 4. umask — Default Permission Mask
 
 ```bash
 # umask defines what permissions are REMOVED from new files
@@ -128,9 +128,9 @@ echo "umask 027" | sudo tee -a /etc/profile.d/umask.sh
 
 ______________________________________________________________________
 
-## 5. Special Permission Bits
+## 📌 5. Special Permission Bits
 
-### SUID (Set User ID) — Bit 4
+### 🔹 SUID (Set User ID) — Bit 4
 
 ```bash
 # File runs as the file's OWNER, not the user who runs it
@@ -150,7 +150,7 @@ ls -l /usr/bin/passwd
 #    s = SUID set
 ```
 
-### SGID (Set Group ID) — Bit 2
+### 🔹 SGID (Set Group ID) — Bit 2
 
 ```bash
 # On file: runs as the file's GROUP
@@ -173,7 +173,7 @@ sudo chmod 2775 /opt/project
 # Now any file created inside inherits group 'devops-team'
 ```
 
-### Sticky Bit — Bit 1
+### 🔹 Sticky Bit — Bit 1
 
 ```bash
 # On directory: users can only delete their OWN files
@@ -196,7 +196,7 @@ sudo chmod 1777 /var/uploads
 
 ______________________________________________________________________
 
-## 6. Access Control Lists (ACLs)
+## 📌 6. Access Control Lists (ACLs)
 
 ACLs allow fine-grained permissions beyond the basic owner/group/other model.
 
@@ -237,7 +237,7 @@ getfacl /etc/payment-service/config.yml
 
 ______________________________________________________________________
 
-## 7. sudo Configuration
+## 📌 7. sudo Configuration
 
 ```bash
 # Run a command as root
@@ -283,9 +283,9 @@ sudo visudo -c
 
 ______________________________________________________________________
 
-## 8. Real-Time Scenarios
+## 📌 8. Real-Time Scenarios
 
-### Scenario 1: Secure Web Server File Permissions
+### 🔹 Scenario 1: Secure Web Server File Permissions
 
 ```bash
 # Web files owned by root, readable by www-data
@@ -298,7 +298,7 @@ sudo chown www-data:www-data /var/www/html/uploads/
 sudo chmod 755 /var/www/html/uploads/
 ```
 
-### Scenario 2: Hardening SSH Key Permissions
+### 🔹 Scenario 2: Hardening SSH Key Permissions
 
 ```bash
 # Wrong permissions cause SSH to refuse the key
@@ -313,7 +313,7 @@ chmod 644 ~/.ssh/known_hosts
 chown -R $USER:$USER ~/.ssh
 ```
 
-### Scenario 3: Application Runtime Permissions
+### 🔹 Scenario 3: Application Runtime Permissions
 
 ```bash
 # Systemd service runs as 'appuser' — needs access to logs and config
@@ -328,7 +328,7 @@ sudo setcap 'cap_net_bind_service=+ep' /opt/app/bin/server
 getcap /opt/app/bin/server
 ```
 
-### Scenario 4: Permission Audit Script
+### 🔹 Scenario 4: Permission Audit Script
 
 ```bash
 #!/bin/bash
@@ -358,7 +358,7 @@ find /home /root -name "*.pem" -o -name "id_rsa" -o -name "*.key" 2>/dev/null \
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -375,3 +375,8 @@ ______________________________________________________________________
 | `setfacl -m u:user:rwx` | Grant ACL to user |
 | `sudo visudo` | Edit sudoers safely |
 | `sudo -l` | List your sudo permissions |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

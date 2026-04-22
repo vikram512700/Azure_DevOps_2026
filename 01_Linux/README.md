@@ -1,10 +1,10 @@
-# Linux for DevOps Engineers — Complete Reference
+# 🐧 Linux for DevOps Engineers — Complete Reference
 
 A structured guide covering Linux from fundamentals to advanced DevOps operations with real-world scenarios.
 
 ______________________________________________________________________
 
-## Index
+## 📌 Index
 
 | File | Topics Covered |
 |------|---------------|
@@ -21,7 +21,7 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## Quick Reference Card
+## 📌 Quick Reference Card
 
 ```bash
 # Navigation

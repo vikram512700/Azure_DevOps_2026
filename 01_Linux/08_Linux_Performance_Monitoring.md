@@ -1,6 +1,6 @@
-# 08 — Performance Monitoring & Troubleshooting
+# 🐧 08 — Performance Monitoring & Troubleshooting
 
-## 1. System Overview — Quick Snapshot
+## 📌 1. System Overview — Quick Snapshot
 
 ```bash
 # One-liner system overview
@@ -25,7 +25,7 @@ nproc                       # number of available CPUs
 
 ______________________________________________________________________
 
-## 2. CPU Monitoring
+## 📌 2. CPU Monitoring
 
 ```bash
 # top — interactive
@@ -73,7 +73,7 @@ strace -p <PID> -e trace=all -c     # what syscalls is it making?
 
 ______________________________________________________________________
 
-## 3. Memory Monitoring
+## 📌 3. Memory Monitoring
 
 ```bash
 # Memory overview
@@ -127,7 +127,7 @@ valgrind --leak-check=full ./my-app
 
 ______________________________________________________________________
 
-## 4. Disk I/O Monitoring
+## 📌 4. Disk I/O Monitoring
 
 ```bash
 # iostat — I/O statistics (sysstat)
@@ -167,7 +167,7 @@ iotop -bo -d 5 -n 3            # batch, only with I/O, 3 iterations
 
 ______________________________________________________________________
 
-## 5. Network Monitoring
+## 📌 5. Network Monitoring
 
 ```bash
 # ss — socket statistics (already covered in networking)
@@ -208,7 +208,7 @@ sudo tcpdump -i eth0 -n -c 1000 | awk '{print $3}' | cut -d. -f1-4 | sort | uniq
 
 ______________________________________________________________________
 
-## 6. System Call Tracing (strace, ltrace)
+## 📌 6. System Call Tracing (strace, ltrace)
 
 ```bash
 # strace — trace system calls of a running process
@@ -237,7 +237,7 @@ strace -p 1234 -e trace=open,read,write,close 2>&1 | grep "open("
 
 ______________________________________________________________________
 
-## 7. lsof — List Open Files
+## 📌 7. lsof — List Open Files
 
 ```bash
 # All open files
@@ -277,7 +277,7 @@ kill -HUP 1234          # if app supports HUP for log reopen
 
 ______________________________________________________________________
 
-## 8. perf — Linux Performance Counters
+## 📌 8. perf — Linux Performance Counters
 
 ```bash
 # Install
@@ -305,7 +305,7 @@ sudo perf script | /opt/FlameGraph/stackcollapse-perf.pl | /opt/FlameGraph/flame
 
 ______________________________________________________________________
 
-## 9. System Logs
+## 📌 9. System Logs
 
 ```bash
 # Key log locations
@@ -348,7 +348,7 @@ grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | 
 
 ______________________________________________________________________
 
-## 10. Performance Monitoring Tools Summary
+## 📌 10. Performance Monitoring Tools Summary
 
 | Tool | Monitors | Install |
 |------|----------|---------|
@@ -377,3 +377,8 @@ sudo systemctl restart sysstat
 sar -u              # today's CPU history
 sar -r              # today's memory history
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

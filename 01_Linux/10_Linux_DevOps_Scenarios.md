@@ -1,6 +1,6 @@
-# 10 — Real-World Linux DevOps Scenarios
+# 🐧 10 — Real-World Linux DevOps Scenarios
 
-## 1. Production Incident: Server Out of Disk Space
+## 📌 1. Production Incident: Server Out of Disk Space
 
 ```bash
 # Alert fires: "Disk 98% full on prod-app-01"
@@ -54,7 +54,7 @@ sudo logrotate -f /etc/logrotate.d/payment-service    # force run to test
 
 ______________________________________________________________________
 
-## 2. Production Incident: Server High CPU / Hung Process
+## 📌 2. Production Incident: Server High CPU / Hung Process
 
 ```bash
 # Alert: CPU at 100% on prod-api-02
@@ -95,7 +95,7 @@ journalctl -u cron --since "1 hour ago"
 
 ______________________________________________________________________
 
-## 3. Production Incident: Out of Memory / OOM Kill
+## 📌 3. Production Incident: Out of Memory / OOM Kill
 
 ```bash
 # App keeps getting killed, or system unresponsive
@@ -144,7 +144,7 @@ sudo systemctl daemon-reload && sudo systemctl restart payment-service
 
 ______________________________________________________________________
 
-## 4. Production Incident: Can't SSH Into Server
+## 📌 4. Production Incident: Can't SSH Into Server
 
 ```bash
 # Can't SSH in — what to try (from a different working server)
@@ -182,7 +182,7 @@ systemctl restart sshd
 
 ______________________________________________________________________
 
-## 5. Zero-Downtime Application Deployment
+## 📌 5. Zero-Downtime Application Deployment
 
 ```bash
 #!/bin/bash
@@ -256,7 +256,7 @@ log "Deployment complete!"
 
 ______________________________________________________________________
 
-## 6. Server Capacity Monitoring Script
+## 📌 6. Server Capacity Monitoring Script
 
 ```bash
 #!/bin/bash
@@ -318,7 +318,7 @@ echo "All capacity checks OK"
 
 ______________________________________________________________________
 
-## 7. Log Aggregation Pipeline
+## 📌 7. Log Aggregation Pipeline
 
 ```bash
 # rsyslog — centralized log collection
@@ -366,7 +366,7 @@ wait
 
 ______________________________________________________________________
 
-## 8. Kernel Tuning for High-Performance Servers
+## 📌 8. Kernel Tuning for High-Performance Servers
 
 ```bash
 # /etc/sysctl.conf — kernel parameter tuning
@@ -411,7 +411,7 @@ echo "* hard nofile 65536" | sudo tee -a /etc/security/limits.conf
 
 ______________________________________________________________________
 
-## 9. Ansible-Style Ad-Hoc Command Patterns
+## 📌 9. Ansible-Style Ad-Hoc Command Patterns
 
 ```bash
 # Run command on multiple servers in parallel (without Ansible)
@@ -446,7 +446,7 @@ echo $SERVERS | tr ' ' '\n' | xargs -P3 -I{} bash -c 'deploy_to "$@"' _ {}
 
 ______________________________________________________________________
 
-## 10. Linux Commands Cheat Sheet for Interviews
+## 📌 10. Linux Commands Cheat Sheet for Interviews
 
 ```bash
 # ─── Disk Full ────────────────────────────────────────────────
@@ -492,7 +492,7 @@ nc -zv HOST PORT; curl -o /dev/null -sw "%{http_code}" http://HOST
 
 ______________________________________________________________________
 
-## Summary: The DevOps Linux Mindset
+## 📌 Summary: The DevOps Linux Mindset
 
 ```
 When something breaks in production:
@@ -508,3 +508,8 @@ When something breaks in production:
 9. Document → post-mortem, add monitoring
 10. Prevent → logrotate, alerts, automation
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

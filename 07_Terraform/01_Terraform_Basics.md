@@ -1,6 +1,6 @@
-# 01 — Terraform Basics
+# ☁️ 01 — Terraform Basics
 
-## 1. What is Terraform?
+## 📌 1. What is Terraform?
 
 Terraform is an **Infrastructure as Code (IaC)** tool by HashiCorp that lets you define, provision, and manage cloud infrastructure using a declarative configuration language (HCL).
 
@@ -16,7 +16,7 @@ terraform.tfstate → Terraform records what it created
 
 ______________________________________________________________________
 
-## 2. Installation
+## 📌 2. Installation
 
 ```bash
 # Linux (Ubuntu/Debian) — HashiCorp APT repo
@@ -52,7 +52,7 @@ tfenv list
 
 ______________________________________________________________________
 
-## 3. Azure CLI & Authentication Setup
+## 📌 3. Azure CLI & Authentication Setup
 
 ```bash
 # Install Azure CLI
@@ -83,9 +83,9 @@ export ARM_USE_MSI=true
 
 ______________________________________________________________________
 
-## 4. Your First Terraform Project
+## 📌 4. Your First Terraform Project
 
-### Directory Structure
+### 🔹 Directory Structure
 
 ```
 my-azure-project/
@@ -97,7 +97,7 @@ my-azure-project/
 └── terraform.tfvars  # variable values (do NOT commit secrets)
 ```
 
-### providers.tf
+### 🔹 providers.tf
 
 ```hcl
 terraform {
@@ -119,7 +119,7 @@ provider "azurerm" {
 }
 ```
 
-### main.tf — First Resource: Resource Group
+### 🔹 main.tf — First Resource: Resource Group
 
 ```hcl
 resource "azurerm_resource_group" "main" {
@@ -135,7 +135,7 @@ resource "azurerm_resource_group" "main" {
 }
 ```
 
-### variables.tf
+### 🔹 variables.tf
 
 ```hcl
 variable "subscription_id" {
@@ -172,7 +172,7 @@ variable "project" {
 }
 ```
 
-### outputs.tf
+### 🔹 outputs.tf
 
 ```hcl
 output "resource_group_name" {
@@ -191,7 +191,7 @@ output "location" {
 }
 ```
 
-### terraform.tfvars
+### 🔹 terraform.tfvars
 
 ```hcl
 # terraform.tfvars — never commit secrets to git
@@ -204,7 +204,7 @@ project         = "payment-service"
 
 ______________________________________________________________________
 
-## 5. The Core CLI Workflow
+## 📌 5. The Core CLI Workflow
 
 ```bash
 # ── Step 1: Initialize ──────────────────────────────────────
@@ -252,7 +252,7 @@ terraform destroy -target=azurerm_virtual_machine.app  # destroy specific resour
 
 ______________________________________________________________________
 
-## 6. Understanding Plan Output
+## 📌 6. Understanding Plan Output
 
 ```bash
 terraform plan
@@ -281,7 +281,7 @@ terraform plan
 
 ______________________________________________________________________
 
-## 7. Terraform State Basics
+## 📌 7. Terraform State Basics
 
 ```bash
 # View current state
@@ -303,7 +303,7 @@ terraform refresh
 
 ______________________________________________________________________
 
-## 8. .terraform.lock.hcl — Dependency Lock File
+## 📌 8. .terraform.lock.hcl — Dependency Lock File
 
 ```hcl
 # .terraform.lock.hcl — ALWAYS commit this to version control
@@ -334,7 +334,7 @@ echo "tfplan" >> .gitignore
 
 ______________________________________________________________________
 
-## 9. Real-Time Scenario: Bootstrap a New Azure Environment
+## 📌 9. Real-Time Scenario: Bootstrap a New Azure Environment
 
 ```bash
 #!/bin/bash
@@ -394,7 +394,7 @@ echo "Bootstrap complete for $ENVIRONMENT!"
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -409,3 +409,8 @@ ______________________________________________________________________
 | `terraform state list` | List managed resources |
 | `terraform show` | Human-readable state |
 | `terraform output` | Print all outputs |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

@@ -1,4 +1,4 @@
-# 02 — Terraform HCL Language (Beginner to Advanced)
+# ☁️ 02 — Terraform HCL Language (Beginner to Advanced)
 
 > **Who is this for?**
 > If you have never written code before — this file is for you.
@@ -7,11 +7,11 @@
 
 ______________________________________________________________________
 
-## PART 1 — Understanding the Building Blocks
+## 📌 PART 1 — Understanding the Building Blocks
 
 ______________________________________________________________________
 
-## 1. What is HCL?
+## 📌 1. What is HCL?
 
 HCL stands for **HashiCorp Configuration Language**.
 Think of it as a **structured instruction sheet** you write to tell Terraform:
@@ -45,7 +45,7 @@ resource "azurerm_resource_group" "main" {
 
 ______________________________________________________________________
 
-## 2. HCL Block Structure — The Skeleton
+## 📌 2. HCL Block Structure — The Skeleton
 
 Every piece of Terraform code is built from **blocks**.
 A block is like a paragraph — it groups related settings together.
@@ -61,7 +61,7 @@ A block is like a paragraph — it groups related settings together.
 └─────────────────────────────────────────────────────┘
 ```
 
-### The main block types you will use:
+### 🔹 The main block types you will use:
 
 | Block Type | What it does | Think of it as... |
 |------------|-------------|------------------|
@@ -76,11 +76,11 @@ A block is like a paragraph — it groups related settings together.
 
 ______________________________________________________________________
 
-## PART 2 — Data Types Explained
+## 📌 PART 2 — Data Types Explained
 
 ______________________________________________________________________
 
-## 3. What is a Data Type?
+## 📌 3. What is a Data Type?
 
 A **data type** tells Terraform what KIND of value something is.
 Just like in real life:
@@ -94,7 +94,7 @@ Terraform has the same idea.
 
 ______________________________________________________________________
 
-## 4. string — Text
+## 📌 4. string — Text
 
 A **string** is simply **text** — words, sentences, names, paths.
 
@@ -160,7 +160,7 @@ dns_prefix = "${var.project_name}${var.environment}"
 
 ______________________________________________________________________
 
-## 5. number — A Numeric Value
+## 📌 5. number — A Numeric Value
 
 A **number** is exactly what it sounds like — a whole number or decimal.
 
@@ -223,7 +223,7 @@ locals {
 
 ______________________________________________________________________
 
-## 6. bool — True or False (Yes or No)
+## 📌 6. bool — True or False (Yes or No)
 
 A **bool** (short for boolean) can only ever be one of two values:
 
@@ -309,7 +309,7 @@ locals {
 
 ______________________________________________________________________
 
-## 7. list — An Ordered Collection of Items
+## 📌 7. list — An Ordered Collection of Items
 
 A **list** is like a **shopping list** — multiple items, in order, with duplicates allowed.
 
@@ -386,7 +386,7 @@ resource "azurerm_subnet" "aks" {
 
 ______________________________________________________________________
 
-## 8. map — A Key-Value Dictionary
+## 📌 8. map — A Key-Value Dictionary
 
 A **map** is like a **dictionary** or a **lookup table** — every item has a name (key) and a value.
 
@@ -475,7 +475,7 @@ resource "azurerm_resource_group" "main" {
 
 ______________________________________________________________________
 
-## 9. object — A Group of Named Properties
+## 📌 9. object — A Group of Named Properties
 
 An **object** is like a **form with labelled fields** — each field has a name and a type.
 
@@ -568,7 +568,7 @@ variable "subnets" {
 
 ______________________________________________________________________
 
-## 10. set — A List with No Duplicates, No Order
+## 📌 10. set — A List with No Duplicates, No Order
 
 A **set** is like a **bag of unique items** — no duplicates allowed, no guaranteed order.
 
@@ -600,11 +600,11 @@ locals {
 
 ______________________________________________________________________
 
-## PART 3 — Variables In Depth
+## 📌 PART 3 — Variables In Depth
 
 ______________________________________________________________________
 
-## 11. What is a Variable?
+## 📌 11. What is a Variable?
 
 A **variable** is a **placeholder** that holds a value which can change.
 
@@ -642,7 +642,7 @@ resource "azurerm_virtual_network" "main" {
 
 ______________________________________________________________________
 
-## 12. Anatomy of a Variable Declaration
+## 📌 12. Anatomy of a Variable Declaration
 
 ```hcl
 variable "environment" {
@@ -676,7 +676,7 @@ variable "environment" {
 
 ______________________________________________________________________
 
-## 13. Complete variables.tf for a Real Azure Project
+## 📌 13. Complete variables.tf for a Real Azure Project
 
 ```hcl
 # variables.tf — all variable declarations for the project
@@ -844,11 +844,11 @@ variable "additional_tags" {
 
 ______________________________________________________________________
 
-## PART 4 — Locals, Outputs, Data Sources
+## 📌 PART 4 — Locals, Outputs, Data Sources
 
 ______________________________________________________________________
 
-## 14. Locals — Your Private Computed Notes
+## 📌 14. Locals — Your Private Computed Notes
 
 A **local** is a value you compute once and reuse many times in the same file.
 
@@ -955,7 +955,7 @@ resource "azurerm_virtual_network" "main" {
 
 ______________________________________________________________________
 
-## 15. Outputs — The Receipt After Apply
+## 📌 15. Outputs — The Receipt After Apply
 
 An **output** is a value Terraform prints on screen after it finishes building your infrastructure.
 It's like a receipt that tells you what was created and how to connect to it.
@@ -1063,7 +1063,7 @@ terraform output -json | jq '.sql_server_fqdn.value'  # parse with jq
 
 ______________________________________________________________________
 
-## 16. Data Sources — Read Without Creating
+## 📌 16. Data Sources — Read Without Creating
 
 A **data source** lets Terraform look up an existing Azure resource **without creating or managing it**.
 
@@ -1144,15 +1144,15 @@ resource "azurerm_mssql_server" "main" {
 
 ______________________________________________________________________
 
-## PART 5 — Expressions and Functions
+## 📌 PART 5 — Expressions and Functions
 
 ______________________________________________________________________
 
-## 17. Built-in Functions — Explained Simply
+## 📌 17. Built-in Functions — Explained Simply
 
 Terraform has many built-in helper functions. Think of them as tools in a toolbox.
 
-### String Functions
+### 🔹 String Functions
 
 ```hcl
 locals {
@@ -1207,7 +1207,7 @@ locals {
 }
 ```
 
-### Collection Functions
+### 🔹 Collection Functions
 
 ```hcl
 locals {
@@ -1256,7 +1256,7 @@ locals {
 }
 ```
 
-### Numeric Functions
+### 🔹 Numeric Functions
 
 ```hcl
 locals {
@@ -1279,7 +1279,7 @@ locals {
 
 ______________________________________________________________________
 
-## 18. Conditional Expression (The Ternary)
+## 📌 18. Conditional Expression (The Ternary)
 
 ```
 condition ? value_if_true : value_if_false
@@ -1321,7 +1321,7 @@ locals {
 
 ______________________________________________________________________
 
-## 19. for Expressions — Loop Over a List or Map
+## 📌 19. for Expressions — Loop Over a List or Map
 
 A `for` expression builds a **new list or map** by looping over an existing one.
 
@@ -1380,7 +1380,7 @@ locals {
 
 ______________________________________________________________________
 
-## 20. Dynamic Blocks — Generate Repeated Nested Blocks
+## 📌 20. Dynamic Blocks — Generate Repeated Nested Blocks
 
 Some Azure resources have **repeating nested blocks** (like firewall rules).
 Instead of copy-pasting, use `dynamic` to generate them from a list.
@@ -1462,7 +1462,7 @@ resource "azurerm_network_security_group" "app" {
 
 ______________________________________________________________________
 
-## Summary — Full Type Reference Card
+## 📌 Summary — Full Type Reference Card
 
 ```
 ┌─────────────────────────────────────────────────────────────────────┐
@@ -1497,3 +1497,8 @@ ______________________________________________________________________
 │  format()       Build string              format("rg-%s",var.env)   │
 └─────────────────────────────────────────────────────────────────────┘
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

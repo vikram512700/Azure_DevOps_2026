@@ -1,6 +1,6 @@
-# Azure CLI for DevOps Engineers - Part 1: Basics & Setup
+# ☁️ Azure CLI for DevOps Engineers - Part 1: Basics & Setup
 
-## 1. Installation
+## 📌 1. Installation
 
 ```bash
 # Windows (PowerShell)
@@ -21,15 +21,15 @@ az --version
 
 ______________________________________________________________________
 
-## 2. Authentication & Login
+## 📌 2. Authentication & Login
 
-### Interactive Login
+### 🔹 Interactive Login
 
 ```bash
 az login
 ```
 
-### Service Principal Login (CI/CD Pipelines)
+### 🔹 Service Principal Login (CI/CD Pipelines)
 
 ```bash
 # Real-time Scenario: Your Jenkins/GitHub Actions pipeline needs to deploy to Azure
@@ -39,14 +39,14 @@ az login --service-principal \
   --tenant <tenant-id>
 ```
 
-### Managed Identity Login (From Azure VM/AKS)
+### 🔹 Managed Identity Login (From Azure VM/AKS)
 
 ```bash
 # Real-time Scenario: App running inside Azure VM accessing Key Vault
 az login --identity
 ```
 
-### Login with Device Code (Remote/SSH sessions)
+### 🔹 Login with Device Code (Remote/SSH sessions)
 
 ```bash
 az login --use-device-code
@@ -54,7 +54,7 @@ az login --use-device-code
 
 ______________________________________________________________________
 
-## 3. Account & Subscription Management
+## 📌 3. Account & Subscription Management
 
 ```bash
 # List all subscriptions
@@ -73,7 +73,7 @@ az account list-locations --output table
 
 ______________________________________________________________________
 
-## 4. Resource Groups
+## 📌 4. Resource Groups
 
 ```bash
 # Create resource group
@@ -100,7 +100,7 @@ az group update --name rg-ecommerce-prod \
 
 ______________________________________________________________________
 
-## 5. Output Formats & Queries
+## 📌 5. Output Formats & Queries
 
 ```bash
 # Table format (human readable)
@@ -128,7 +128,7 @@ az vm show -g myRG -n myVM --query "hardwareProfile.vmSize" -o tsv
 
 ______________________________________________________________________
 
-## 6. Azure CLI Configuration
+## 📌 6. Azure CLI Configuration
 
 ```bash
 # Set default resource group (avoid typing --resource-group every time)
@@ -149,7 +149,7 @@ az configure --collect-telemetry true
 
 ______________________________________________________________________
 
-## 7. CLI Extensions
+## 📌 7. CLI Extensions
 
 ```bash
 # List installed extensions
@@ -171,7 +171,7 @@ az extension list-available --output table
 
 ______________________________________________________________________
 
-## 8. Finding Help
+## 📌 8. Finding Help
 
 ```bash
 # General help
@@ -187,3 +187,8 @@ az vm create --help
 az find "create virtual machine"
 az find "deploy container"
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

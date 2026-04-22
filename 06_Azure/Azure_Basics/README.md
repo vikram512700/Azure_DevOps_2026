@@ -1,6 +1,6 @@
 # ☁️ Azure Basics — DevOps Notes
 
-### Simple, short notes with real-world examples for DevOps Engineers
+### 🔹 Simple, short notes with real-world examples for DevOps Engineers
 
 ______________________________________________________________________
 

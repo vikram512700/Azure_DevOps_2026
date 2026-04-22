@@ -1,6 +1,6 @@
-# 01 — Linux Basics
+# 🐧 01 — Linux Basics
 
-## 1. Linux Filesystem Hierarchy
+## 📌 1. Linux Filesystem Hierarchy
 
 ```
 /                   Root of everything
@@ -28,7 +28,7 @@
 
 ______________________________________________________________________
 
-## 2. Navigation
+## 📌 2. Navigation
 
 ```bash
 # Where am I?
@@ -68,7 +68,7 @@ type ls                 # shows if alias/builtin/binary
 
 ______________________________________________________________________
 
-## 3. File Operations
+## 📌 3. File Operations
 
 ```bash
 # Create files
@@ -109,7 +109,7 @@ ln -s /opt/app/bin/start.sh /usr/local/bin/start  # symbolic link
 readlink -f symlink               # resolve symlink to real path
 ```
 
-### Real-Time Scenario: Setting up application directory structure
+### 🔹 Real-Time Scenario: Setting up application directory structure
 
 ```bash
 APP="payment-service"
@@ -133,7 +133,7 @@ ls -la /opt/${APP}/
 
 ______________________________________________________________________
 
-## 4. Viewing and Editing Files
+## 📌 4. Viewing and Editing Files
 
 ```bash
 # View entire file
@@ -189,9 +189,9 @@ vi file.txt               # minimal vim
 
 ______________________________________________________________________
 
-## 5. Text Processing (DevOps Power Tools)
+## 📌 5. Text Processing (DevOps Power Tools)
 
-### grep
+### 🔹 grep
 
 ```bash
 # Search for pattern in file
@@ -212,7 +212,7 @@ grep -P "\d{3}-\d{4}" contacts.txt      # Perl regex
 grep '" 5[0-9][0-9] ' /var/log/nginx/access.log | awk '{print $7}' | sort | uniq -c | sort -rn
 ```
 
-### awk
+### 🔹 awk
 
 ```bash
 # Print specific column (field separator default = whitespace)
@@ -236,7 +236,7 @@ awk '{print $NF}' file.txt
 awk '{print $1}' /var/log/nginx/access.log | sort | uniq -c | sort -rn | head -20
 ```
 
-### sed
+### 🔹 sed
 
 ```bash
 # Replace text (print to stdout)
@@ -262,7 +262,7 @@ sed -i "s/^DB_HOST=.*/DB_HOST=prod-db.company.com/" /etc/app/.env
 sed -i "s/^MAX_CONNECTIONS=.*/MAX_CONNECTIONS=200/" /etc/app/config.ini
 ```
 
-### sort, uniq, wc, cut
+### 🔹 sort, uniq, wc, cut
 
 ```bash
 # Sort
@@ -294,7 +294,7 @@ cut -d'"' -f3 /var/log/nginx/access.log \
   | sort | uniq -c | sort -rn | head -10
 ```
 
-### tr, tee, xargs
+### 🔹 tr, tee, xargs
 
 ```bash
 # tr — translate/delete characters
@@ -318,7 +318,7 @@ find . -name "*.py" | xargs -P4 pylint  # parallel with 4 workers
 
 ______________________________________________________________________
 
-## 6. Finding Files
+## 📌 6. Finding Files
 
 ```bash
 # find — recursive file search
@@ -349,7 +349,7 @@ find /var/log/app -name "*.log.gz" -mtime +90 -delete
 
 ______________________________________________________________________
 
-## 7. Archiving and Compression
+## 📌 7. Archiving and Compression
 
 ```bash
 # tar — tape archive (most common in Linux)
@@ -389,7 +389,7 @@ echo "Backup size: $(du -sh $BACKUP_DIR)"
 
 ______________________________________________________________________
 
-## 8. The Help System
+## 📌 8. The Help System
 
 ```bash
 # Manual pages
@@ -418,7 +418,7 @@ apropos "network interface"
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -434,3 +434,8 @@ ______________________________________________________________________
 | `sed -i 's/old/new/g'` | In-place replace |
 | `find / -name "*.conf"` | Find files by name |
 | `tar -czf out.tar.gz dir/` | Compress directory |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

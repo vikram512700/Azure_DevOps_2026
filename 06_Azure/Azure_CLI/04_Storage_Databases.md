@@ -1,6 +1,6 @@
-# Azure CLI for DevOps - Part 4: Storage & Databases
+# ☁️ Azure CLI for DevOps - Part 4: Storage & Databases
 
-## 1. Storage Accounts
+## 📌 1. Storage Accounts
 
 ```bash
 # Scenario: Create storage for application artifacts and logs
@@ -18,7 +18,7 @@ az storage account keys list -g rg-prod -n stprodartifacts2026 --output table
 az storage account show-connection-string -g rg-prod -n stprodartifacts2026 -o tsv
 ```
 
-## 2. Blob Storage
+## 📌 2. Blob Storage
 
 ```bash
 # Create container
@@ -66,7 +66,7 @@ az storage blob service-properties update \
   --404-document 404.html
 ```
 
-## 3. File Shares
+## 📌 3. File Shares
 
 ```bash
 # Scenario: Shared config/log storage for VMs
@@ -81,7 +81,7 @@ az storage file upload \
   --source ./nginx.conf --path configs/nginx.conf
 ```
 
-## 4. Azure SQL Database
+## 📌 4. Azure SQL Database
 
 ```bash
 # Create SQL Server
@@ -124,7 +124,7 @@ az sql db copy -g rg-prod -s sqlsrv-prod-2026 -n db-ecommerce \
   --dest-name db-ecommerce-test --dest-resource-group rg-dev
 ```
 
-## 5. Azure Database for PostgreSQL
+## 📌 5. Azure Database for PostgreSQL
 
 ```bash
 # Scenario: PostgreSQL for microservices backend
@@ -150,7 +150,7 @@ az postgres flexible-server show -g rg-prod -n pgsrv-prod-2026 \
   --query "{Host:fullyQualifiedDomainName, Admin:administratorLogin}" -o table
 ```
 
-## 6. Azure Cosmos DB
+## 📌 6. Azure Cosmos DB
 
 ```bash
 # Scenario: NoSQL database for high-throughput user sessions
@@ -173,7 +173,7 @@ az cosmosdb sql container create \
 az cosmosdb keys list -g rg-prod -n cosmos-prod-2026 --output table
 ```
 
-## 7. Azure Cache for Redis
+## 📌 7. Azure Cache for Redis
 
 ```bash
 # Scenario: Caching layer for API responses
@@ -189,3 +189,8 @@ az redis list-keys -g rg-prod -n redis-prod-2026
 az redis show -g rg-prod -n redis-prod-2026 \
   --query "{Host:hostName, Port:sslPort, Status:provisioningState}" -o table
 ```
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

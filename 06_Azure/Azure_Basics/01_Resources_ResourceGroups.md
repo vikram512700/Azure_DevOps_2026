@@ -4,13 +4,13 @@
 
 ______________________________________________________________________
 
-## 1️⃣ What is an Azure Resource?
+## 📌 1️⃣ What is an Azure Resource?
 
 > 💡 **Think of it like this:**\
 > When you go to a store and buy a laptop, that laptop is your **resource**.\
 > In Azure — anything you create (VM, database, storage) is called a **Resource**.
 
-### Common Azure Resources:
+### 🔹 Common Azure Resources:
 
 | What you need | Azure Resource |
 |---------------|----------------|
@@ -38,7 +38,7 @@ Each one of those = **an Azure Resource**
 
 ______________________________________________________________________
 
-## 2️⃣ What is a Resource Group?
+## 📌 2️⃣ What is a Resource Group?
 
 > 💡 **Think of it like this:**\
 > A Resource Group is like a **folder** on your desktop.\
@@ -53,7 +53,7 @@ ______________________________________________________________________
    └── 🌐  VNet: vnet-shopping-prod
 ```
 
-### Why do we use Resource Groups?
+### 🔹 Why do we use Resource Groups?
 
 | Reason | Real Scenario |
 |--------|---------------|
@@ -105,14 +105,14 @@ az group delete --name rg-shopping-dev --yes --no-wait
 
 ______________________________________________________________________
 
-## 3️⃣ Azure Resource Manager (ARM)
+## 📌 3️⃣ Azure Resource Manager (ARM)
 
 > 💡 **Think of it like this:**\
 > ARM is like the **receptionist at Azure's front desk**.\
 > Every request you make (from portal, CLI, Terraform) goes through ARM first.\
 > ARM checks → "Who are you? Are you allowed? OK go ahead."
 
-### How ARM Works (Flow Diagram):
+### 🔹 How ARM Works (Flow Diagram):
 
 ```
 You
@@ -136,7 +136,7 @@ You
    (VM, DB, Storage...)
 ```
 
-### What ARM Gives You:
+### 🔹 What ARM Gives You:
 
 | Feature | What it means | Example |
 |---------|--------------|---------|
@@ -234,3 +234,8 @@ ARM            = Azure's control plane
 1. You want junior devs to see resources but not delete them. What do you use?
 
    > **Answer**: RBAC Role = `Reader` 🔐
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

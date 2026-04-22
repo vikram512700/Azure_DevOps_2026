@@ -4,7 +4,7 @@
 
 ______________________________________________________________________
 
-## 1️⃣ Overview of Azure Networking (Real-World Example)
+## 📌 1️⃣ Overview of Azure Networking (Real-World Example)
 
 > 💡 **Think of Azure Networking like an Office Building:**
 >
@@ -22,7 +22,7 @@ ______________________________________________________________________
 └── 🏢 Floor 3 → Subnet: subnet-db   (10.0.3.0/24)  → Databases
 ```
 
-### Real Scenario: E-Commerce App Network:
+### 🔹 Real Scenario: E-Commerce App Network:
 
 ```
 User (Internet)
@@ -38,20 +38,20 @@ User (Internet)
 
 ______________________________________________________________________
 
-## 2️⃣ Virtual Network (VNet)
+## 📌 2️⃣ Virtual Network (VNet)
 
 > 💡 **What is a VNet?**\
 > A VNet is your **private network** in Azure.\
 > It's like your office Wi-Fi — resources inside can talk to each other privately.\
 > Nothing from outside can enter unless you allow it.
 
-### Key Points:
+### 🔹 Key Points:
 
 - VNet is **region-specific** (East US VNet can't directly mix with West US VNet)
 - Resources in the SAME VNet talk to each other **privately** (no internet needed)
 - You define the **IP address range** for the VNet
 
-### Create a VNet:
+### 🔹 Create a VNet:
 
 ```bash
 # Create a Virtual Network for your app
@@ -70,15 +70,15 @@ az network vnet show -g rg-webapp-prod -n vnet-webapp
 
 ______________________________________________________________________
 
-## 3️⃣ Subnets & CIDR
+## 📌 3️⃣ Subnets & CIDR
 
-### What is a Subnet?
+### 🔹 What is a Subnet?
 
 > 💡 **Subnets are like departments in an office building.**\
 > Engineering team is on Floor 1, HR is on Floor 2.\
 > Each floor has its own IP range and its own security rules.
 
-### What is CIDR Notation?
+### 🔹 What is CIDR Notation?
 
 > CIDR = **How many IP addresses are in this range**
 
@@ -91,7 +91,7 @@ ______________________________________________________________________
 > 💡 **Easy Rule**: Lower the number after `/`, more IPs you get.\
 > `/16` = big (whole building), `/24` = medium (one floor), `/28` = tiny (one room)
 
-### IP Range Examples:
+### 🔹 IP Range Examples:
 
 ```
 VNet:        10.0.0.0/16     → 10.0.0.0 to 10.0.255.255  (65536 IPs)
@@ -100,7 +100,7 @@ subnet-app:  10.0.2.0/24     → 10.0.2.0 to 10.0.2.255    (256 IPs)
 subnet-db:   10.0.3.0/24     → 10.0.3.0 to 10.0.3.255    (256 IPs)
 ```
 
-### Create Subnets:
+### 🔹 Create Subnets:
 
 ```bash
 # Create VNet first
@@ -138,12 +138,12 @@ az network vnet subnet list \
 
 ______________________________________________________________________
 
-## 4️⃣ Routes and Route Tables
+## 📌 4️⃣ Routes and Route Tables
 
 > 💡 **Think of Route Tables like GPS directions:**\
 > When a packet (data) needs to travel, the route table tells it **where to go**.
 
-### Default Azure Routing:
+### 🔹 Default Azure Routing:
 
 By default, Azure automatically routes traffic:
 
@@ -151,7 +151,7 @@ By default, Azure automatically routes traffic:
 - To the Internet → via Internet Gateway (auto)
 - To on-premises → via VPN (if configured)
 
-### Custom Route Table (User-Defined Routes):
+### 🔹 Custom Route Table (User-Defined Routes):
 
 **Real Scenario**: Force ALL internet traffic to go through a **Firewall VM** first for inspection.
 
@@ -190,12 +190,12 @@ az network vnet subnet update \
 
 ______________________________________________________________________
 
-## 5️⃣ Network Security Groups (NSGs)
+## 📌 5️⃣ Network Security Groups (NSGs)
 
 > 💡 **NSG = Security Guard / Firewall for your subnet or VM**\
 > NSG has rules: allow or deny traffic based on port, IP, direction.
 
-### NSG Rules have:
+### 🔹 NSG Rules have:
 
 | Field | What it means | Example |
 |-------|--------------|---------|
@@ -206,7 +206,7 @@ ______________________________________________________________________
 | **Source** | Where traffic comes from | Any, specific IP, subnet |
 | **Action** | Allow or Deny | Allow / Deny |
 
-### Real Scenario: Secure 3-Tier App
+### 🔹 Real Scenario: Secure 3-Tier App
 
 ```
 Internet → Port 80/443  → Allowed into subnet-web  ✅
@@ -217,7 +217,7 @@ subnet-app → Port 5432  → Allowed into subnet-db   ✅
 Internet → Port 5432    → DENIED to subnet-db       ❌
 ```
 
-### Create NSG and Rules:
+### 🔹 Create NSG and Rules:
 
 ```bash
 # Create NSG for web tier
@@ -275,7 +275,7 @@ az network nsg rule list \
 
 ______________________________________________________________________
 
-## 6️⃣ Application Security Groups (ASGs)
+## 📌 6️⃣ Application Security Groups (ASGs)
 
 > 💡 **Problem with NSGs alone:**\
 > You have 20 web servers. You want to allow traffic from ONLY the web servers to the app servers.\
@@ -283,7 +283,7 @@ ______________________________________________________________________
 >
 > **ASG solution**: Group VMs by role, write rules using the group name.
 
-### How ASG Works:
+### 🔹 How ASG Works:
 
 ```
 Step 1: Create ASG called "asg-web-servers"
@@ -293,7 +293,7 @@ Step 3: In NSG rule, say:
 Step 4: Now — ALL web VMs can talk to app servers automatically!
 ```
 
-### Create ASGs:
+### 🔹 Create ASGs:
 
 ```bash
 # Create ASGs for each tier
@@ -322,7 +322,7 @@ az network nsg rule create \
   --destination-asgs asg-app-servers
 ```
 
-### NSG vs ASG — Simple Comparison:
+### 🔹 NSG vs ASG — Simple Comparison:
 
 | | NSG | ASG |
 |-|-----|-----|
@@ -357,3 +357,8 @@ ASG            = Group VMs by role — use in NSG rules
 1. You have 30 VMs and want to write one NSG rule covering all of them. What helps?
 
    > **Answer**: Application Security Group (ASG) — group all 30 VMs into one ASG 🏷️
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

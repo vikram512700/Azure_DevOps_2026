@@ -40,9 +40,9 @@ ______________________________________________________________________
 
 ______________________________________________________________________
 
-## 1️⃣ Azure Entra ID (formerly Azure Active Directory)
+## 📌 1️⃣ Azure Entra ID (formerly Azure Active Directory)
 
-### What is Azure Entra ID?
+### 🔹 What is Azure Entra ID?
 
 > 💡 **Think of it like your company's badge/ID system:**\
 > When you enter an office building — you swipe your badge.\
@@ -51,7 +51,7 @@ ______________________________________________________________________
 > **Entra ID = Azure's badge system.**\
 > It manages WHO can log into Azure and what they can access.
 
-### What Entra ID Manages:
+### 🔹 What Entra ID Manages:
 
 | Object | What it is | Real Example |
 |--------|-----------|--------------|
@@ -61,7 +61,7 @@ ______________________________________________________________________
 | **Managed Identity** | Azure resource identity | VM reading Key Vault secrets |
 | **App Registration** | Your app in Entra | Your internal web app using SSO |
 
-### Key Terms:
+### 🔹 Key Terms:
 
 | Term | Meaning |
 |------|---------|
@@ -70,7 +70,7 @@ ______________________________________________________________________
 | **Directory** | Another name for Tenant |
 | **AAD / Entra ID** | Same thing — Microsoft renamed it in 2023 |
 
-### Create and Manage Users:
+### 🔹 Create and Manage Users:
 
 ```bash
 # Create a new user
@@ -90,7 +90,7 @@ az ad user show --id vikram@company.onmicrosoft.com
 az ad user delete --id vikram@company.onmicrosoft.com
 ```
 
-### Create and Manage Groups:
+### 🔹 Create and Manage Groups:
 
 ```bash
 # Create a group for DevOps team
@@ -114,9 +114,9 @@ az ad group member check \
 
 ______________________________________________________________________
 
-## 2️⃣ Service Principals & Managed Identities
+## 📌 2️⃣ Service Principals & Managed Identities
 
-### What is a Service Principal?
+### 🔹 What is a Service Principal?
 
 > 💡 **A Service Principal = an identity for an app/script (not a human).**
 >
@@ -135,7 +135,7 @@ Contributor on rg-webapp-prod
 Deploy resources to that resource group
 ```
 
-### Create Service Principal for CI/CD:
+### 🔹 Create Service Principal for CI/CD:
 
 ```bash
 # Create SP and give it Contributor role on a resource group
@@ -163,7 +163,7 @@ az ad sp credential reset --id <app-id>
 az ad sp delete --id <app-id>
 ```
 
-### What is a Managed Identity?
+### 🔹 What is a Managed Identity?
 
 > 💡 **Managed Identity = Service Principal, but Azure manages the password for you!**
 >
@@ -177,7 +177,7 @@ az ad sp delete --id <app-id>
 > ✅ Never expires\
 > ✅ No secret in your code ever
 
-### Types of Managed Identity:
+### 🔹 Types of Managed Identity:
 
 | Type | What it is | Example |
 |------|-----------|---------|
@@ -215,9 +215,9 @@ az keyvault set-policy \
 
 ______________________________________________________________________
 
-## 3️⃣ Azure Subscriptions
+## 📌 3️⃣ Azure Subscriptions
 
-### What is a Subscription?
+### 🔹 What is a Subscription?
 
 > 💡 **A Subscription = Your Azure account + billing account.**
 >
@@ -227,7 +227,7 @@ ______________________________________________________________________
 > - You create Azure resources under the subscription
 > - Azure charges you based on what you use in that subscription
 
-### Why Have Multiple Subscriptions?
+### 🔹 Why Have Multiple Subscriptions?
 
 | Strategy | Subscriptions | Reason |
 |----------|--------------|--------|
@@ -236,7 +236,7 @@ ______________________________________________________________________
 | **By region** | US-Sub, EU-Sub | Data residency requirements |
 | **For limits** | When nearing subscription limits | Azure has per-sub limits |
 
-### Real Company Setup:
+### 🔹 Real Company Setup:
 
 ```
 Contoso Ltd.
@@ -247,7 +247,7 @@ Contoso Ltd.
 └── 💳 Sub: contoso-sandbox      → Developers free to experiment
 ```
 
-### Subscription CLI Commands:
+### 🔹 Subscription CLI Commands:
 
 ```bash
 # List all subscriptions you have access to
@@ -268,9 +268,9 @@ az account list-locations --output table
 
 ______________________________________________________________________
 
-## 4️⃣ Management Groups
+## 📌 4️⃣ Management Groups
 
-### What are Management Groups?
+### 🔹 What are Management Groups?
 
 > 💡 **Management Groups = folders for subscriptions.**
 >
@@ -290,7 +290,7 @@ ______________________________________________________________________
     └── 💳 Sub: sandbox-devs
 ```
 
-### CLI Commands:
+### 🔹 CLI Commands:
 
 ```bash
 # Create management group
@@ -314,9 +314,9 @@ az account management-group show \
 
 ______________________________________________________________________
 
-## 5️⃣ RBAC — Role-Based Access Control (Who Can Do What?)
+## 📌 5️⃣ RBAC — Role-Based Access Control (Who Can Do What?)
 
-### What is RBAC?
+### 🔹 What is RBAC?
 
 > 💡 **RBAC = Job roles for Azure.**
 >
@@ -329,7 +329,7 @@ ______________________________________________________________________
 >
 > **RBAC gives different Azure permissions based on job role.**
 
-### RBAC Formula:
+### 🔹 RBAC Formula:
 
 ```
 WHO        +  WHAT ROLE      +  WHERE (scope)
@@ -340,7 +340,7 @@ vikram@company.com  +  Contributor  +  rg-webapp-prod
 → Vikram can create/edit/delete resources IN rg-webapp-prod ONLY
 ```
 
-### Most Important Built-in Roles:
+### 🔹 Most Important Built-in Roles:
 
 | Role | What they CAN do | What they CANNOT do |
 |------|-----------------|---------------------|
@@ -349,7 +349,7 @@ vikram@company.com  +  Contributor  +  rg-webapp-prod
 | **Reader** | View everything | ❌ Create/edit/delete |
 | **User Access Admin** | Manage who has access | ❌ Create resources |
 
-### Role Assignment Examples:
+### 🔹 Role Assignment Examples:
 
 ```bash
 # Give a developer READ access to production (safe!)
@@ -388,7 +388,7 @@ az role assignment delete \
   --scope /subscriptions/<SUB_ID>/resourceGroups/rg-webapp-prod
 ```
 
-### RBAC Scopes (Where you assign the role):
+### 🔹 RBAC Scopes (Where you assign the role):
 
 ```
 🌍 Management Group    ← applies to all subscriptions inside
@@ -400,7 +400,7 @@ az role assignment delete \
 ⚙️  Resource          ← applies to just that resource
 ```
 
-### Create a Custom Role:
+### 🔹 Create a Custom Role:
 
 ```bash
 # Real Scenario: L1 Support — can only RESTART VMs, nothing else
@@ -428,7 +428,7 @@ az role assignment create \
 
 ______________________________________________________________________
 
-## 6️⃣ Azure Policy — Enforce Rules Across Your Azure
+## 📌 6️⃣ Azure Policy — Enforce Rules Across Your Azure
 
 > 💡 **Azure Policy = Rules that Azure enforces automatically.**
 >
@@ -436,7 +436,7 @@ ______________________________________________________________________
 > "No one is allowed to create VMs without a `CostCenter` tag"\
 > Even if someone has Contributor access — if they forget the tag, Azure BLOCKS it!
 
-### Real Policies Used by DevOps Teams:
+### 🔹 Real Policies Used by DevOps Teams:
 
 | Policy | What it does |
 |--------|-------------|
@@ -446,7 +446,7 @@ ______________________________________________________________________
 | Require HTTPS | Storage accounts must use HTTPS only |
 | Audit public IPs | Alert if a resource gets a public IP |
 
-### Apply Policies:
+### 🔹 Apply Policies:
 
 ```bash
 # Scenario: Enforce "CostCenter" tag on all resources
@@ -473,9 +473,9 @@ az policy state list \
 
 ______________________________________________________________________
 
-## 7️⃣ Azure Cost Management & Billing
+## 📌 7️⃣ Azure Cost Management & Billing
 
-### How Azure Billing Works:
+### 🔹 How Azure Billing Works:
 
 ```
 You create resources
@@ -489,7 +489,7 @@ Invoice goes to your Subscription's billing account
 Payment via Credit Card / EA / Pay-as-you-go
 ```
 
-### What You Get Charged For:
+### 🔹 What You Get Charged For:
 
 | Resource | How You're Charged |
 |----------|--------------------|
@@ -503,7 +503,7 @@ Payment via Credit Card / EA / Pay-as-you-go
 
 > 💡 **Free things**: Inbound data, resource groups, VNets, NSGs, resource tags
 
-### Check and Control Costs:
+### 🔹 Check and Control Costs:
 
 ```bash
 # View current month's cost per resource group
@@ -536,7 +536,7 @@ az vm list -d \
   --output table
 ```
 
-### Cost-Saving Tips for DevOps:
+### 🔹 Cost-Saving Tips for DevOps:
 
 | Action | Savings |
 |--------|---------|
@@ -548,7 +548,7 @@ az vm list -d \
 | Set budget alerts | No surprise bills |
 | Tag resources for showback | Know which team spends what |
 
-### Tag Strategy for Billing:
+### 🔹 Tag Strategy for Billing:
 
 ```bash
 # Tag resources so you can track costs per team/project
@@ -618,3 +618,8 @@ ______________________________________________________________________
    > 1. Unattached disks (`az disk list`)
    > 1. VMs stopped but NOT deallocated
    > 1. Cost Management → Cost by Resource Group 💰
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!

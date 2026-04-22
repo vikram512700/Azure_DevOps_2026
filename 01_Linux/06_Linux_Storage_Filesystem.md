@@ -1,6 +1,6 @@
-# 06 — Storage & Filesystem Management
+# 🐧 06 — Storage & Filesystem Management
 
-## 1. Disk Usage and Space
+## 📌 1. Disk Usage and Space
 
 ```bash
 # Disk space by filesystem
@@ -40,7 +40,7 @@ docker system prune -a         # clear unused Docker images/containers
 
 ______________________________________________________________________
 
-## 2. Block Devices and Partition Info
+## 📌 2. Block Devices and Partition Info
 
 ```bash
 # List all block devices
@@ -71,7 +71,7 @@ blkid /dev/sda1
 
 ______________________________________________________________________
 
-## 3. Partitioning with fdisk / parted
+## 📌 3. Partitioning with fdisk / parted
 
 ```bash
 # fdisk — MBR/GPT partitioning (interactive)
@@ -111,7 +111,7 @@ df -h /data
 
 ______________________________________________________________________
 
-## 4. Mounting and /etc/fstab
+## 📌 4. Mounting and /etc/fstab
 
 ```bash
 # Mount manually
@@ -153,7 +153,7 @@ findmnt -t ext4,xfs               # filter by type
 
 ______________________________________________________________________
 
-## 5. LVM — Logical Volume Manager
+## 📌 5. LVM — Logical Volume Manager
 
 LVM adds a virtualization layer between disks and filesystems, enabling resizing, snapshots, and spanning disks.
 
@@ -205,7 +205,7 @@ sudo umount /mnt/snapshot
 sudo lvremove /dev/data-vg/app-lv-snap
 ```
 
-### Real-Time Scenario: Extend the root volume on an EC2 instance
+### 🔹 Real-Time Scenario: Extend the root volume on an EC2 instance
 
 ```bash
 # 1. Extend EBS volume in AWS Console (no downtime)
@@ -225,7 +225,7 @@ df -h /                            # verify expanded
 
 ______________________________________________________________________
 
-## 6. Swap Management
+## 📌 6. Swap Management
 
 ```bash
 # View swap
@@ -258,7 +258,7 @@ sudo sysctl -p
 
 ______________________________________________________________________
 
-## 7. Filesystem Maintenance
+## 📌 7. Filesystem Maintenance
 
 ```bash
 # Check filesystem (must be unmounted or in read-only mode)
@@ -285,7 +285,7 @@ sudo fio --name=random-write --ioengine=posixaio --rw=randwrite --bs=4k --numjob
 
 ______________________________________________________________________
 
-## 8. NFS — Network File System
+## 📌 8. NFS — Network File System
 
 ```bash
 # Server setup
@@ -307,7 +307,7 @@ echo "10.0.1.10:/exports/shared  /mnt/shared  nfs  defaults,nofail  0  0" | sudo
 
 ______________________________________________________________________
 
-## Summary Table
+## 📌 Summary Table
 
 | Command | Purpose |
 |---------|---------|
@@ -323,3 +323,8 @@ ______________________________________________________________________
 | `lvextend + resize2fs/xfs_growfs` | Extend LV online |
 | `sudo swapon /swapfile` | Enable swap |
 | `xfs_growfs /` | Grow XFS without unmount |
+
+______________________________________________________________________
+
+> [!TIP]
+> **Pro Tip:** Practice these commands in a lab environment to build muscle memory!
