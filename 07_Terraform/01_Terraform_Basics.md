@@ -14,7 +14,7 @@ terraform apply  → Terraform calls Azure APIs to create/update/delete resource
 terraform.tfstate → Terraform records what it created
 ```
 
----
+______________________________________________________________________
 
 ## 2. Installation
 
@@ -50,7 +50,7 @@ tfenv use 1.7.5
 tfenv list
 ```
 
----
+______________________________________________________________________
 
 ## 3. Azure CLI & Authentication Setup
 
@@ -81,7 +81,7 @@ export ARM_CLIENT_SECRET="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
 export ARM_USE_MSI=true
 ```
 
----
+______________________________________________________________________
 
 ## 4. Your First Terraform Project
 
@@ -202,7 +202,7 @@ environment     = "dev"
 project         = "payment-service"
 ```
 
----
+______________________________________________________________________
 
 ## 5. The Core CLI Workflow
 
@@ -250,7 +250,7 @@ terraform destroy -auto-approve         # non-interactive
 terraform destroy -target=azurerm_virtual_machine.app  # destroy specific resource
 ```
 
----
+______________________________________________________________________
 
 ## 6. Understanding Plan Output
 
@@ -279,7 +279,7 @@ terraform plan
 # Plan: 1 to add, 0 to change, 0 to destroy.
 ```
 
----
+______________________________________________________________________
 
 ## 7. Terraform State Basics
 
@@ -301,7 +301,7 @@ terraform state pull
 terraform refresh
 ```
 
----
+______________________________________________________________________
 
 ## 8. .terraform.lock.hcl — Dependency Lock File
 
@@ -332,7 +332,7 @@ echo "*.tfvars" >> .gitignore         # may contain secrets
 echo "tfplan" >> .gitignore
 ```
 
----
+______________________________________________________________________
 
 ## 9. Real-Time Scenario: Bootstrap a New Azure Environment
 
@@ -392,7 +392,7 @@ terraform workspace new "$ENVIRONMENT" 2>/dev/null || terraform workspace select
 echo "Bootstrap complete for $ENVIRONMENT!"
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

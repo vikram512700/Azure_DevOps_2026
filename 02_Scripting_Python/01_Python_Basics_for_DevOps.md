@@ -1,25 +1,28 @@
 # 🐍 Python Scripting for DevOps
+
 ### 🎯 For Beginners — Why DevOps Engineers need Python
 
----
+______________________________________________________________________
 
 ## 1️⃣ Why Learn Python for DevOps?
 
-> 💡 **Think of it like this:**  
-> Bash is great for quick commands.  
+> 💡 **Think of it like this:**\
+> Bash is great for quick commands.\
 > Python is great when logic gets complex, you need to talk to APIs, or handle JSON data.
 
 **Common DevOps Python Tasks:**
+
 - Automate boring tasks (cleaning up old files)
 - Talk to Cloud APIs (e.g., list all stopped AWS/Azure instances)
 - Parse JSON from tools (like Docker or Kubernetes output)
 - Write custom CI/CD scripts
 
----
+______________________________________________________________________
 
 ## 2️⃣ Core Concepts (Fast Track)
 
 ### Variables & Data Types
+
 ```python
 server_name = "web-01"       # String
 cpu_cores = 4                # Integer
@@ -29,6 +32,7 @@ config = {"port": 80}        # Dictionary (Key-Value)
 ```
 
 ### Loops (Doing things multiple times)
+
 ```python
 servers = ["web-01", "web-02", "db-01"]
 
@@ -37,6 +41,7 @@ for server in servers:
 ```
 
 ### If/Else Statements (Logic)
+
 ```python
 cpu_usage = 85
 
@@ -46,11 +51,12 @@ else:
     print("CPU is normal.")
 ```
 
----
+______________________________________________________________________
 
 ## 3️⃣ Real-World DevOps Scripts
 
 ### Scenario 1: Running Shell Commands inside Python
+
 *Sometimes you need to run regular Linux commands inside your Python script.*
 
 ```python
@@ -64,6 +70,7 @@ print(result.stdout)
 ```
 
 ### Scenario 2: Working with JSON
+
 *DevOps is 90% dealing with JSON. Let's read a config.*
 
 ```python
@@ -81,6 +88,7 @@ if data['uptime_days'] > 30:
 ```
 
 ### Scenario 3: Checking if a Website is UP
+
 *Using the `requests` library to monitor a site.*
 
 ```python
@@ -98,16 +106,18 @@ except requests.ConnectionError:
     print(f"❌ Failed to connect to {url}!")
 ```
 
----
+______________________________________________________________________
 
 ## 🧠 Summary
+
 1. **Python** > Bash for complex logic and APIs.
-2. Use **`subprocess`** to run Linux commands.
-3. Use **`json`** to parse data from tools.
-4. Use **`requests`** to talk to APIs or check websites.
+1. Use **`subprocess`** to run Linux commands.
+1. Use **`json`** to parse data from tools.
+1. Use **`requests`** to talk to APIs or check websites.
 
 ## ✅ Quick Quiz
+
 1. You need to write a script to check if 50 URLs are returning HTTP 200. What Python library do you use?
    > **Answer**: The `requests` library. 🌐
-2. You want to run a simple `ls -l` command from Python. What module do you import?
+1. You want to run a simple `ls -l` command from Python. What module do you import?
    > **Answer**: `import subprocess` 🖥️

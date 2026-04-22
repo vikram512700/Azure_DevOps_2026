@@ -36,7 +36,7 @@ pstree -u           # with users
 pstree 1234         # tree rooted at PID 1234
 ```
 
----
+______________________________________________________________________
 
 ## 2. top and htop
 
@@ -93,7 +93,7 @@ MiB Swap:  2.0 total,   1.8 free,   0.2 used.   6.5 avail Mem
 # us (user) > 80%   → application CPU-bound
 ```
 
----
+______________________________________________________________________
 
 ## 3. Signals and kill
 
@@ -134,7 +134,7 @@ sudo kill -HUP $(cat /var/run/nginx.pid)
 sudo nginx -s reload
 ```
 
----
+______________________________________________________________________
 
 ## 4. Process Priority (nice / renice)
 
@@ -155,7 +155,7 @@ renice -5 -g appgroup                 # all processes in group (root)
 ps -eo pid,ni,pri,cmd | grep java
 ```
 
----
+______________________________________________________________________
 
 ## 5. Background & Foreground Jobs
 
@@ -193,7 +193,7 @@ tmux attach -t deploy             # attach
 Ctrl+B, D                         # detach
 ```
 
----
+______________________________________________________________________
 
 ## 6. systemctl & systemd
 
@@ -279,7 +279,7 @@ sudo systemctl enable --now payment-service
 sudo systemctl status payment-service
 ```
 
----
+______________________________________________________________________
 
 ## 7. journalctl — systemd Log Viewer
 
@@ -325,7 +325,7 @@ sudo journalctl --vacuum-time=30d    # keep only last 30 days
 journalctl -u nginx --since today --output=json | jq '.MESSAGE' | head -20
 ```
 
----
+______________________________________________________________________
 
 ## 8. cron — Scheduled Jobs
 
@@ -398,7 +398,7 @@ MAILTO=devops-alerts@company.com
 0 4 * * * root find /opt/payment-service/tmp -mtime +7 -delete
 ```
 
----
+______________________________________________________________________
 
 ## 9. at — One-Time Scheduled Jobs
 
@@ -425,7 +425,7 @@ echo "/opt/scripts/maintenance-mode-on.sh" | at 2:00 AM
 echo "/opt/scripts/maintenance-mode-off.sh" | at 4:00 AM
 ```
 
----
+______________________________________________________________________
 
 ## 10. Process Limits and Resource Control
 
@@ -441,7 +441,7 @@ cat /sys/fs/cgroup/system.slice/payment-service.service/memory.max
 cat /sys/fs/cgroup/system.slice/payment-service.service/cpu.max
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

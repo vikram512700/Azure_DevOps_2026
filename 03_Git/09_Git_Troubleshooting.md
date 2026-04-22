@@ -2,7 +2,7 @@
 
 ## 1. Common Errors & Fixes
 
----
+______________________________________________________________________
 
 ### Error: `Your local changes would be overwritten by merge`
 
@@ -25,7 +25,7 @@ git add -p && git commit -m "wip: save local changes"
 git pull --rebase origin main
 ```
 
----
+______________________________________________________________________
 
 ### Error: `fatal: refusing to merge unrelated histories`
 
@@ -41,7 +41,7 @@ git pull origin main --allow-unrelated-histories
 # - Repos were initialized separately
 ```
 
----
+______________________________________________________________________
 
 ### Error: `rejected — non-fast-forward`
 
@@ -59,7 +59,7 @@ git rebase origin/feature/my-branch
 git push --force-with-lease origin feature/my-branch
 ```
 
----
+______________________________________________________________________
 
 ### Error: `cannot lock ref` or `loose object` errors
 
@@ -76,7 +76,7 @@ git fsck --full
 git gc --aggressive --prune=now
 ```
 
----
+______________________________________________________________________
 
 ### Error: Detached HEAD
 
@@ -94,7 +94,7 @@ git log --oneline -1
 # then: git switch -c rescue HEAD  (to save them)
 ```
 
----
+______________________________________________________________________
 
 ### Error: `CONFLICT (modify/delete)` during merge
 
@@ -113,7 +113,7 @@ git rm src/old-api.js
 git commit
 ```
 
----
+______________________________________________________________________
 
 ### Error: `index.lock file exists`
 
@@ -129,7 +129,7 @@ rm -f .git/index.lock
 ps aux | grep git
 ```
 
----
+______________________________________________________________________
 
 ### Error: SSL Certificate Problem
 
@@ -150,7 +150,7 @@ git config --global http.sslVerify false
 git remote set-url origin git@github.com:org/repo.git
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Permission denied (publickey)`
 
@@ -173,11 +173,11 @@ cat ~/.ssh/config
 ssh -T git@github.com
 ```
 
----
+______________________________________________________________________
 
 ## 2. Recovery Scenarios
 
----
+______________________________________________________________________
 
 ### Recover a Deleted Branch
 
@@ -198,7 +198,7 @@ git branch -a | grep deleted-branch
 git switch -c feature/deleted-branch origin/feature/deleted-branch
 ```
 
----
+______________________________________________________________________
 
 ### Recover a Dropped Stash
 
@@ -214,7 +214,7 @@ git show <hash>
 git branch recovered-stash <hash>
 ```
 
----
+______________________________________________________________________
 
 ### Undo a Pushed Merge to Main
 
@@ -229,7 +229,7 @@ git push origin main
 # and discards the feature branch changes (parent 2).
 ```
 
----
+______________________________________________________________________
 
 ### Restore a Single File from a Previous Commit
 
@@ -248,7 +248,7 @@ git add src/payment/processor.js
 git commit -m "fix: restore processor.js to working state"
 ```
 
----
+______________________________________________________________________
 
 ### Split a Large Commit into Multiple Smaller Ones
 
@@ -271,11 +271,11 @@ git add .
 git commit -m "chore: update package.json dependencies"
 ```
 
----
+______________________________________________________________________
 
 ## 3. Large Repository Optimization
 
----
+______________________________________________________________________
 
 ### Shallow Clone for Speed
 
@@ -290,7 +290,7 @@ git fetch --deepen=50
 git fetch --unshallow
 ```
 
----
+______________________________________________________________________
 
 ### Sparse Checkout (Monorepos — checkout only what you need)
 
@@ -315,7 +315,7 @@ git sparse-checkout add services/auth
 git sparse-checkout list
 ```
 
----
+______________________________________________________________________
 
 ### Git LFS (Large File Storage)
 
@@ -346,7 +346,7 @@ git lfs migrate import --include="*.jar" --everything
 git push --force --all
 ```
 
----
+______________________________________________________________________
 
 ### Garbage Collection & Repo Maintenance
 
@@ -373,7 +373,7 @@ git fsck --full
 git prune --expire now
 ```
 
----
+______________________________________________________________________
 
 ## 4. Debugging Tips
 
@@ -401,7 +401,7 @@ cat .git/shallow
 git rev-parse --is-shallow-repository
 ```
 
----
+______________________________________________________________________
 
 ## 5. Git Aliases for DevOps Productivity
 
@@ -430,7 +430,7 @@ git prune-branches  # clean merged branches
 git recent      # branches by last commit
 ```
 
----
+______________________________________________________________________
 
 ## 6. Quick Diagnostic Checklist
 
@@ -449,7 +449,7 @@ Git command failing? Run through this checklist:
 □ git fsck — any corruption?
 ```
 
----
+______________________________________________________________________
 
 ## Summary: Emergency Commands
 

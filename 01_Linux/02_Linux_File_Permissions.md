@@ -31,7 +31,7 @@ rwx --x --x = 711   (owner full, others execute-only)
 --- --- --- = 000   (nobody can access)
 ```
 
----
+______________________________________________________________________
 
 ## 2. chmod — Change Permissions
 
@@ -64,7 +64,7 @@ chmod 644 ~/.ssh/authorized_keys
 chmod 644 ~/.ssh/known_hosts
 ```
 
----
+______________________________________________________________________
 
 ## 3. chown — Change Ownership
 
@@ -98,7 +98,7 @@ sudo chmod -R 750 /opt/payment-service/
 sudo chmod -R 770 /var/log/payment-service/
 ```
 
----
+______________________________________________________________________
 
 ## 4. umask — Default Permission Mask
 
@@ -126,7 +126,7 @@ echo "umask 027" | sudo tee -a /etc/profile.d/umask.sh
 # New dir:   777 - 027 = 750  (rwxr-x---)
 ```
 
----
+______________________________________________________________________
 
 ## 5. Special Permission Bits
 
@@ -194,7 +194,7 @@ sudo mkdir /var/uploads
 sudo chmod 1777 /var/uploads
 ```
 
----
+______________________________________________________________________
 
 ## 6. Access Control Lists (ACLs)
 
@@ -235,7 +235,7 @@ sudo setfacl -m u:jenkins:r  /etc/payment-service/config.yml
 getfacl /etc/payment-service/config.yml
 ```
 
----
+______________________________________________________________________
 
 ## 7. sudo Configuration
 
@@ -281,7 +281,7 @@ sudo -l
 sudo visudo -c
 ```
 
----
+______________________________________________________________________
 
 ## 8. Real-Time Scenarios
 
@@ -356,7 +356,7 @@ find /home /root -name "*.pem" -o -name "id_rsa" -o -name "*.key" 2>/dev/null \
     done
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

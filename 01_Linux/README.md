@@ -2,7 +2,7 @@
 
 A structured guide covering Linux from fundamentals to advanced DevOps operations with real-world scenarios.
 
----
+______________________________________________________________________
 
 ## Index
 
@@ -19,7 +19,7 @@ A structured guide covering Linux from fundamentals to advanced DevOps operation
 | [09_Linux_Security_Hardening.md](09_Linux_Security_Hardening.md) | SSH hardening, firewall, SELinux, auditd, fail2ban |
 | [10_Linux_DevOps_Scenarios.md](10_Linux_DevOps_Scenarios.md) | Real-world ops: deployments, debugging, automation, incidents |
 
----
+______________________________________________________________________
 
 ## Quick Reference Card
 
@@ -46,6 +46,6 @@ df -h; du -sh *; lsblk; free -h
 chmod 755 script.sh; chown user:group file; sudo -l
 ```
 
----
+______________________________________________________________________
 
 > Each file contains real-time DevOps scenarios, command explanations, and production-tested patterns.

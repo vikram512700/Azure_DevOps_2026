@@ -38,7 +38,7 @@ find /tmp -mtime +7 -delete    # clear old tmp files
 docker system prune -a         # clear unused Docker images/containers
 ```
 
----
+______________________________________________________________________
 
 ## 2. Block Devices and Partition Info
 
@@ -69,7 +69,7 @@ blkid
 blkid /dev/sda1
 ```
 
----
+______________________________________________________________________
 
 ## 3. Partitioning with fdisk / parted
 
@@ -109,7 +109,7 @@ sudo mount -a                       # verify no errors
 df -h /data
 ```
 
----
+______________________________________________________________________
 
 ## 4. Mounting and /etc/fstab
 
@@ -151,7 +151,7 @@ findmnt                            # tree format
 findmnt -t ext4,xfs               # filter by type
 ```
 
----
+______________________________________________________________________
 
 ## 5. LVM — Logical Volume Manager
 
@@ -223,7 +223,7 @@ sudo xfs_growfs /
 df -h /                            # verify expanded
 ```
 
----
+______________________________________________________________________
 
 ## 6. Swap Management
 
@@ -256,7 +256,7 @@ echo "vm.swappiness=10" | sudo tee -a /etc/sysctl.conf
 sudo sysctl -p
 ```
 
----
+______________________________________________________________________
 
 ## 7. Filesystem Maintenance
 
@@ -283,7 +283,7 @@ sudo dd if=/tmp/testfile of=/dev/null bs=1G count=1               # read speed
 sudo fio --name=random-write --ioengine=posixaio --rw=randwrite --bs=4k --numjobs=1 --size=1g --iodepth=1
 ```
 
----
+______________________________________________________________________
 
 ## 8. NFS — Network File System
 
@@ -305,7 +305,7 @@ sudo mount -t nfs 10.0.1.10:/exports/shared /mnt/shared
 echo "10.0.1.10:/exports/shared  /mnt/shared  nfs  defaults,nofail  0  0" | sudo tee -a /etc/fstab
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

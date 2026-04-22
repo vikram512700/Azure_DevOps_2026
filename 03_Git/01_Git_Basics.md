@@ -18,7 +18,7 @@ git --version
 # git version 2.43.0
 ```
 
----
+______________________________________________________________________
 
 ## 2. First-Time Global Configuration
 
@@ -49,7 +49,7 @@ git config --global user.email "devops-team@company.com"
 git config --global core.sshCommand "ssh -i /home/ubuntu/.ssh/deploy_key -o StrictHostKeyChecking=no"
 ```
 
----
+______________________________________________________________________
 
 ## 3. Initializing a Repository
 
@@ -80,7 +80,7 @@ git remote add origin git@github.com:org/payment-service.git
 git push -u origin main
 ```
 
----
+______________________________________________________________________
 
 ## 4. Staging and Committing
 
@@ -136,7 +136,7 @@ Examples:
   chore(deps): upgrade log4j to 2.21.0
 ```
 
----
+______________________________________________________________________
 
 ## 5. Viewing History
 
@@ -185,7 +185,7 @@ git log --oneline --follow -- src/payment/processor.js
 # Track renames across history
 ```
 
----
+______________________________________________________________________
 
 ## 6. Viewing Differences
 
@@ -214,7 +214,7 @@ git diff --stat main..feature/payments
 git diff HEAD~3 HEAD -- src/app.js
 ```
 
----
+______________________________________________________________________
 
 ## 7. .gitignore
 
@@ -285,7 +285,7 @@ git filter-repo --path .env --invert-paths
 git push origin --force --all
 ```
 
----
+______________________________________________________________________
 
 ## 8. Git Objects & Internals (Know for Interviews)
 
@@ -310,7 +310,7 @@ git cat-file -s a3f1c9b
   index         # staging area
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

@@ -1,7 +1,8 @@
 # ☁️ Azure Basics — DevOps Notes
+
 ### Simple, short notes with real-world examples for DevOps Engineers
 
----
+______________________________________________________________________
 
 ## 📁 Files in This Folder
 
@@ -13,7 +14,7 @@
 | 4 | [04_Advanced_Networking.md](04_Advanced_Networking.md) | App Gateway, WAF, Load Balancer, DNS, Azure Firewall, VNet Peering, VPN Gateway |
 | 5 | [05_Entra_Subscriptions_RBAC_Billing.md](05_Entra_Subscriptions_RBAC_Billing.md) | Entra ID, Subscriptions, Management Groups, RBAC, Policy, Cost Management |
 
----
+______________________________________________________________________
 
 ## 🗺️ Azure Learning Path
 
@@ -25,7 +26,7 @@ Step 4️⃣  → Learn Advanced Networking (expose apps safely to internet)
 Step 5️⃣  → Learn Entra ID & RBAC (who has access, billing, governance)
 ```
 
----
+______________________________________________________________________
 
 ## 🔑 Key Concepts Cheat Sheet
 
@@ -53,6 +54,6 @@ Step 5️⃣  → Learn Entra ID & RBAC (who has access, billing, governance)
 | **Azure Policy** | Rules that enforce compliance automatically |
 | **Cost Management** | Monitor and control Azure spending |
 
----
+______________________________________________________________________
 
 > 💡 **Tip**: Each file ends with a **Quick Quiz** — test yourself before moving on!

@@ -1,12 +1,13 @@
 # 📦 Azure Resources, Resource Groups & Resource Manager
+
 ### 🎯 For DevOps Beginners — Simple Notes with Real Examples
 
----
+______________________________________________________________________
 
 ## 1️⃣ What is an Azure Resource?
 
-> 💡 **Think of it like this:**  
-> When you go to a store and buy a laptop, that laptop is your **resource**.  
+> 💡 **Think of it like this:**\
+> When you go to a store and buy a laptop, that laptop is your **resource**.\
 > In Azure — anything you create (VM, database, storage) is called a **Resource**.
 
 ### Common Azure Resources:
@@ -21,7 +22,8 @@
 | A web app host | App Service |
 
 ### 🏗️ Real Example:
-You are a DevOps Engineer deploying an **online shopping app**.  
+
+You are a DevOps Engineer deploying an **online shopping app**.\
 You need to create these resources:
 
 ```
@@ -34,12 +36,12 @@ You need to create these resources:
 
 Each one of those = **an Azure Resource**
 
----
+______________________________________________________________________
 
 ## 2️⃣ What is a Resource Group?
 
-> 💡 **Think of it like this:**  
-> A Resource Group is like a **folder** on your desktop.  
+> 💡 **Think of it like this:**\
+> A Resource Group is like a **folder** on your desktop.\
 > Instead of files, it holds your Azure resources.
 
 ```
@@ -62,6 +64,7 @@ Each one of those = **an Azure Resource**
 | 🏷️ **Tag for billing** | Tag RG with `CostCenter=CC100` |
 
 ### 🌍 Real-World Pattern — One RG per Environment:
+
 ```
 📁 rg-shopping-dev      ← developers test here
 📁 rg-shopping-staging  ← QA team tests here
@@ -69,6 +72,7 @@ Each one of those = **an Azure Resource**
 ```
 
 ### ⚡ CLI Commands (Practice These!):
+
 ```bash
 # Create a Resource Group
 az group create \
@@ -94,17 +98,18 @@ az group delete --name rg-shopping-dev --yes --no-wait
 ```
 
 ### ⚠️ Important Rules:
+
 - A resource can only belong to **ONE** resource group
 - Resources can be in **different regions** than the resource group
 - You **cannot nest** resource groups
 
----
+______________________________________________________________________
 
 ## 3️⃣ Azure Resource Manager (ARM)
 
-> 💡 **Think of it like this:**  
-> ARM is like the **receptionist at Azure's front desk**.  
-> Every request you make (from portal, CLI, Terraform) goes through ARM first.  
+> 💡 **Think of it like this:**\
+> ARM is like the **receptionist at Azure's front desk**.\
+> Every request you make (from portal, CLI, Terraform) goes through ARM first.\
 > ARM checks → "Who are you? Are you allowed? OK go ahead."
 
 ### How ARM Works (Flow Diagram):
@@ -143,6 +148,7 @@ You
 | 🔄 **Deployment History** | What was deployed when | See last 10 deployments |
 
 ### 📝 ARM Template — Simple Example:
+
 > ARM template = JSON file that describes what to create
 
 ```json
@@ -200,7 +206,7 @@ az lock delete \
   --resource-group rg-shopping-prod
 ```
 
----
+______________________________________________________________________
 
 ## 🧠 Summary — Remember These 3 Things
 
@@ -216,11 +222,15 @@ ARM            = Azure's control plane
 ```
 
 ## ✅ Quick Quiz (Answer in your head)
+
 1. You built a test app and want to delete ALL its Azure resources at once. What do you delete?
+
    > **Answer**: Delete the Resource Group 🗑️
 
-2. Your Terraform/CLI command creates a VM — what Azure component processes that request?
+1. Your Terraform/CLI command creates a VM — what Azure component processes that request?
+
    > **Answer**: Azure Resource Manager (ARM) ✅
 
-3. You want junior devs to see resources but not delete them. What do you use?
+1. You want junior devs to see resources but not delete them. What do you use?
+
    > **Answer**: RBAC Role = `Reader` 🔐

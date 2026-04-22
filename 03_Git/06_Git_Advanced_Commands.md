@@ -66,7 +66,7 @@ git switch feature/JIRA-789-add-2fa
 git stash pop
 ```
 
----
+______________________________________________________________________
 
 ## 2. Git Tags
 
@@ -125,7 +125,7 @@ git push origin "$TAG"
 echo "Tagged and pushed: $TAG"
 ```
 
----
+______________________________________________________________________
 
 ## 3. git bisect (Binary Search for Bugs)
 
@@ -177,7 +177,7 @@ git bisect run bash -c 'npm test -- --testNamePattern="payment API latency"'
 # git show b3c4d5e  → "feat: add synchronous audit logging to payment flow"
 ```
 
----
+______________________________________________________________________
 
 ## 4. git blame
 
@@ -212,7 +212,7 @@ git show 7e8f9a0b
 # Automated commit from CD pipeline accidentally used staging config
 ```
 
----
+______________________________________________________________________
 
 ## 5. git submodules
 
@@ -254,7 +254,7 @@ terraform init -backend-config=backend.tfvars
 terraform plan
 ```
 
----
+______________________________________________________________________
 
 ## 6. Git Hooks
 
@@ -329,7 +329,7 @@ npx husky add .husky/pre-commit "npm run lint && npm test"
 npx husky add .husky/commit-msg 'npx --no -- commitlint --edit "$1"'
 ```
 
----
+______________________________________________________________________
 
 ## 7. git shortlog & Statistics
 
@@ -351,7 +351,7 @@ git log --author="Vikram" --pretty=tformat: --numstat \
 git log --name-only --pretty=format: | sort | uniq -c | sort -rn | head -20
 ```
 
----
+______________________________________________________________________
 
 ## 8. git archive (Export without .git)
 
@@ -380,7 +380,7 @@ git archive --format=tar.gz \
 sha256sum "payment-service-${VERSION}.tar.gz" > "payment-service-${VERSION}.tar.gz.sha256"
 ```
 
----
+______________________________________________________________________
 
 ## 9. git worktree (Multiple Working Trees)
 
@@ -413,7 +413,7 @@ git worktree remove ../hotfix
 cd ../main-repo
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

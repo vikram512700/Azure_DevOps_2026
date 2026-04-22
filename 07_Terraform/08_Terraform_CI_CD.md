@@ -174,7 +174,7 @@ jobs:
         working-directory: infrastructure/environments/prod
 ```
 
----
+______________________________________________________________________
 
 ## 2. OIDC Authentication (No Secrets — Best Practice)
 
@@ -225,7 +225,7 @@ az ad app federated-credential create \
   }'
 ```
 
----
+______________________________________________________________________
 
 ## 3. Azure DevOps Pipeline
 
@@ -384,7 +384,7 @@ stages:
                     environmentServiceNameAzureRM: $(serviceConnection)
 ```
 
----
+______________________________________________________________________
 
 ## 4. Atlantis — Terraform Pull Request Automation
 
@@ -441,7 +441,7 @@ atlantis apply -p payment-dev    # apply specific project
 # 5. Atlantis applies + merges PR automatically
 ```
 
----
+______________________________________________________________________
 
 ## 5. Scheduled Drift Detection
 
@@ -496,7 +496,7 @@ jobs:
             });
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

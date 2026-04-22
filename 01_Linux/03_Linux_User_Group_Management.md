@@ -21,7 +21,7 @@ grep "^vikram" /etc/passwd
 # field: name:password:UID:GID:comment:home:shell
 ```
 
----
+______________________________________________________________________
 
 ## 2. User Management
 
@@ -85,7 +85,7 @@ id payment-svc
 grep payment-svc /etc/passwd
 ```
 
----
+______________________________________________________________________
 
 ## 3. Group Management
 
@@ -120,7 +120,7 @@ groups vikram
 id -Gn vikram
 ```
 
----
+______________________________________________________________________
 
 ## 4. Switching Users
 
@@ -153,7 +153,7 @@ lastb                   # failed logins (bad logins)
 lastlog                 # last login for all users
 ```
 
----
+______________________________________________________________________
 
 ## 5. Password Policy
 
@@ -188,7 +188,7 @@ sudo usermod -L vikram   # lock (alternative)
 sudo usermod -U vikram   # unlock (alternative)
 ```
 
----
+______________________________________________________________________
 
 ## 6. SSH Access Control
 
@@ -232,7 +232,7 @@ echo "deployer ALL=(ALL) NOPASSWD: /usr/bin/systemctl restart app, /usr/bin/dock
 sudo chmod 440 /etc/sudoers.d/deployer
 ```
 
----
+______________________________________________________________________
 
 ## 7. User Session Limits (PAM / limits.conf)
 
@@ -270,7 +270,7 @@ ulimit -c unlimited  # core dumps
 # LimitNPROC=4096
 ```
 
----
+______________________________________________________________________
 
 ## 8. Real-Time Scenarios
 
@@ -338,7 +338,7 @@ for user in $SYSTEM_BASH_USERS; do
 done
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

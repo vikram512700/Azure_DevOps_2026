@@ -2,7 +2,7 @@
 
 A structured guide covering Git from fundamentals to advanced DevOps workflows with real-world scenarios.
 
----
+______________________________________________________________________
 
 ## Index
 
@@ -18,7 +18,7 @@ A structured guide covering Git from fundamentals to advanced DevOps workflows w
 | [08_Git_DevOps_CI_CD.md](08_Git_DevOps_CI_CD.md) | CI/CD pipelines, GitHub Actions, Jenkins, GitOps |
 | [09_Git_Troubleshooting.md](09_Git_Troubleshooting.md) | Common errors, recovery, large repo optimization |
 
----
+______________________________________________________________________
 
 ## Quick Reference Card
 
@@ -32,6 +32,6 @@ git commit -m "feat: message" # commit with convention
 git push -u origin feature/xyz # push and track
 ```
 
----
+______________________________________________________________________
 
 > Each file contains real-time DevOps scenarios, command explanations, and best practices.

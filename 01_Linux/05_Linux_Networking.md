@@ -35,7 +35,7 @@ ifconfig eth0
 ifconfig eth0 up/down
 ```
 
----
+______________________________________________________________________
 
 ## 2. Routing
 
@@ -76,7 +76,7 @@ traceroute 8.8.8.8
 tracepath 8.8.8.8            # no root required
 ```
 
----
+______________________________________________________________________
 
 ## 3. DNS
 
@@ -123,7 +123,7 @@ dig google.com @/etc/resolv.conf            # test with local resolver
 cat /etc/nsswitch.conf | grep hosts         # check resolution order
 ```
 
----
+______________________________________________________________________
 
 ## 4. Port and Socket Inspection
 
@@ -164,7 +164,7 @@ lsof -i :8080
 fuser 8080/tcp
 ```
 
----
+______________________________________________________________________
 
 ## 5. curl and wget
 
@@ -213,7 +213,7 @@ wget --mirror https://example.com/              # full site mirror
 wget --retry-connrefused --tries=3 https://...  # retry
 ```
 
----
+______________________________________________________________________
 
 ## 6. SSH — Secure Shell
 
@@ -273,7 +273,7 @@ EOF
 ssh prod-app
 ```
 
----
+______________________________________________________________________
 
 ## 7. Firewall Management
 
@@ -368,7 +368,7 @@ sudo iptables -I INPUT -s 192.168.1.100 -j DROP
 sudo iptables-save > /etc/iptables/rules.v4
 ```
 
----
+______________________________________________________________________
 
 ## 8. Network Diagnostics
 
@@ -413,7 +413,7 @@ ss -tnp | grep 3306
 dmesg | grep -i error | tail -20
 ```
 
----
+______________________________________________________________________
 
 ## 9. Network Configuration Files
 
@@ -441,7 +441,7 @@ hostnamectl status
 cat /etc/services | grep http
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

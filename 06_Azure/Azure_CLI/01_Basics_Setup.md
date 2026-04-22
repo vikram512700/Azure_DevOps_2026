@@ -19,16 +19,18 @@ docker run -it mcr.microsoft.com/azure-cli
 az --version
 ```
 
----
+______________________________________________________________________
 
 ## 2. Authentication & Login
 
 ### Interactive Login
+
 ```bash
 az login
 ```
 
 ### Service Principal Login (CI/CD Pipelines)
+
 ```bash
 # Real-time Scenario: Your Jenkins/GitHub Actions pipeline needs to deploy to Azure
 az login --service-principal \
@@ -38,17 +40,19 @@ az login --service-principal \
 ```
 
 ### Managed Identity Login (From Azure VM/AKS)
+
 ```bash
 # Real-time Scenario: App running inside Azure VM accessing Key Vault
 az login --identity
 ```
 
 ### Login with Device Code (Remote/SSH sessions)
+
 ```bash
 az login --use-device-code
 ```
 
----
+______________________________________________________________________
 
 ## 3. Account & Subscription Management
 
@@ -67,7 +71,7 @@ az account show --output table
 az account list-locations --output table
 ```
 
----
+______________________________________________________________________
 
 ## 4. Resource Groups
 
@@ -94,7 +98,7 @@ az group update --name rg-ecommerce-prod \
   --tags Environment=Production Team=Backend CostCenter=CC100
 ```
 
----
+______________________________________________________________________
 
 ## 5. Output Formats & Queries
 
@@ -122,7 +126,7 @@ az vm list -d --query "[?powerState=='VM running'].{Name:name, IP:publicIps}" -o
 az vm show -g myRG -n myVM --query "hardwareProfile.vmSize" -o tsv
 ```
 
----
+______________________________________________________________________
 
 ## 6. Azure CLI Configuration
 
@@ -143,7 +147,7 @@ az configure --defaults group='' location=''
 az configure --collect-telemetry true
 ```
 
----
+______________________________________________________________________
 
 ## 7. CLI Extensions
 
@@ -165,7 +169,7 @@ az extension remove --name aks-preview
 az extension list-available --output table
 ```
 
----
+______________________________________________________________________
 
 ## 8. Finding Help
 

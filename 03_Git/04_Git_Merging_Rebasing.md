@@ -42,7 +42,7 @@ After git merge --no-ff:
 git merge --no-ff feature/payments -m "feat: merge payment gateway feature [JIRA-789]"
 ```
 
----
+______________________________________________________________________
 
 ## 2. Merge Conflict Resolution
 
@@ -117,7 +117,7 @@ git add helm/values-prod.yaml
 git commit -m "chore: resolve merge conflict in helm values — keep prod replica count, take 2.4.0 image"
 ```
 
----
+______________________________________________________________________
 
 ## 3. Rebase
 
@@ -204,7 +204,7 @@ git rebase -i HEAD~6
 git push --force-with-lease origin feature/JIRA-789-add-2fa
 ```
 
----
+______________________________________________________________________
 
 ## 4. Cherry-Pick
 
@@ -265,7 +265,7 @@ git cherry-pick b9f3d2a
 git push origin main
 ```
 
----
+______________________________________________________________________
 
 ## 5. Squash Merge (GitHub/GitLab PR Strategy)
 
@@ -277,7 +277,7 @@ git commit -m "feat: complete payment gateway integration [JIRA-789]"
 # This is what GitHub "Squash and merge" button does
 ```
 
----
+______________________________________________________________________
 
 ## 6. Octopus Merge (Multiple branches at once)
 
@@ -287,7 +287,7 @@ git merge feature/auth feature/payments feature/notifications
 # Git attempts a 3-way merge across all — fails if conflicts
 ```
 
----
+______________________________________________________________________
 
 ## 7. Merge vs Rebase Decision Guide
 
@@ -302,9 +302,10 @@ git merge feature/auth feature/payments feature/notifications
 | CI pipeline sync | `pull --rebase` |
 
 ### The Golden Rule of Rebase
+
 > **Never rebase a branch that others are working on.** Rebase rewrites commit hashes, which causes diverged history for any teammate who has the old commits.
 
----
+______________________________________________________________________
 
 ## 8. Real-Time Scenario: Resolving a complex 3-way conflict in a microservice
 
@@ -329,7 +330,7 @@ git rebase --continue
 git push --force-with-lease origin feature/JIRA-789
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

@@ -1,7 +1,8 @@
 # 🔐 Azure Entra ID, Subscriptions, Access & Billing
+
 ### 🎯 For DevOps Beginners — Who Are You? What Can You Do? Who Pays?
 
----
+______________________________________________________________________
 
 ## 🗺️ The Big Picture First
 
@@ -31,22 +32,23 @@
 ```
 
 > Think of it like a **company org chart**:
+>
 > - Entra ID = **HR department** (knows all employees)
 > - Subscription = **Department budget** (who pays for what)
 > - Resource Group = **Project folder** (what's in this project)
 > - RBAC = **Job roles** (what each person is allowed to do)
 
----
+______________________________________________________________________
 
 ## 1️⃣ Azure Entra ID (formerly Azure Active Directory)
 
 ### What is Azure Entra ID?
 
-> 💡 **Think of it like your company's badge/ID system:**  
-> When you enter an office building — you swipe your badge.  
-> The system checks: "Is this person an employee? What floors can they access?"  
->  
-> **Entra ID = Azure's badge system.**  
+> 💡 **Think of it like your company's badge/ID system:**\
+> When you enter an office building — you swipe your badge.\
+> The system checks: "Is this person an employee? What floors can they access?"
+>
+> **Entra ID = Azure's badge system.**\
 > It manages WHO can log into Azure and what they can access.
 
 ### What Entra ID Manages:
@@ -69,6 +71,7 @@
 | **AAD / Entra ID** | Same thing — Microsoft renamed it in 2023 |
 
 ### Create and Manage Users:
+
 ```bash
 # Create a new user
 az ad user create \
@@ -88,6 +91,7 @@ az ad user delete --id vikram@company.onmicrosoft.com
 ```
 
 ### Create and Manage Groups:
+
 ```bash
 # Create a group for DevOps team
 az ad group create \
@@ -108,17 +112,17 @@ az ad group member check \
   --member-id $(az ad user show --id vikram@company.onmicrosoft.com --query id -o tsv)
 ```
 
----
+______________________________________________________________________
 
 ## 2️⃣ Service Principals & Managed Identities
 
 ### What is a Service Principal?
 
-> 💡 **A Service Principal = an identity for an app/script (not a human).**  
->  
-> Real scenario:  
-> Your **GitHub Actions** pipeline needs to deploy to Azure.  
-> You can't give it YOUR login — that's insecure.  
+> 💡 **A Service Principal = an identity for an app/script (not a human).**
+>
+> Real scenario:\
+> Your **GitHub Actions** pipeline needs to deploy to Azure.\
+> You can't give it YOUR login — that's insecure.\
 > You create a **Service Principal** = a non-human account with limited access.
 
 ```
@@ -132,6 +136,7 @@ Deploy resources to that resource group
 ```
 
 ### Create Service Principal for CI/CD:
+
 ```bash
 # Create SP and give it Contributor role on a resource group
 az ad sp create-for-rbac \
@@ -160,17 +165,17 @@ az ad sp delete --id <app-id>
 
 ### What is a Managed Identity?
 
-> 💡 **Managed Identity = Service Principal, but Azure manages the password for you!**  
->  
-> Problem with Service Principal:  
-> ❌ You manage the secret/password  
-> ❌ Secret can expire  
-> ❌ Secret can leak in code  
->  
-> Managed Identity:  
-> ✅ Azure manages the secret automatically  
-> ✅ Never expires  
-> ✅ No secret in your code ever  
+> 💡 **Managed Identity = Service Principal, but Azure manages the password for you!**
+>
+> Problem with Service Principal:\
+> ❌ You manage the secret/password\
+> ❌ Secret can expire\
+> ❌ Secret can leak in code
+>
+> Managed Identity:\
+> ✅ Azure manages the secret automatically\
+> ✅ Never expires\
+> ✅ No secret in your code ever
 
 ### Types of Managed Identity:
 
@@ -203,22 +208,23 @@ az keyvault set-policy \
   --secret-permissions get list
 ```
 
-> 💡 **Real DevOps Use Case**:  
-> Your app running on a VM needs to read database passwords from Key Vault.  
-> ✅ Assign Managed Identity to VM → give it Key Vault access → app reads secrets automatically  
+> 💡 **Real DevOps Use Case**:\
+> Your app running on a VM needs to read database passwords from Key Vault.\
+> ✅ Assign Managed Identity to VM → give it Key Vault access → app reads secrets automatically\
 > ❌ NO hardcoded passwords in code or config files!
 
----
+______________________________________________________________________
 
 ## 3️⃣ Azure Subscriptions
 
 ### What is a Subscription?
 
-> 💡 **A Subscription = Your Azure account + billing account.**  
->  
-> Think of it like a **prepaid SIM card**:  
-> - You have one SIM per phone plan  
-> - You create Azure resources under the subscription  
+> 💡 **A Subscription = Your Azure account + billing account.**
+>
+> Think of it like a **prepaid SIM card**:
+>
+> - You have one SIM per phone plan
+> - You create Azure resources under the subscription
 > - Azure charges you based on what you use in that subscription
 
 ### Why Have Multiple Subscriptions?
@@ -231,6 +237,7 @@ az keyvault set-policy \
 | **For limits** | When nearing subscription limits | Azure has per-sub limits |
 
 ### Real Company Setup:
+
 ```
 Contoso Ltd.
 ├── 💳 Sub: contoso-dev          → Dev/Test workloads
@@ -241,6 +248,7 @@ Contoso Ltd.
 ```
 
 ### Subscription CLI Commands:
+
 ```bash
 # List all subscriptions you have access to
 az account list --output table
@@ -258,16 +266,16 @@ az account show --query id -o tsv
 az account list-locations --output table
 ```
 
----
+______________________________________________________________________
 
 ## 4️⃣ Management Groups
 
 ### What are Management Groups?
 
-> 💡 **Management Groups = folders for subscriptions.**  
->  
-> You have 20 subscriptions. You want to apply one policy across ALL of them.  
-> Without Management Groups → apply policy 20 times  
+> 💡 **Management Groups = folders for subscriptions.**
+>
+> You have 20 subscriptions. You want to apply one policy across ALL of them.\
+> Without Management Groups → apply policy 20 times\
 > With Management Groups → apply policy ONCE at the top level, it flows down!
 
 ```
@@ -283,6 +291,7 @@ az account list-locations --output table
 ```
 
 ### CLI Commands:
+
 ```bash
 # Create management group
 az account management-group create \
@@ -303,23 +312,25 @@ az account management-group show \
   --expand --recurse
 ```
 
----
+______________________________________________________________________
 
 ## 5️⃣ RBAC — Role-Based Access Control (Who Can Do What?)
 
 ### What is RBAC?
 
-> 💡 **RBAC = Job roles for Azure.**  
->  
-> In a company:  
-> - Junior Dev → can only READ code  
-> - Senior Dev → can read and WRITE code  
-> - DevOps Engineer → can deploy to prod  
-> - Manager → can approve and manage team  
->  
+> 💡 **RBAC = Job roles for Azure.**
+>
+> In a company:
+>
+> - Junior Dev → can only READ code
+> - Senior Dev → can read and WRITE code
+> - DevOps Engineer → can deploy to prod
+> - Manager → can approve and manage team
+>
 > **RBAC gives different Azure permissions based on job role.**
 
 ### RBAC Formula:
+
 ```
 WHO        +  WHAT ROLE      +  WHERE (scope)
 (User/SP)     (permissions)     (Sub/RG/Resource)
@@ -339,6 +350,7 @@ vikram@company.com  +  Contributor  +  rg-webapp-prod
 | **User Access Admin** | Manage who has access | ❌ Create resources |
 
 ### Role Assignment Examples:
+
 ```bash
 # Give a developer READ access to production (safe!)
 az role assignment create \
@@ -377,6 +389,7 @@ az role assignment delete \
 ```
 
 ### RBAC Scopes (Where you assign the role):
+
 ```
 🌍 Management Group    ← applies to all subscriptions inside
    ↓ inherits down
@@ -388,6 +401,7 @@ az role assignment delete \
 ```
 
 ### Create a Custom Role:
+
 ```bash
 # Real Scenario: L1 Support — can only RESTART VMs, nothing else
 
@@ -412,14 +426,14 @@ az role assignment create \
   --scope /subscriptions/<SUB_ID>/resourceGroups/rg-webapp-prod
 ```
 
----
+______________________________________________________________________
 
 ## 6️⃣ Azure Policy — Enforce Rules Across Your Azure
 
-> 💡 **Azure Policy = Rules that Azure enforces automatically.**  
->  
-> Example:  
-> "No one is allowed to create VMs without a `CostCenter` tag"  
+> 💡 **Azure Policy = Rules that Azure enforces automatically.**
+>
+> Example:\
+> "No one is allowed to create VMs without a `CostCenter` tag"\
 > Even if someone has Contributor access — if they forget the tag, Azure BLOCKS it!
 
 ### Real Policies Used by DevOps Teams:
@@ -433,6 +447,7 @@ az role assignment create \
 | Audit public IPs | Alert if a resource gets a public IP |
 
 ### Apply Policies:
+
 ```bash
 # Scenario: Enforce "CostCenter" tag on all resources
 az policy assignment create \
@@ -456,7 +471,7 @@ az policy state list \
   --output table
 ```
 
----
+______________________________________________________________________
 
 ## 7️⃣ Azure Cost Management & Billing
 
@@ -489,6 +504,7 @@ Payment via Credit Card / EA / Pay-as-you-go
 > 💡 **Free things**: Inbound data, resource groups, VNets, NSGs, resource tags
 
 ### Check and Control Costs:
+
 ```bash
 # View current month's cost per resource group
 az consumption usage list \
@@ -533,6 +549,7 @@ az vm list -d \
 | Tag resources for showback | Know which team spends what |
 
 ### Tag Strategy for Billing:
+
 ```bash
 # Tag resources so you can track costs per team/project
 az resource tag \
@@ -548,7 +565,7 @@ az group update \
 # Cost Management → Cost Analysis → Group by: Tag → CostCenter
 ```
 
----
+______________________________________________________________________
 
 ## 🧠 Full Picture — How It All Connects
 
@@ -574,24 +591,30 @@ az group update \
    Locks  → protects from accidental delete
 ```
 
----
+______________________________________________________________________
 
 ## ✅ Quick Quiz
 
 1. Your CI/CD pipeline (GitHub Actions) needs to deploy to Azure. What identity do you create?
+
    > **Answer**: Service Principal with Contributor role on the resource group 🤖
 
-2. A VM needs to read secrets from Key Vault — without any hardcoded passwords. What do you use?
+1. A VM needs to read secrets from Key Vault — without any hardcoded passwords. What do you use?
+
    > **Answer**: Managed Identity assigned to the VM + Key Vault access policy ✅
 
-3. A junior developer accidentally deleted a production database. How do you prevent this?
+1. A junior developer accidentally deleted a production database. How do you prevent this?
+
    > **Answer**: Give them `Reader` role (not Contributor) + add `CanNotDelete` lock on the DB 🔒
 
-4. You have 10 subscriptions and want to enforce "all VMs must have a CostCenter tag" across ALL of them at once. What do you use?
+1. You have 10 subscriptions and want to enforce "all VMs must have a CostCenter tag" across ALL of them at once. What do you use?
+
    > **Answer**: Azure Policy assigned at the Management Group level 📋
 
-5. Your Azure bill is unexpectedly high this month. What are the first 3 things you check?
-   > **Answer**:  
-   > 1. Unattached disks (`az disk list`)  
-   > 2. VMs stopped but NOT deallocated  
-   > 3. Cost Management → Cost by Resource Group 💰
+1. Your Azure bill is unexpectedly high this month. What are the first 3 things you check?
+
+   > **Answer**:
+   >
+   > 1. Unattached disks (`az disk list`)
+   > 1. VMs stopped but NOT deallocated
+   > 1. Cost Management → Cost by Resource Group 💰

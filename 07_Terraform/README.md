@@ -2,7 +2,7 @@
 
 A structured guide covering Terraform from fundamentals to advanced production patterns with real-world **Azure** scenarios.
 
----
+______________________________________________________________________
 
 ## Index
 
@@ -19,7 +19,7 @@ A structured guide covering Terraform from fundamentals to advanced production p
 | [09_Terraform_Best_Practices.md](09_Terraform_Best_Practices.md) | Structure, naming, security, testing (Terratest), drift detection |
 | [10_Terraform_Troubleshooting.md](10_Terraform_Troubleshooting.md) | Common errors, state recovery, import, taint, debug logging |
 
----
+______________________________________________________________________
 
 ## Quick Reference Card
 
@@ -45,6 +45,6 @@ terraform workspace select staging
 terraform workspace list
 ```
 
----
+______________________________________________________________________
 
 > Each file contains real-time Azure DevOps scenarios, complete HCL code, and production-tested patterns.

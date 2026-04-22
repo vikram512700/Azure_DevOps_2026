@@ -47,7 +47,7 @@ backend.tf    → remote backend configuration
 *.auto.tfvars → environment variable values
 ```
 
----
+______________________________________________________________________
 
 ## 2. Naming Conventions
 
@@ -89,7 +89,7 @@ resource "azurerm_resource_group" "resource_group_main" { ... }
 resource "azurerm_resource_group" "main" { ... }
 ```
 
----
+______________________________________________________________________
 
 ## 3. Variable Design
 
@@ -137,7 +137,7 @@ variable "location" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 4. Tagging Strategy
 
@@ -170,7 +170,7 @@ resource "azurerm_resource_group" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 5. Security Best Practices
 
@@ -237,7 +237,7 @@ output "aks_kube_config" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. Linting & Static Analysis
 
@@ -328,7 +328,7 @@ EOF
 terraform-docs --config .terraform-docs.yml modules/networking/
 ```
 
----
+______________________________________________________________________
 
 ## 7. Testing with Terratest
 
@@ -385,7 +385,7 @@ go test -v -timeout 30m ./...
 go test -v -run TestNetworkingModule -timeout 20m
 ```
 
----
+______________________________________________________________________
 
 ## 8. Drift Detection & Compliance
 
@@ -410,7 +410,7 @@ az policy assignment create \
   --params '{"tagName": {"value": "ManagedBy"}, "tagValue": {"value": "terraform"}}'
 ```
 
----
+______________________________________________________________________
 
 ## 9. Resource Lifecycle Best Practices
 
@@ -450,7 +450,7 @@ resource "azurerm_linux_web_app" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 10. Version Constraints
 
@@ -479,7 +479,7 @@ terraform {
 }
 ```
 
----
+______________________________________________________________________
 
 ## Summary Checklist
 

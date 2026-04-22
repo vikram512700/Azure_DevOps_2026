@@ -1,25 +1,28 @@
 # 🤖 Ansible Configuration Management
+
 ### 🎯 For Beginners — Automating Server Setups
 
----
+______________________________________________________________________
 
 ## 1️⃣ What is Ansible?
 
-> 💡 **Think of it like this:**  
-> You need to install Nginx, Docker, and Python on **100 servers**.  
-> **Old way**: SSH into server 1, install. SSH into server 2, install... (Takes 5 hours ❌)  
+> 💡 **Think of it like this:**\
+> You need to install Nginx, Docker, and Python on **100 servers**.\
+> **Old way**: SSH into server 1, install. SSH into server 2, install... (Takes 5 hours ❌)\
 > **Ansible way**: Write ONE script. Tell Ansible "run this on all 100 web servers". (Takes 5 minutes ✅)
 
 ### Why Ansible?
+
 - **Agentless**: You don't need to install any software on the target servers! It uses standard SSH.
 - **Idempotent**: If you run the script 10 times, it only makes changes if needed. (If Nginx is already installed, it does nothing).
 - **YAML based**: Human-readable configuration.
 
----
+______________________________________________________________________
 
 ## 2️⃣ Core Concepts
 
 ### 1. The Inventory (`hosts` file)
+
 *Where you define your servers.*
 
 ```ini
@@ -32,6 +35,7 @@
 ```
 
 ### 2. The Playbook (`playbook.yml`)
+
 *The instructions on WHAT to do.*
 
 ```yaml
@@ -52,14 +56,16 @@
         state: started
 ```
 
----
+______________________________________________________________________
 
 ## 3️⃣ Real-World Example: Deploying a Web Page
 
 ### The Goal:
+
 Copy a custom `index.html` to all our web servers and restart Nginx.
 
 **`deploy-website.yml`**
+
 ```yaml
 ---
 - name: Deploy Custom Website
@@ -80,21 +86,24 @@ Copy a custom `index.html` to all our web servers and restart Nginx.
 ```
 
 ### How to Run It:
+
 ```bash
 # Run the playbook using our inventory file
 ansible-playbook -i hosts deploy-website.yml
 ```
 
----
+______________________________________________________________________
 
 ## 🧠 Summary
+
 1. **Inventory**: The list of your servers.
-2. **Playbook**: The YAML file containing your tasks.
-3. **Task**: A single action (like "install a package" or "copy a file").
-4. **Agentless**: Uses standard SSH, no setup required on the target nodes.
+1. **Playbook**: The YAML file containing your tasks.
+1. **Task**: A single action (like "install a package" or "copy a file").
+1. **Agentless**: Uses standard SSH, no setup required on the target nodes.
 
 ## ✅ Quick Quiz
+
 1. What does "Idempotent" mean in Ansible?
    > **Answer**: It means running the same playbook 10 times gives the same result as running it once (it only makes changes if necessary). 🔁
-2. Do you need to install an Ansible agent on your target Linux servers?
+1. Do you need to install an Ansible agent on your target Linux servers?
    > **Answer**: No! Ansible uses standard SSH. 🚫🤖

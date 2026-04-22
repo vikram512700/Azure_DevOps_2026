@@ -3,6 +3,7 @@
 ## 1. Infrastructure as Code with CLI Scripts
 
 ### Full Environment Setup Script
+
 ```bash
 #!/bin/bash
 # Scenario: Automated environment provisioning for new microservice
@@ -42,6 +43,7 @@ echo "=== Environment $ENV ready for $SERVICE ==="
 ```
 
 ### Environment Teardown Script
+
 ```bash
 #!/bin/bash
 # Scenario: Destroy test environment after testing
@@ -265,7 +267,7 @@ az deployment sub create \
 az bicep decompile --file template.json
 ```
 
----
+______________________________________________________________________
 
 ## Quick Cheat Sheet
 

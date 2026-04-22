@@ -29,7 +29,7 @@ terraform workspace select default
 terraform workspace delete dev
 ```
 
----
+______________________________________________________________________
 
 ## 2. Using Workspace Name in Configuration
 
@@ -84,7 +84,7 @@ resource "azurerm_mssql_database" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 3. Environment Strategy — Separate Directories (Recommended for Production)
 
@@ -156,7 +156,7 @@ subnets = {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 4. Promote from Dev → Staging → Prod
 
@@ -191,7 +191,7 @@ terraform apply tfplan
 echo "Promotion to $TARGET_ENV complete!"
 ```
 
----
+______________________________________________________________________
 
 ## 5. Managing Multiple Azure Subscriptions
 
@@ -232,7 +232,7 @@ resource "azurerm_resource_group" "prod" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. State File per Environment — Backend Pattern
 
@@ -268,7 +268,7 @@ terraform {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 7. Environment Variables for CI Targeting
 
@@ -301,7 +301,7 @@ terraform init -reconfigure
 echo "Terraform context set to: $ENV"
 ```
 
----
+______________________________________________________________________
 
 ## 8. Workspace vs Separate Directories
 
@@ -315,7 +315,7 @@ echo "Terraform context set to: $ENV"
 | Recommended for | Development, small teams | Production, enterprise teams |
 | Terragrunt | Optional | Natural fit |
 
----
+______________________________________________________________________
 
 ## Summary
 

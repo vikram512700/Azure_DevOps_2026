@@ -23,7 +23,7 @@ cat /proc/cpuinfo           # raw CPU info
 nproc                       # number of available CPUs
 ```
 
----
+______________________________________________________________________
 
 ## 2. CPU Monitoring
 
@@ -71,7 +71,7 @@ pidstat -u 1 5 | sort -k8 -rn       # by CPU over 5 seconds
 strace -p <PID> -e trace=all -c     # what syscalls is it making?
 ```
 
----
+______________________________________________________________________
 
 ## 3. Memory Monitoring
 
@@ -125,7 +125,7 @@ pmap -x <PID> | tail -5
 valgrind --leak-check=full ./my-app
 ```
 
----
+______________________________________________________________________
 
 ## 4. Disk I/O Monitoring
 
@@ -165,7 +165,7 @@ cat /sys/block/sda/stat
 iotop -bo -d 5 -n 3            # batch, only with I/O, 3 iterations
 ```
 
----
+______________________________________________________________________
 
 ## 5. Network Monitoring
 
@@ -206,7 +206,7 @@ sudo tcpdump -i eth0 -n -c 1000 | awk '{print $3}' | cut -d. -f1-4 | sort | uniq
 # → top source IPs
 ```
 
----
+______________________________________________________________________
 
 ## 6. System Call Tracing (strace, ltrace)
 
@@ -235,7 +235,7 @@ strace -p $(pgrep payment-service) -e trace=read,write,recv,send -T 2>&1 | head 
 strace -p 1234 -e trace=open,read,write,close 2>&1 | grep "open("
 ```
 
----
+______________________________________________________________________
 
 ## 7. lsof — List Open Files
 
@@ -275,7 +275,7 @@ kill -HUP 1234          # if app supports HUP for log reopen
 # or restart the process
 ```
 
----
+______________________________________________________________________
 
 ## 8. perf — Linux Performance Counters
 
@@ -303,7 +303,7 @@ sudo perf record -F 99 -g -p 1234 -- sleep 60
 sudo perf script | /opt/FlameGraph/stackcollapse-perf.pl | /opt/FlameGraph/flamegraph.pl > flame.svg
 ```
 
----
+______________________________________________________________________
 
 ## 9. System Logs
 
@@ -346,7 +346,7 @@ grep '" 5[0-9][0-9] ' /var/log/nginx/access.log | awk '{print $9}' | sort | uniq
 grep "Failed password" /var/log/auth.log | awk '{print $11}' | sort | uniq -c | sort -rn
 ```
 
----
+______________________________________________________________________
 
 ## 10. Performance Monitoring Tools Summary
 

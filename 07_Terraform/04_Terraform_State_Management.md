@@ -16,11 +16,12 @@ State records:
 ```
 
 **Why remote state matters in teams:**
+
 - Local state → only works on one machine
 - Remote state → shared across team + CI/CD
 - State locking → prevents concurrent applies (data corruption)
 
----
+______________________________________________________________________
 
 ## 2. Remote Backend — Azure Blob Storage
 
@@ -113,7 +114,7 @@ terraform init -migrate-state
 terraform init -reconfigure
 ```
 
----
+______________________________________________________________________
 
 ## 3. State Locking
 
@@ -140,7 +141,7 @@ az storage blob lease break \
 terraform force-unlock "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 ```
 
----
+______________________________________________________________________
 
 ## 4. State File Structure (Understand for Troubleshooting)
 
@@ -178,7 +179,7 @@ terraform force-unlock "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
 }
 ```
 
----
+______________________________________________________________________
 
 ## 5. State Commands
 
@@ -286,7 +287,7 @@ terraform plan -generate-config-out=generated.tf
 terraform apply
 ```
 
----
+______________________________________________________________________
 
 ## 6. Multiple State Files — Project Structure
 
@@ -313,7 +314,7 @@ terraform/
     └── backend.tf          # key = "apps.tfstate"
 ```
 
----
+______________________________________________________________________
 
 ## 7. Remote State Data Source — Read Another Layer's State
 
@@ -342,7 +343,7 @@ output "aks_subnet_id" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 8. State Security Best Practices
 
@@ -369,7 +370,7 @@ az monitor diagnostic-settings create \
 # 7. Always use -out=tfplan in CI to ensure reviewed plan is what gets applied
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

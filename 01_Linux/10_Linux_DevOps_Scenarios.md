@@ -52,7 +52,7 @@ EOF
 sudo logrotate -f /etc/logrotate.d/payment-service    # force run to test
 ```
 
----
+______________________________________________________________________
 
 ## 2. Production Incident: Server High CPU / Hung Process
 
@@ -93,7 +93,7 @@ cat /etc/cron.d/*
 journalctl -u cron --since "1 hour ago"
 ```
 
----
+______________________________________________________________________
 
 ## 3. Production Incident: Out of Memory / OOM Kill
 
@@ -131,16 +131,18 @@ echo -1000 | sudo tee /proc/$(pgrep payment-service)/oom_score_adj
 # Step 6: Set memory limits for service
 sudo systemctl edit payment-service
 ```
+
 ```ini
 [Service]
 MemoryMax=2G
 MemoryHigh=1.8G
 ```
+
 ```bash
 sudo systemctl daemon-reload && sudo systemctl restart payment-service
 ```
 
----
+______________________________________________________________________
 
 ## 4. Production Incident: Can't SSH Into Server
 
@@ -178,7 +180,7 @@ cp /etc/ssh/sshd_config.bak /etc/ssh/sshd_config
 systemctl restart sshd
 ```
 
----
+______________________________________________________________________
 
 ## 5. Zero-Downtime Application Deployment
 
@@ -252,7 +254,7 @@ ls -t "$BASE/releases" | tail -n +6 | xargs -I{} rm -rf "$BASE/releases/{}"
 log "Deployment complete!"
 ```
 
----
+______________________________________________________________________
 
 ## 6. Server Capacity Monitoring Script
 
@@ -314,7 +316,7 @@ fi
 echo "All capacity checks OK"
 ```
 
----
+______________________________________________________________________
 
 ## 7. Log Aggregation Pipeline
 
@@ -362,7 +364,7 @@ done
 wait
 ```
 
----
+______________________________________________________________________
 
 ## 8. Kernel Tuning for High-Performance Servers
 
@@ -407,7 +409,7 @@ echo "* soft nofile 65536" | sudo tee -a /etc/security/limits.conf
 echo "* hard nofile 65536" | sudo tee -a /etc/security/limits.conf
 ```
 
----
+______________________________________________________________________
 
 ## 9. Ansible-Style Ad-Hoc Command Patterns
 
@@ -442,7 +444,7 @@ export -f deploy_to
 echo $SERVERS | tr ' ' '\n' | xargs -P3 -I{} bash -c 'deploy_to "$@"' _ {}
 ```
 
----
+______________________________________________________________________
 
 ## 10. Linux Commands Cheat Sheet for Interviews
 
@@ -488,7 +490,7 @@ last -n 20; journalctl --since "1 hour ago"; rpm -qa --last | head (RHEL)
 nc -zv HOST PORT; curl -o /dev/null -sw "%{http_code}" http://HOST
 ```
 
----
+______________________________________________________________________
 
 ## Summary: The DevOps Linux Mindset
 

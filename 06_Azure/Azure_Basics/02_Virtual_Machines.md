@@ -1,14 +1,15 @@
 # 🖥️ Azure Virtual Machines
+
 ### 🎯 For DevOps Beginners — Simple Notes with Real Examples
 
----
+______________________________________________________________________
 
 ## 1️⃣ Virtualization Recap
 
-> 💡 **Think of it like this:**  
-> Imagine one powerful physical server in a data center.  
-> Instead of running just ONE computer on it, we run **many virtual computers** on it.  
-> Each virtual computer behaves like a real, separate computer.  
+> 💡 **Think of it like this:**\
+> Imagine one powerful physical server in a data center.\
+> Instead of running just ONE computer on it, we run **many virtual computers** on it.\
+> Each virtual computer behaves like a real, separate computer.\
 > This is called **Virtualization**.
 
 ```
@@ -28,11 +29,12 @@ One Physical Server (Real Hardware)
 | Expensive | Cost-efficient |
 
 ### Key Terms:
+
 - **Hypervisor** = Software that creates and manages VMs (Azure uses **Hyper-V**)
 - **Host** = Physical machine running the hypervisor
 - **Guest** = The Virtual Machine running on top
 
----
+______________________________________________________________________
 
 ## 2️⃣ Create a Virtual Machine in Azure
 
@@ -59,6 +61,7 @@ One Physical Server (Real Hardware)
 | `Standard_D4s_v3` | 4 | 16GB | Production web | 💲💲💲💲 |
 
 ### ⚡ CLI — Create a Linux VM:
+
 ```bash
 # Create an Ubuntu VM for a web server
 az vm create \
@@ -74,6 +77,7 @@ az vm create \
 ```
 
 ### ⚡ CLI — Create a Windows VM:
+
 ```bash
 az vm create \
   --resource-group rg-webapp-dev \
@@ -85,6 +89,7 @@ az vm create \
 ```
 
 ### VM Management Commands:
+
 ```bash
 # See all your VMs with status
 az vm list -d --output table
@@ -105,10 +110,10 @@ az vm restart -g rg-webapp-dev -n web-server-01
 az vm delete -g rg-webapp-dev -n web-server-01 --yes
 ```
 
-> 💡 **DevOps Tip**: Always **deallocate** (not just stop) dev VMs at night.  
+> 💡 **DevOps Tip**: Always **deallocate** (not just stop) dev VMs at night.\
 > "Stop" still charges you for the VM. "Deallocate" = free!
 
----
+______________________________________________________________________
 
 ## 3️⃣ Connect to the Virtual Machine
 
@@ -131,6 +136,7 @@ az ssh vm -g rg-webapp-dev -n web-server-01
 ```
 
 ### Windows VM — Connect via RDP:
+
 ```bash
 # Get the IP
 az vm show -g rg-webapp-dev -n win-server-01 \
@@ -142,6 +148,7 @@ az vm show -g rg-webapp-dev -n win-server-01 \
 ```
 
 ### Run Commands on VM WITHOUT logging in:
+
 ```bash
 # Scenario: Quick check if the app is running
 az vm run-command invoke \
@@ -160,13 +167,14 @@ az vm run-command invoke \
 
 > 💡 **Why use run-command?** Useful in pipelines/automation when you can't SSH.
 
----
+______________________________________________________________________
 
 ## 4️⃣ Deploy Your First App on an Azure VM
 
 ### 🛒 Real Scenario: Deploy a Node.js Web App
 
 **Step 1 — Create VM and open HTTP port:**
+
 ```bash
 # Create VM
 az vm create \
@@ -180,6 +188,7 @@ az vm open-port --port 80 -g rg-webapp-dev -n web-server-01
 ```
 
 **Step 2 — SSH in and install Node.js:**
+
 ```bash
 ssh azureuser@<PUBLIC_IP>
 
@@ -192,6 +201,7 @@ node --version   # should show v18.x
 ```
 
 **Step 3 — Create and run the app:**
+
 ```bash
 # Create app folder
 mkdir ~/myapp && cd ~/myapp
@@ -212,12 +222,14 @@ sudo node app.js
 ```
 
 **Step 4 — Access in browser:**
+
 ```
 Open: http://<PUBLIC_IP>
 You see: "Hello from Azure VM! Deployed by DevOps 🚀"
 ```
 
 **Step 5 — Keep app running after logout (PM2):**
+
 ```bash
 sudo npm install -g pm2
 sudo pm2 start app.js
@@ -226,6 +238,7 @@ sudo pm2 save
 ```
 
 ### 🤖 Automate App Install using VM Extension (No SSH needed!):
+
 ```bash
 # Install Nginx automatically during/after VM creation
 az vm extension set \
@@ -240,16 +253,16 @@ az vm extension set \
 
 > 💡 **DevOps Use Case**: In CI/CD pipelines, you can deploy new app versions to VMs using `az vm run-command` or extensions — no manual SSH needed!
 
----
+______________________________________________________________________
 
 ## 5️⃣ VM Scale Sets (VMSS) for Autoscaling
 
-> 💡 **Think of it like this:**  
-> You own a pizza shop.  
-> On normal days, 2 chefs handle all orders.  
-> On Saturday night, 100 orders come in — you hire 5 more chefs.  
-> After peak, you let extra chefs go.  
->  
+> 💡 **Think of it like this:**\
+> You own a pizza shop.\
+> On normal days, 2 chefs handle all orders.\
+> On Saturday night, 100 orders come in — you hire 5 more chefs.\
+> After peak, you let extra chefs go.
+>
 > **VMSS does this automatically for VMs!**
 
 ```
@@ -264,6 +277,7 @@ After peak — CPU < 30% (VMSS removes VMs):
 ```
 
 ### Create a VM ScaleSet:
+
 ```bash
 az vmss create \
   --resource-group rg-webapp-prod \
@@ -278,6 +292,7 @@ az vmss create \
 ```
 
 ### Set Up Auto Scaling Rules:
+
 ```bash
 # Create autoscale setting
 az monitor autoscale create \
@@ -305,6 +320,7 @@ az monitor autoscale rule create \
 ```
 
 ### VMSS Management:
+
 ```bash
 # See all VM instances in the scale set
 az vmss list-instances -g rg-webapp-prod -n vmss-web --output table
@@ -326,7 +342,7 @@ az vmss update-instances -g rg-webapp-prod -n vmss-web --instance-ids "*"
 | Cost efficiency | ❌ Fixed cost | ✅ Pay for what you use |
 | Use for | Dev/Test | Production web tiers |
 
----
+______________________________________________________________________
 
 ## 🧠 Summary
 
@@ -341,11 +357,15 @@ Deallocate      = Stop VM and stop paying for it
 ```
 
 ## ✅ Quick Quiz
+
 1. You have a dev VM you don't use on weekends. What should you do to save money?
+
    > **Answer**: `az vm deallocate` (not just stop!) 💡
 
-2. Your app gets 10x traffic on Diwali sale. What Azure feature handles this automatically?
+1. Your app gets 10x traffic on Diwali sale. What Azure feature handles this automatically?
+
    > **Answer**: VM ScaleSet (VMSS) with autoscale rules 📈
 
-3. You want to install Docker on 50 VMs without SSHing into each one. What do you use?
+1. You want to install Docker on 50 VMs without SSHing into each one. What do you use?
+
    > **Answer**: VM Extension or `az vm run-command` 🤖

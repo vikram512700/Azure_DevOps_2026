@@ -24,11 +24,11 @@ grep "Request" terraform.log | grep -v "DEBUG"
 grep "Response" terraform.log | grep "Status: 4"   # 4xx errors
 ```
 
----
+______________________________________________________________________
 
 ## 2. Common Errors & Fixes
 
----
+______________________________________________________________________
 
 ### Error: `Error: A resource with the ID "..." already exists`
 
@@ -46,7 +46,7 @@ terraform import azurerm_resource_group.main \
 terraform plan
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: context deadline exceeded` or timeout
 
@@ -63,7 +63,7 @@ terraform apply -auto-approve
 terraform apply -target=azurerm_kubernetes_cluster.main
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: Provider "hashicorp/azurerm" is incompatible`
 
@@ -76,7 +76,7 @@ terraform init
 terraform init -upgrade
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: Backend configuration changed`
 
@@ -93,7 +93,7 @@ terraform init -reconfigure
 terraform init -migrate-state
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: Error locking state: Error acquiring the state lock`
 
@@ -122,7 +122,7 @@ az storage blob lease break \
 ps aux | grep terraform
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: Invalid index`
 
@@ -141,7 +141,7 @@ terraform console
 > keys(var.subnets)    # list keys
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: Insufficient permissions`
 
@@ -166,7 +166,7 @@ az role assignment create \
 az role assignment list --assignee "$SP_CLIENT_ID" --output table
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Resource already exists in a different resource group`
 
@@ -179,7 +179,7 @@ data "azurerm_virtual_network" "existing" {
 }
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Error: creating Key Vault: Code="VaultAlreadyExists"`
 
@@ -191,7 +191,7 @@ az keyvault recover --name "kv-payment-prod-abc123"   # recover it
 az keyvault purge --name "kv-payment-prod-abc123" --location "East US"
 ```
 
----
+______________________________________________________________________
 
 ### Error: `Storage account name too long or invalid`
 
@@ -203,7 +203,7 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 3. State Recovery Scenarios
 
@@ -232,7 +232,7 @@ az storage blob download \
 terraform state push recovered.tfstate
 ```
 
----
+______________________________________________________________________
 
 ### Scenario: Resource deleted in Azure but still in state
 
@@ -249,7 +249,7 @@ terraform refresh
 terraform plan
 ```
 
----
+______________________________________________________________________
 
 ### Scenario: Rename a resource without destroying it
 
@@ -276,7 +276,7 @@ terraform state mv \
 terraform plan
 ```
 
----
+______________________________________________________________________
 
 ### Scenario: Import all resources from an existing Azure environment
 
@@ -313,7 +313,7 @@ echo "Import complete. Run terraform plan to verify."
 terraform plan
 ```
 
----
+______________________________________________________________________
 
 ## 4. terraform taint (Deprecated — use -replace)
 
@@ -332,7 +332,7 @@ terraform apply -replace="azurerm_linux_virtual_machine.app[0]"
 terraform apply -replace="azurerm_linux_virtual_machine.app[0]" -auto-approve
 ```
 
----
+______________________________________________________________________
 
 ## 5. terraform console — Interactive Expression Testing
 
@@ -372,7 +372,7 @@ terraform console
 > exit
 ```
 
----
+______________________________________________________________________
 
 ## 6. terraform graph — Visualize Dependencies
 
@@ -386,7 +386,7 @@ terraform graph -type=apply | dot -Tpdf > apply-graph.pdf
 sudo apt install graphviz
 ```
 
----
+______________________________________________________________________
 
 ## 7. Upgrading Provider Versions
 
@@ -414,7 +414,7 @@ terraform plan
 # https_traffic_only_enabled = true
 ```
 
----
+______________________________________________________________________
 
 ## 8. Quick Diagnostic Checklist
 
@@ -441,7 +441,7 @@ Resource provider not registered?
 □ az provider list --query "[?registrationState=='NotRegistered'].namespace" -o table
 ```
 
----
+______________________________________________________________________
 
 ## 9. Emergency Commands
 
@@ -460,7 +460,7 @@ terraform apply -target=<resource>        # apply only one resource
 terraform plan -destroy -target=<resource>  # preview destroying one resource
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

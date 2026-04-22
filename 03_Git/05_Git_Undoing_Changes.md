@@ -21,7 +21,7 @@ Need to undo something?
         └── Your feature branch only  → git push --force-with-lease (after reset/rebase)
 ```
 
----
+______________________________________________________________________
 
 ## 1. Discard Working Tree Changes
 
@@ -51,7 +51,7 @@ git restore helm/values-dev.yaml
 git status
 ```
 
----
+______________________________________________________________________
 
 ## 2. Unstage Files (keep changes)
 
@@ -65,7 +65,7 @@ git restore --staged .
 git reset HEAD                     # classic
 ```
 
----
+______________________________________________________________________
 
 ## 3. git reset
 
@@ -117,7 +117,7 @@ git add config/db.yml.example     # add template instead
 git commit -m "chore: add db config template (no secrets)"
 ```
 
----
+______________________________________________________________________
 
 ## 4. git revert (Safe for shared branches)
 
@@ -161,7 +161,7 @@ git push origin main
 git checkout -b fix/currency-conversion-bug e9f1c2b
 ```
 
----
+______________________________________________________________________
 
 ## 5. git reflog (Your Safety Net)
 
@@ -208,7 +208,7 @@ git reset --hard HEAD@{1}
 git reset --hard a3f1c9b   # exact SHA from reflog
 ```
 
----
+______________________________________________________________________
 
 ## 6. git restore (Modern — Git 2.23+)
 
@@ -229,7 +229,7 @@ git restore --source HEAD~2 -- src/config.js
 git restore --source origin/main -- helm/values-prod.yaml
 ```
 
----
+______________________________________________________________________
 
 ## 7. Removing Sensitive Data from History
 
@@ -276,7 +276,7 @@ git gc --prune=now --aggressive
 git push --force
 ```
 
----
+______________________________________________________________________
 
 ## 8. Comparison Table
 
@@ -291,7 +291,7 @@ git push --force
 | Recover lost commits | `git reflog` → `git reset` | No | N/A |
 | Remove file from all history | `git filter-repo` | Yes | Only after team coordination |
 
----
+______________________________________________________________________
 
 ## Summary: Safe vs Dangerous
 

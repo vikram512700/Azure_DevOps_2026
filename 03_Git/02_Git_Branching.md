@@ -10,7 +10,7 @@ main    ──o──o──o──o
 feature             o──o──o  (HEAD)
 ```
 
----
+______________________________________________________________________
 
 ## 2. Creating and Switching Branches
 
@@ -43,7 +43,7 @@ git checkout -b hotfix/null-ptr a3f1c9b
 git switch -c feature/payments origin/feature/payments
 ```
 
----
+______________________________________________________________________
 
 ## 3. Branch Naming Conventions (DevOps Standard)
 
@@ -57,7 +57,7 @@ release/<version> – release prep    e.g. release/2.4.0
 chore/<task>      – maintenance     e.g. chore/upgrade-node-18
 ```
 
----
+______________________________________________________________________
 
 ## 4. Renaming and Deleting Branches
 
@@ -96,7 +96,7 @@ git branch --merged main | grep -v "^\* \|main\|develop" | xargs git branch -d
 git fetch --prune
 ```
 
----
+______________________________________________________________________
 
 ## 5. Tracking Branches
 
@@ -116,7 +116,7 @@ git branch -vv
 #   main              7d2e8fa [origin/main] chore: update dependencies
 ```
 
----
+______________________________________________________________________
 
 ## 6. Comparing Branches
 
@@ -149,7 +149,7 @@ if [ "$BEHIND" -gt 10 ]; then
 fi
 ```
 
----
+______________________________________________________________________
 
 ## 7. Branch Protection (Concept + GitHub CLI)
 
@@ -166,7 +166,7 @@ gh api repos/org/payment-service/branches/main/protection \
 gh api repos/org/payment-service/branches --jq '.[] | select(.protected==true) | .name'
 ```
 
----
+______________________________________________________________________
 
 ## 8. Detached HEAD State
 
@@ -184,7 +184,7 @@ git switch -c experiment/test-idea
 git switch main
 ```
 
----
+______________________________________________________________________
 
 ## 9. Real-Time Scenario: Feature Branch Workflow (Full Cycle)
 
@@ -227,7 +227,7 @@ git branch -d feature/JIRA-789-add-2fa
 git push origin --delete feature/JIRA-789-add-2fa
 ```
 
----
+______________________________________________________________________
 
 ## 10. Real-Time Scenario: Hotfix on Production
 
@@ -260,7 +260,7 @@ git branch -d hotfix/CVE-2024-log4j
 git push origin --delete hotfix/CVE-2024-log4j
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

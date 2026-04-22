@@ -26,7 +26,7 @@
 └── run/            Runtime data (PIDs, sockets) — cleared on reboot
 ```
 
----
+______________________________________________________________________
 
 ## 2. Navigation
 
@@ -66,7 +66,7 @@ whereis nginx           # binary, man page, source
 type ls                 # shows if alias/builtin/binary
 ```
 
----
+______________________________________________________________________
 
 ## 3. File Operations
 
@@ -131,7 +131,7 @@ sudo chown -R appuser:appgroup /var/log/${APP}
 ls -la /opt/${APP}/
 ```
 
----
+______________________________________________________________________
 
 ## 4. Viewing and Editing Files
 
@@ -187,7 +187,7 @@ vi file.txt               # minimal vim
 # :%s/old/new/g   global replace
 ```
 
----
+______________________________________________________________________
 
 ## 5. Text Processing (DevOps Power Tools)
 
@@ -316,7 +316,7 @@ echo "1 2 3" | xargs -n1 echo       # one argument per invocation
 find . -name "*.py" | xargs -P4 pylint  # parallel with 4 workers
 ```
 
----
+______________________________________________________________________
 
 ## 6. Finding Files
 
@@ -347,7 +347,7 @@ find /var/log/app -name "*.log" -mtime +30 -exec gzip {} \;
 find /var/log/app -name "*.log.gz" -mtime +90 -delete
 ```
 
----
+______________________________________________________________________
 
 ## 7. Archiving and Compression
 
@@ -387,7 +387,7 @@ tar -czf "$BACKUP_DIR/app-config.tar.gz" \
 echo "Backup size: $(du -sh $BACKUP_DIR)"
 ```
 
----
+______________________________________________________________________
 
 ## 8. The Help System
 
@@ -416,7 +416,7 @@ apropos firewall
 apropos "network interface"
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

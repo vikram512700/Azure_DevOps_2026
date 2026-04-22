@@ -13,12 +13,13 @@ Root Module (your working directory)
 ```
 
 **Why use modules?**
+
 - DRY — don't repeat VNet config for dev/staging/prod
 - Encapsulate complexity — callers don't need to know internals
 - Enforce standards — every team uses the same approved module
 - Versioning — pin modules to tested versions
 
----
+______________________________________________________________________
 
 ## 2. Module Directory Structure
 
@@ -46,7 +47,7 @@ Root:
 └── terraform.tfvars
 ```
 
----
+______________________________________________________________________
 
 ## 3. Writing a Reusable Module — Networking Example
 
@@ -187,7 +188,7 @@ output "nsg_ids" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 4. Calling a Module from Root
 
@@ -245,7 +246,7 @@ output "vnet_id" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 5. Module Versioning — Git Source
 
@@ -269,7 +270,7 @@ module "key_vault" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. Terraform Registry Modules (Public)
 
@@ -298,7 +299,7 @@ module "aks" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 7. Module Composition — Complete Project Layout
 
@@ -335,7 +336,7 @@ infrastructure/
 │       └── terraform.tfvars
 ```
 
----
+______________________________________________________________________
 
 ## 8. Terragrunt — DRY Wrapper for Terraform
 
@@ -476,7 +477,7 @@ terragrunt run-all apply --terragrunt-non-interactive
 terragrunt run-all apply --terragrunt-include-dir "networking" --terragrunt-include-dir "aks"
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

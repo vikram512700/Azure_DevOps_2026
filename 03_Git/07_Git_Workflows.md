@@ -9,13 +9,14 @@
 | **GitFlow** | Scheduled releases, version software | Periodic (weekly/sprint) |
 | **GitOps** | Infrastructure / Kubernetes | On merge (declarative) |
 
----
+______________________________________________________________________
 
 ## 2. Trunk-Based Development (TBD)
 
 The most common workflow in elite DevOps shops (Google, Netflix, Amazon).
 
 ### Rules
+
 - **One main branch** (`main` / `trunk`) — always deployable
 - **Short-lived feature branches** — merge within 1-2 days
 - **Feature flags** control what users see, not branches
@@ -93,7 +94,7 @@ jobs:
         run: docker build -t payment-service:${{ github.sha }} .
 ```
 
----
+______________________________________________________________________
 
 ## 3. GitHub Flow
 
@@ -131,7 +132,7 @@ gh pr merge --squash --delete-branch
 # 7. Auto-deploy fires (GitHub Actions / Heroku / Vercel)
 ```
 
----
+______________________________________________________________________
 
 ## 4. GitFlow
 
@@ -215,7 +216,7 @@ git flow hotfix finish CVE-2024-log4j
 git push origin main develop --tags
 ```
 
----
+______________________________________________________________________
 
 ## 5. GitOps Workflow (Infrastructure as Code)
 
@@ -296,7 +297,7 @@ git commit -m "deploy(${APP}): promote ${NEW_TAG} to staging [skip ci]"
 git push origin main
 ```
 
----
+______________________________________________________________________
 
 ## 6. Multi-Repo vs Monorepo
 
@@ -317,7 +318,7 @@ if echo "$CHANGED" | grep -q "^services/auth/"; then
 fi
 ```
 
----
+______________________________________________________________________
 
 ## 7. Branch Naming & Protection Rules (Enterprise)
 
@@ -363,7 +364,7 @@ services/auth/                  @org/auth-team
 EOF
 ```
 
----
+______________________________________________________________________
 
 ## Summary: Workflow Selection Guide
 

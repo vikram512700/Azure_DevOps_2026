@@ -38,7 +38,7 @@ checkout([
 ])
 ```
 
----
+______________________________________________________________________
 
 ## 2. Managing Remotes
 
@@ -81,7 +81,7 @@ git remote remove gitlab
 git remote -v
 ```
 
----
+______________________________________________________________________
 
 ## 3. Fetch vs Pull vs Pull --rebase
 
@@ -126,7 +126,7 @@ git pull --ff-only origin main
   A──B──C──D  (clean linear history)
 ```
 
----
+______________________________________________________________________
 
 ## 4. Pushing
 
@@ -171,7 +171,7 @@ git fetch origin
 git log origin/feature/JIRA-789-add-2fa --oneline
 ```
 
----
+______________________________________________________________________
 
 ## 5. SSH Key Setup for Remote Authentication
 
@@ -222,7 +222,7 @@ withCredentials([sshUserPrivateKey(credentialsId: 'payment-service-deploy-key',
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. Working with Forks (Open Source / Enterprise)
 
@@ -247,7 +247,7 @@ git push -u origin fix/typo-in-readme
 gh pr create --repo original-org/payment-service --base main
 ```
 
----
+______________________________________________________________________
 
 ## 7. Fetching a Remote PR Locally (GitHub)
 
@@ -264,7 +264,7 @@ git switch main
 git branch -D pr-42
 ```
 
----
+______________________________________________________________________
 
 ## 8. Git Bundle (Offline Transfer)
 
@@ -279,7 +279,7 @@ git remote set-url origin git@internal-gitlab:org/payment-service.git
 git push --mirror origin
 ```
 
----
+______________________________________________________________________
 
 ## 9. Real-Time Scenario: Multi-Remote GitOps Setup
 
@@ -296,7 +296,7 @@ git config --add remote.all.pushurl git@gitlab.internal:ops/infra-repo.git
 git push all main   # pushes to both GitHub and internal GitLab
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

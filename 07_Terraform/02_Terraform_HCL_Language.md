@@ -5,16 +5,17 @@
 > We start from the very beginning: what is a variable, what is a string,
 > what is a boolean — with plain English explanations and real Azure examples.
 
----
+______________________________________________________________________
 
 ## PART 1 — Understanding the Building Blocks
 
----
+______________________________________________________________________
 
 ## 1. What is HCL?
 
 HCL stands for **HashiCorp Configuration Language**.
 Think of it as a **structured instruction sheet** you write to tell Terraform:
+
 - **What** to create in Azure (a Virtual Machine, a database, a network...)
 - **How** to configure it (size, location, name...)
 - **When** to create or skip things
@@ -38,10 +39,11 @@ resource "azurerm_resource_group" "main" {
 ```
 
 **Reading it in plain English:**
+
 > "Hey Terraform, create a Resource Group in Azure.
 > Name it `rg-my-first-app` and put it in the `East US` region."
 
----
+______________________________________________________________________
 
 ## 2. HCL Block Structure — The Skeleton
 
@@ -72,16 +74,17 @@ A block is like a paragraph — it groups related settings together.
 | `provider` | Connects Terraform to Azure | Login credentials |
 | `terraform` | Settings for Terraform itself | App preferences |
 
----
+______________________________________________________________________
 
 ## PART 2 — Data Types Explained
 
----
+______________________________________________________________________
 
 ## 3. What is a Data Type?
 
 A **data type** tells Terraform what KIND of value something is.
 Just like in real life:
+
 - A **phone number** is digits only
 - A **name** is text
 - A **yes/no question** is true or false
@@ -89,7 +92,7 @@ Just like in real life:
 
 Terraform has the same idea.
 
----
+______________________________________________________________________
 
 ## 4. string — Text
 
@@ -155,7 +158,7 @@ dns_prefix = "${var.project_name}${var.environment}"
 # Result:     "paymentdev"
 ```
 
----
+______________________________________________________________________
 
 ## 5. number — A Numeric Value
 
@@ -218,12 +221,13 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. bool — True or False (Yes or No)
 
 A **bool** (short for boolean) can only ever be one of two values:
-- `true`  → yes, on, enabled
+
+- `true` → yes, on, enabled
 - `false` → no, off, disabled
 
 **No quotes around true or false!**
@@ -303,7 +307,7 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 7. list — An Ordered Collection of Items
 
@@ -317,6 +321,7 @@ A **list** is like a **shopping list** — multiple items, in order, with duplic
 ```
 
 **Rules:**
+
 - Items are inside square brackets `[ ]`
 - Items are separated by commas `,`
 - Order matters (item 0 is first, item 1 is second...)
@@ -379,7 +384,7 @@ resource "azurerm_subnet" "aks" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 8. map — A Key-Value Dictionary
 
@@ -468,13 +473,14 @@ resource "azurerm_resource_group" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 9. object — A Group of Named Properties
 
 An **object** is like a **form with labelled fields** — each field has a name and a type.
 
 **Real-world analogy:** An employee record form:
+
 ```
 Name:          (text)
 Age:           (number)
@@ -560,7 +566,7 @@ variable "subnets" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 10. set — A List with No Duplicates, No Order
 
@@ -572,6 +578,7 @@ list(string) →  ["apple", "banana", "apple"]    ← duplicates ok, ordered
 ```
 
 **When to use set vs list:**
+
 - Use `list` when **order matters** or **duplicates are ok**
 - Use `set` when you just want **unique values** and order doesn't matter
 - Terraform's `for_each` requires a `set` or `map` (not a `list`)
@@ -591,17 +598,18 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## PART 3 — Variables In Depth
 
----
+______________________________________________________________________
 
 ## 11. What is a Variable?
 
 A **variable** is a **placeholder** that holds a value which can change.
 
 **Real-world analogy:** Think of a variable like a **label on a box**.
+
 - The label says "ENVIRONMENT"
 - Sometimes the box contains "dev"
 - Sometimes the box contains "staging"
@@ -632,7 +640,7 @@ resource "azurerm_virtual_network" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 12. Anatomy of a Variable Declaration
 
@@ -666,7 +674,7 @@ variable "environment" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 13. Complete variables.tf for a Real Azure Project
 
@@ -834,21 +842,23 @@ variable "additional_tags" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## PART 4 — Locals, Outputs, Data Sources
 
----
+______________________________________________________________________
 
 ## 14. Locals — Your Private Computed Notes
 
 A **local** is a value you compute once and reuse many times in the same file.
 
 **Real-world analogy:** Imagine you work out a formula on a sticky note:
+
 ```
 sticky note: full_name = first_name + " " + last_name
              full_name = "Vikram Akula"
 ```
+
 You compute it once, then just refer to `full_name` everywhere else.
 
 ```hcl
@@ -943,7 +953,7 @@ resource "azurerm_virtual_network" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 15. Outputs — The Receipt After Apply
 
@@ -1051,7 +1061,7 @@ terraform output -json                         # all outputs as JSON
 terraform output -json | jq '.sql_server_fqdn.value'  # parse with jq
 ```
 
----
+______________________________________________________________________
 
 ## 16. Data Sources — Read Without Creating
 
@@ -1132,11 +1142,11 @@ resource "azurerm_mssql_server" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## PART 5 — Expressions and Functions
 
----
+______________________________________________________________________
 
 ## 17. Built-in Functions — Explained Simply
 
@@ -1267,7 +1277,7 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 18. Conditional Expression (The Ternary)
 
@@ -1309,7 +1319,7 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 19. for Expressions — Loop Over a List or Map
 
@@ -1368,7 +1378,7 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 20. Dynamic Blocks — Generate Repeated Nested Blocks
 
@@ -1450,7 +1460,7 @@ resource "azurerm_network_security_group" "app" {
 # Terraform generates 4 security_rule blocks from the list — no copy-paste!
 ```
 
----
+______________________________________________________________________
 
 ## Summary — Full Type Reference Card
 

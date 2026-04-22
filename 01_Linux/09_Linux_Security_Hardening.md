@@ -70,7 +70,7 @@ sudo systemctl reload sshd
 sudo ssh-keygen -t ed25519 -f /etc/ssh/ssh_host_ed25519_key -N ""
 ```
 
----
+______________________________________________________________________
 
 ## 2. fail2ban — Brute Force Protection
 
@@ -125,7 +125,7 @@ sudo fail2ban-client reload
 sudo tail -f /var/log/fail2ban.log
 ```
 
----
+______________________________________________________________________
 
 ## 3. Firewall Hardening (Default Deny)
 
@@ -164,7 +164,7 @@ sudo iptables -A INPUT -j LOG --log-prefix "iptables-dropped: " --log-level 4
 sudo iptables-save > /etc/iptables/rules.v4
 ```
 
----
+______________________________________________________________________
 
 ## 4. SELinux (RHEL/CentOS/Amazon Linux)
 
@@ -215,7 +215,7 @@ sudo semanage fcontext -a -t httpd_sys_content_t "/opt/app/public(/.*)?"
 sudo restorecon -Rv /opt/app/public/
 ```
 
----
+______________________________________________________________________
 
 ## 5. AppArmor (Ubuntu/Debian)
 
@@ -242,7 +242,7 @@ sudo journalctl -u apparmor
 sudo apparmor_parser -r /etc/apparmor.d/usr.sbin.nginx
 ```
 
----
+______________________________________________________________________
 
 ## 6. auditd — System Auditing
 
@@ -308,7 +308,7 @@ sudo aureport --executable                       # program executions
 sudo aureport --failed                           # failed events
 ```
 
----
+______________________________________________________________________
 
 ## 7. System Hardening Checklist
 
@@ -353,7 +353,7 @@ echo "SUID files (review these):"
 find / -perm -4000 -type f 2>/dev/null | grep -v -E "/usr/bin/sudo|/usr/bin/passwd|/bin/su"
 ```
 
----
+______________________________________________________________________
 
 ## 8. Automatic Security Updates
 
@@ -388,7 +388,7 @@ sudo vim /etc/dnf/automatic.conf
 sudo systemctl enable --now dnf-automatic-install.timer
 ```
 
----
+______________________________________________________________________
 
 ## 9. Secrets & Sensitive File Management
 
@@ -420,7 +420,7 @@ export VAULT_TOKEN=$(vault auth -method=aws)
 DB_PASSWORD=$(vault kv get -field=password secret/prod/payment/db)
 ```
 
----
+______________________________________________________________________
 
 ## Summary Hardening Checklist
 

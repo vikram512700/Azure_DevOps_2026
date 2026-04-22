@@ -26,7 +26,7 @@ locals {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 2. Resource Group
 
@@ -51,7 +51,7 @@ resource "azurerm_resource_group" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 3. Virtual Network, Subnets & NSG
 
@@ -113,7 +113,7 @@ resource "azurerm_subnet_network_security_group_association" "app" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 4. Azure Key Vault
 
@@ -167,7 +167,7 @@ resource "azurerm_key_vault_secret" "db_password" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 5. Azure Container Registry (ACR)
 
@@ -216,7 +216,7 @@ output "acr_login_server" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. Azure Kubernetes Service (AKS)
 
@@ -346,7 +346,7 @@ output "aks_host" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 7. Azure SQL Database
 
@@ -428,7 +428,7 @@ resource "azurerm_private_endpoint" "sql" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 8. Azure Storage Account
 
@@ -485,7 +485,7 @@ resource "azurerm_storage_container" "app_data" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 9. Azure App Service (Web App)
 
@@ -577,7 +577,7 @@ resource "azurerm_monitor_autoscale_setting" "app" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 10. Log Analytics & Application Insights
 
@@ -612,7 +612,7 @@ output "app_insights_instrumentation_key" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 11. Complete outputs.tf for a Full Stack Deployment
 

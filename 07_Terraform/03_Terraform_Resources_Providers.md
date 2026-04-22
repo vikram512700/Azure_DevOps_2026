@@ -46,7 +46,7 @@ resource "azurerm_subnet" "app" {
 # azurerm_resource_group.main.location
 ```
 
----
+______________________________________________________________________
 
 ## 2. count — Create Multiple Identical Resources
 
@@ -97,7 +97,7 @@ resource "azurerm_monitor_diagnostic_setting" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 3. for_each — Create Resources from a Map or Set
 
@@ -164,7 +164,7 @@ resource "azurerm_network_security_rule" "rules" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 4. depends_on — Explicit Dependencies
 
@@ -199,7 +199,7 @@ resource "azurerm_kubernetes_cluster" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 5. lifecycle — Control Resource Behavior
 
@@ -255,7 +255,7 @@ resource "azurerm_linux_virtual_machine" "app" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 6. Provider Configuration & Aliases
 
@@ -320,7 +320,7 @@ terraform {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 7. The random Provider (Common Pattern)
 
@@ -364,7 +364,7 @@ resource "azurerm_key_vault_secret" "db_password" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 8. Real-Time Scenario: Multi-Environment Resource Tags
 
@@ -419,7 +419,7 @@ resource "azurerm_mssql_database" "main" {
 }
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 

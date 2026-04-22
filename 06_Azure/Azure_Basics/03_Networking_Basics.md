@@ -1,11 +1,13 @@
 # 🌐 Azure Networking Basics
+
 ### 🎯 For DevOps Beginners — VNet, Subnets, CIDR, Routes, NSG, ASG
 
----
+______________________________________________________________________
 
 ## 1️⃣ Overview of Azure Networking (Real-World Example)
 
 > 💡 **Think of Azure Networking like an Office Building:**
+>
 > - The **building** = Virtual Network (VNet)
 > - **Floors** = Subnets
 > - **Floors for different teams** = Web Floor, DB Floor, HR Floor
@@ -21,6 +23,7 @@
 ```
 
 ### Real Scenario: E-Commerce App Network:
+
 ```
 User (Internet)
       ↓
@@ -33,21 +36,23 @@ User (Internet)
   subnet-db   (10.0.3.0/24)  →  [sql-database]
 ```
 
----
+______________________________________________________________________
 
 ## 2️⃣ Virtual Network (VNet)
 
-> 💡 **What is a VNet?**  
-> A VNet is your **private network** in Azure.  
-> It's like your office Wi-Fi — resources inside can talk to each other privately.  
+> 💡 **What is a VNet?**\
+> A VNet is your **private network** in Azure.\
+> It's like your office Wi-Fi — resources inside can talk to each other privately.\
 > Nothing from outside can enter unless you allow it.
 
 ### Key Points:
+
 - VNet is **region-specific** (East US VNet can't directly mix with West US VNet)
 - Resources in the SAME VNet talk to each other **privately** (no internet needed)
 - You define the **IP address range** for the VNet
 
 ### Create a VNet:
+
 ```bash
 # Create a Virtual Network for your app
 az network vnet create \
@@ -63,16 +68,18 @@ az network vnet list -g rg-webapp-prod --output table
 az network vnet show -g rg-webapp-prod -n vnet-webapp
 ```
 
----
+______________________________________________________________________
 
 ## 3️⃣ Subnets & CIDR
 
 ### What is a Subnet?
-> 💡 **Subnets are like departments in an office building.**  
-> Engineering team is on Floor 1, HR is on Floor 2.  
+
+> 💡 **Subnets are like departments in an office building.**\
+> Engineering team is on Floor 1, HR is on Floor 2.\
 > Each floor has its own IP range and its own security rules.
 
 ### What is CIDR Notation?
+
 > CIDR = **How many IP addresses are in this range**
 
 | CIDR | Total IPs | Usable IPs | Use for |
@@ -81,10 +88,11 @@ az network vnet show -g rg-webapp-prod -n vnet-webapp
 | /24 | 256 | 251 | A subnet |
 | /28 | 16 | 11 | Small subnet (e.g., Gateway) |
 
-> 💡 **Easy Rule**: Lower the number after `/`, more IPs you get.  
+> 💡 **Easy Rule**: Lower the number after `/`, more IPs you get.\
 > `/16` = big (whole building), `/24` = medium (one floor), `/28` = tiny (one room)
 
 ### IP Range Examples:
+
 ```
 VNet:        10.0.0.0/16     → 10.0.0.0 to 10.0.255.255  (65536 IPs)
 subnet-web:  10.0.1.0/24     → 10.0.1.0 to 10.0.1.255    (256 IPs)
@@ -93,6 +101,7 @@ subnet-db:   10.0.3.0/24     → 10.0.3.0 to 10.0.3.255    (256 IPs)
 ```
 
 ### Create Subnets:
+
 ```bash
 # Create VNet first
 az network vnet create \
@@ -127,15 +136,17 @@ az network vnet subnet list \
   --output table
 ```
 
----
+______________________________________________________________________
 
 ## 4️⃣ Routes and Route Tables
 
-> 💡 **Think of Route Tables like GPS directions:**  
+> 💡 **Think of Route Tables like GPS directions:**\
 > When a packet (data) needs to travel, the route table tells it **where to go**.
 
 ### Default Azure Routing:
+
 By default, Azure automatically routes traffic:
+
 - Within the VNet → local routing (auto)
 - To the Internet → via Internet Gateway (auto)
 - To on-premises → via VPN (if configured)
@@ -177,14 +188,15 @@ az network vnet subnet update \
   --route-table rt-force-internet
 ```
 
----
+______________________________________________________________________
 
 ## 5️⃣ Network Security Groups (NSGs)
 
-> 💡 **NSG = Security Guard / Firewall for your subnet or VM**  
+> 💡 **NSG = Security Guard / Firewall for your subnet or VM**\
 > NSG has rules: allow or deny traffic based on port, IP, direction.
 
 ### NSG Rules have:
+
 | Field | What it means | Example |
 |-------|--------------|---------|
 | **Priority** | Lower = checked first | 100, 200, 300... |
@@ -206,6 +218,7 @@ Internet → Port 5432    → DENIED to subnet-db       ❌
 ```
 
 ### Create NSG and Rules:
+
 ```bash
 # Create NSG for web tier
 az network nsg create \
@@ -260,17 +273,18 @@ az network nsg rule list \
   --output table
 ```
 
----
+______________________________________________________________________
 
 ## 6️⃣ Application Security Groups (ASGs)
 
-> 💡 **Problem with NSGs alone:**  
-> You have 20 web servers. You want to allow traffic from ONLY the web servers to the app servers.  
+> 💡 **Problem with NSGs alone:**\
+> You have 20 web servers. You want to allow traffic from ONLY the web servers to the app servers.\
 > With NSG you'd have to list all 20 IPs individually. That's messy!
 >
 > **ASG solution**: Group VMs by role, write rules using the group name.
 
 ### How ASG Works:
+
 ```
 Step 1: Create ASG called "asg-web-servers"
 Step 2: Assign all web VMs to that ASG
@@ -280,6 +294,7 @@ Step 4: Now — ALL web VMs can talk to app servers automatically!
 ```
 
 ### Create ASGs:
+
 ```bash
 # Create ASGs for each tier
 az network asg create -g rg-webapp-prod -n asg-web-servers
@@ -316,7 +331,7 @@ az network nsg rule create \
 | When IPs change | Update all rules manually ❌ | No change needed ✅ |
 | Best for | Simple setups | Large apps with many VMs |
 
----
+______________________________________________________________________
 
 ## 🧠 Summary
 
@@ -330,11 +345,15 @@ ASG            = Group VMs by role — use in NSG rules
 ```
 
 ## ✅ Quick Quiz
+
 1. You have a database VM and you want ONLY app servers to talk to it on port 5432. What do you create?
+
    > **Answer**: NSG rule on db subnet — allow port 5432 only from app subnet IP range (or ASG) ✅
 
-2. You want to force all internet traffic from VMs to go through a firewall first. What do you use?
+1. You want to force all internet traffic from VMs to go through a firewall first. What do you use?
+
    > **Answer**: Custom Route Table with a route pointing to the firewall VM 🛤️
 
-3. You have 30 VMs and want to write one NSG rule covering all of them. What helps?
+1. You have 30 VMs and want to write one NSG rule covering all of them. What helps?
+
    > **Answer**: Application Security Group (ASG) — group all 30 VMs into one ASG 🏷️

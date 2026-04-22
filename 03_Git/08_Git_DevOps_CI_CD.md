@@ -156,7 +156,7 @@ jobs:
           namespace: production
 ```
 
----
+______________________________________________________________________
 
 ## 2. Jenkins Pipeline (Declarative)
 
@@ -327,7 +327,7 @@ pipeline {
 }
 ```
 
----
+______________________________________________________________________
 
 ## 3. GitLab CI/CD Pipeline
 
@@ -425,7 +425,7 @@ deploy-production:
     - main
 ```
 
----
+______________________________________________________________________
 
 ## 4. Git Commit SHA in Docker Labels
 
@@ -458,7 +458,7 @@ docker build \
   -t payment-service:$(git rev-parse --short HEAD) .
 ```
 
----
+______________________________________________________________________
 
 ## 5. Useful Git Commands in CI Scripts
 
@@ -504,7 +504,7 @@ else
 fi
 ```
 
----
+______________________________________________________________________
 
 ## 6. Semantic Versioning with Git Tags (Automated)
 
@@ -539,7 +539,7 @@ git tag -a "$NEW_TAG" -m "Release $NEW_TAG (auto-generated)"
 git push origin "$NEW_TAG"
 ```
 
----
+______________________________________________________________________
 
 ## 7. Git Hooks for CI Quality Gates
 
@@ -568,7 +568,7 @@ echo "Pre-push checks passed."
 exit 0
 ```
 
----
+______________________________________________________________________
 
 ## Summary Table
 
