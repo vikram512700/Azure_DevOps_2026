@@ -1,0 +1,2504 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI/ML DevOps Complete Guide</title>
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700&family=Plus+Jakarta+Sans:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2563eb;
+            --primary-dark: #1e40af;
+            --secondary: #8b5cf6;
+            --accent: #f59e0b;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --dark: #0f172a;
+            --gray-900: #1e293b;
+            --gray-800: #334155;
+            --gray-700: #475569;
+            --gray-100: #f1f5f9;
+            --gray-50: #f8fafc;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            line-height: 1.7;
+            color: var(--gray-800);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+            overflow: hidden;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+            border-radius: 50%;
+            transform: translate(30%, -30%);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            font-weight: 800;
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            opacity: 0.95;
+            position: relative;
+            z-index: 1;
+        }
+
+        .tabs {
+            display: flex;
+            background: var(--gray-50);
+            border-bottom: 2px solid var(--gray-100);
+            overflow-x: auto;
+            flex-wrap: wrap;
+            padding: 0;
+        }
+
+        .tab-button {
+            background: transparent;
+            border: none;
+            padding: 20px 30px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+            color: var(--gray-700);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            border-bottom: 3px solid transparent;
+            white-space: nowrap;
+            font-family: 'Plus Jakarta Sans', sans-serif;
+        }
+
+        .tab-button:hover {
+            background: white;
+            color: var(--primary);
+        }
+
+        .tab-button.active {
+            color: var(--primary);
+            background: white;
+            border-bottom-color: var(--primary);
+        }
+
+        .tab-content {
+            display: none;
+            padding: 50px;
+            animation: fadeIn 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from { 
+                opacity: 0; 
+                transform: translateY(20px); 
+            }
+            to { 
+                opacity: 1; 
+                transform: translateY(0); 
+            }
+        }
+
+        h2 {
+            color: var(--primary);
+            margin-bottom: 30px;
+            font-size: 2.5em;
+            font-weight: 800;
+            border-bottom: 4px solid var(--primary);
+            padding-bottom: 15px;
+            display: inline-block;
+        }
+
+        h3 {
+            color: var(--gray-900);
+            margin-top: 40px;
+            margin-bottom: 20px;
+            font-size: 1.8em;
+            font-weight: 700;
+        }
+
+        h4 {
+            color: var(--gray-800);
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.3em;
+            font-weight: 600;
+        }
+
+        p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .concept-box {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+            border-left: 6px solid var(--primary);
+            padding: 30px;
+            margin: 30px 0;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        .code-block {
+            background: var(--dark);
+            color: #e2e8f0;
+            padding: 25px;
+            border-radius: 12px;
+            overflow-x: auto;
+            margin: 25px 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+        }
+
+        .code-block .comment { color: #64748b; }
+        .code-block .keyword { color: #c084fc; }
+        .code-block .string { color: #34d399; }
+        .code-block .function { color: #60a5fa; }
+
+        .warning-box {
+            background: linear-gradient(135deg, #fef3c7 0%, #fde68a 100%);
+            border-left: 6px solid var(--warning);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+        }
+
+        .success-box {
+            background: linear-gradient(135deg, #d1fae5 0%, #a7f3d0 100%);
+            border-left: 6px solid var(--success);
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+        }
+
+        .info-box {
+            background: linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%);
+            border-left: 6px solid #3b82f6;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 12px;
+        }
+
+        ul, ol {
+            margin-left: 30px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 12px;
+            line-height: 1.7;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .card {
+            background: white;
+            border: 2px solid var(--gray-100);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1);
+        }
+
+        .card:hover {
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-color: var(--primary);
+            transform: translateY(-4px);
+        }
+
+        .pipeline-step {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 25px;
+            margin: 15px 0;
+            border-radius: 12px;
+            position: relative;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+        }
+
+        .pipeline-step strong {
+            display: block;
+            font-size: 1.2em;
+            margin-bottom: 8px;
+        }
+
+        .pipeline-step::after {
+            content: '↓';
+            position: absolute;
+            bottom: -35px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 28px;
+            color: var(--primary);
+            font-weight: bold;
+        }
+
+        .pipeline-step:last-child::after {
+            display: none;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin: 30px 0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        th {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
+            color: white;
+            padding: 18px;
+            text-align: left;
+            font-weight: 700;
+        }
+
+        td {
+            border-bottom: 1px solid var(--gray-100);
+            padding: 16px 18px;
+            background: white;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:nth-child(even) td {
+            background: var(--gray-50);
+        }
+
+        .highlight {
+            background: #fef3c7;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-weight: 600;
+            color: var(--gray-900);
+        }
+
+        strong {
+            color: var(--gray-900);
+            font-weight: 700;
+        }
+
+        code {
+            background: var(--gray-100);
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9em;
+            color: var(--primary-dark);
+        }
+
+        @media (max-width: 768px) {
+            .grid-2 {
+                grid-template-columns: 1fr;
+            }
+            
+            .tabs {
+                flex-direction: column;
+            }
+            
+            .tab-button {
+                width: 100%;
+                text-align: left;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .tab-content {
+                padding: 25px;
+            }
+
+            body {
+                padding: 10px;
+            }
+        }
+
+        .emoji {
+            font-size: 1.2em;
+            margin-right: 8px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🚀 AI/ML in DevOps - Complete Guide</h1>
+            <p>From Data Science to Production Deployment - Everything You Need to Know</p>
+        </div>
+
+        <div class="tabs">
+            <button class="tab-button active" onclick="openTab(event, 'overview')">📊 Overview</button>
+            <button class="tab-button" onclick="openTab(event, 'ai-basics')">🤖 AI & ML</button>
+            <button class="tab-button" onclick="openTab(event, 'data-science')">📈 Data Science</button>
+            <button class="tab-button" onclick="openTab(event, 'training')">🏋️ Training</button>
+            <button class="tab-button" onclick="openTab(event, 'llm')">💬 LLMs</button>
+            <button class="tab-button" onclick="openTab(event, 'rag')">🔍 RAG</button>
+            <button class="tab-button" onclick="openTab(event, 'mcp')">🔌 MCP</button>
+            <button class="tab-button" onclick="openTab(event, 'weights')">⚖️ Weights</button>
+            <button class="tab-button" onclick="openTab(event, 'inference')">⚡ Inference</button>
+            <button class="tab-button" onclick="openTab(event, 'mlops')">🔄 MLOps</button>
+            <button class="tab-button" onclick="openTab(event, 'devops')">🛠️ DevOps</button>
+            <button class="tab-button" onclick="openTab(event, 'project')">📦 Project</button>
+        </div>
+
+        <!-- Overview Tab -->
+        <div id="overview" class="tab-content active">
+            <h2>📊 Complete Picture: AI/ML in Modern Software Development</h2>
+            
+            <div class="concept-box">
+                <h3><span class="emoji">🎯</span>What This Guide Covers</h3>
+                <p>This comprehensive guide explains how AI/ML technologies integrate with DevOps practices for building, deploying, and maintaining intelligent applications in production environments.</p>
+            </div>
+
+            <h3>🗺️ The AI/ML Landscape</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🧠 Core Concepts</h4>
+                    <ul>
+                        <li><strong>AI (Artificial Intelligence):</strong> Machines performing tasks requiring human intelligence</li>
+                        <li><strong>ML (Machine Learning):</strong> Systems learning from data without explicit programming</li>
+                        <li><strong>Deep Learning:</strong> ML using neural networks with multiple layers</li>
+                        <li><strong>LLM (Large Language Models):</strong> AI models trained on vast text data</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🔧 Infrastructure & Tools</h4>
+                    <ul>
+                        <li><strong>Model Training:</strong> Process of teaching AI models from data</li>
+                        <li><strong>Model Weights:</strong> Learned parameters stored in files</li>
+                        <li><strong>Inference:</strong> Using trained models for predictions</li>
+                        <li><strong>MLOps:</strong> DevOps practices for ML systems</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>🔄 The Complete ML Lifecycle</h3>
+            <div style="margin: 40px 0;">
+                <div class="pipeline-step">
+                    <strong>1. Data Collection & Preparation</strong><br>
+                    Gather, clean, label, and version training data
+                </div>
+                <div class="pipeline-step">
+                    <strong>2. Model Development & Training</strong><br>
+                    Design architecture, train on data, tune hyperparameters
+                </div>
+                <div class="pipeline-step">
+                    <strong>3. Model Evaluation & Validation</strong><br>
+                    Test accuracy, validate on unseen data, check for bias
+                </div>
+                <div class="pipeline-step">
+                    <strong>4. Model Deployment (MLOps)</strong><br>
+                    Package, containerize, deploy to production infrastructure
+                </div>
+                <div class="pipeline-step">
+                    <strong>5. Inference & Monitoring</strong><br>
+                    Serve predictions, monitor performance, detect drift, retrain
+                </div>
+            </div>
+
+            <h3>🎯 How It All Connects in DevOps</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>DevOps Role</th>
+                    <th>Tools/Technologies</th>
+                </tr>
+                <tr>
+                    <td>Data Pipelines</td>
+                    <td>Automate data ingestion, transformation</td>
+                    <td>Azure Data Factory, Apache Airflow, Databricks</td>
+                </tr>
+                <tr>
+                    <td>Model Training</td>
+                    <td>CI/CD for model retraining</td>
+                    <td>Azure ML, Kubeflow, MLflow</td>
+                </tr>
+                <tr>
+                    <td>Model Registry</td>
+                    <td>Version control for models</td>
+                    <td>MLflow, Azure ML Registry, DVC</td>
+                </tr>
+                <tr>
+                    <td>Inference Deployment</td>
+                    <td>Container orchestration, scaling</td>
+                    <td>AKS, Docker, Azure Container Apps</td>
+                </tr>
+                <tr>
+                    <td>Monitoring</td>
+                    <td>Track model drift, performance</td>
+                    <td>Azure Monitor, Prometheus, Grafana</td>
+                </tr>
+            </table>
+
+            <div class="info-box">
+                <h4>💡 Key Insight for DevOps Engineers</h4>
+                <p>AI/ML projects are <strong>code + data + models</strong>. Unlike traditional software where you version control only code, ML requires versioning datasets, model architectures, hyperparameters, and trained weights. This is where MLOps (ML + DevOps) becomes critical.</p>
+                <p>Your role is to build automated pipelines that handle all three components reliably and reproducibly.</p>
+            </div>
+        </div>
+
+        <!-- Add remaining tab content here - continuing from the previous version -->
+        <!-- I'll add the complete remaining sections -->
+
+<div id="ai-basics" class="tab-content">
+            <h2>🤖 AI & Machine Learning Basics</h2>
+            
+            <h3>What is Artificial Intelligence?</h3>
+            <div class="concept-box">
+                <p><strong>AI</strong> is the broad field of creating machines that can perform tasks requiring human-like intelligence: understanding language, recognizing images, making decisions, solving problems.</p>
+            </div>
+
+            <h3>Types of AI</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🎯 Narrow AI (Weak AI)</h4>
+                    <p>AI designed for specific tasks</p>
+                    <ul>
+                        <li>Virtual assistants (Siri, Alexa)</li>
+                        <li>Recommendation systems (Netflix, Amazon)</li>
+                        <li>Spam filters</li>
+                        <li>Image recognition</li>
+                        <li><strong>This is what we build in production today</strong></li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🧠 General AI (Strong AI)</h4>
+                    <p>AI with human-level intelligence across all domains</p>
+                    <ul>
+                        <li>Still theoretical/research stage</li>
+                        <li>Can learn any intellectual task</li>
+                        <li>Not relevant for current DevOps work</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Machine Learning - The Core of Modern AI</h3>
+            <div class="concept-box">
+                <p><strong>Machine Learning</strong> is a subset of AI where systems learn patterns from data rather than being explicitly programmed with rules.</p>
+                <p><strong>Traditional Programming:</strong> Rules + Data → Output</p>
+                <p><strong>Machine Learning:</strong> Data + Desired Output → Rules (Model)</p>
+            </div>
+
+            <h3>Types of Machine Learning</h3>
+            
+            <h4>1. Supervised Learning</h4>
+            <div class="info-box">
+                <p><strong>Definition:</strong> Learning from labeled data (input-output pairs)</p>
+                <p><strong>Use Cases:</strong></p>
+                <ul>
+                    <li>Email spam detection (email → spam/not spam)</li>
+                    <li>House price prediction (features → price)</li>
+                    <li>Medical diagnosis (symptoms → disease)</li>
+                    <li>Sentiment analysis (text → positive/negative)</li>
+                </ul>
+                <p><strong>DevOps Context:</strong> Log classification, anomaly detection in metrics, ticket categorization</p>
+            </div>
+
+            <h4>2. Unsupervised Learning</h4>
+            <div class="info-box">
+                <p><strong>Definition:</strong> Finding patterns in unlabeled data</p>
+                <p><strong>Use Cases:</strong></p>
+                <ul>
+                    <li>Customer segmentation (grouping similar users)</li>
+                    <li>Anomaly detection (finding outliers)</li>
+                    <li>Data compression</li>
+                </ul>
+                <p><strong>DevOps Context:</strong> Clustering server behaviors, detecting unusual deployment patterns</p>
+            </div>
+
+            <h4>3. Reinforcement Learning</h4>
+            <div class="info-box">
+                <p><strong>Definition:</strong> Learning through trial and error with rewards/penalties</p>
+                <p><strong>Use Cases:</strong></p>
+                <ul>
+                    <li>Game playing (AlphaGo)</li>
+                    <li>Robot control</li>
+                    <li>Resource optimization</li>
+                </ul>
+                <p><strong>DevOps Context:</strong> Auto-scaling policies, resource allocation optimization</p>
+            </div>
+
+            <h3>Deep Learning</h3>
+            <div class="concept-box">
+                <p><strong>Deep Learning</strong> is a specialized ML technique using artificial neural networks with multiple layers (inspired by the human brain).</p>
+                <p><strong>Why "Deep"?</strong> Multiple layers allow learning hierarchical representations:</p>
+                <ul>
+                    <li><strong>Layer 1:</strong> Edges and simple shapes</li>
+                    <li><strong>Layer 2:</strong> Object parts</li>
+                    <li><strong>Layer 3:</strong> Complete objects</li>
+                </ul>
+            </div>
+
+            <h3>Common ML Algorithms</h3>
+            <table>
+                <tr>
+                    <th>Algorithm Type</th>
+                    <th>What It Does</th>
+                    <th>Example Use</th>
+                </tr>
+                <tr>
+                    <td>Linear Regression</td>
+                    <td>Predicts continuous values</td>
+                    <td>House prices, CPU usage forecasting</td>
+                </tr>
+                <tr>
+                    <td>Logistic Regression</td>
+                    <td>Binary classification</td>
+                    <td>Email spam (yes/no)</td>
+                </tr>
+                <tr>
+                    <td>Decision Trees</td>
+                    <td>Tree-like decision model</td>
+                    <td>Approval workflows, categorization</td>
+                </tr>
+                <tr>
+                    <td>Random Forest</td>
+                    <td>Multiple decision trees voting</td>
+                    <td>More accurate predictions</td>
+                </tr>
+                <tr>
+                    <td>Neural Networks</td>
+                    <td>Complex pattern recognition</td>
+                    <td>Image recognition, NLP, LLMs</td>
+                </tr>
+                <tr>
+                    <td>K-Means</td>
+                    <td>Clustering data into groups</td>
+                    <td>User segmentation, server grouping</td>
+                </tr>
+            </table>
+
+            <div class="success-box">
+                <h4>✅ DevOps Engineer's Takeaway</h4>
+                <p>You don't need to build ML models from scratch. Your role is to:</p>
+                <ul>
+                    <li>Understand what models do and their requirements</li>
+                    <li>Deploy and serve models efficiently</li>
+                    <li>Build pipelines for data and model management</li>
+                    <li>Monitor model performance in production</li>
+                    <li>Automate retraining and deployment</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Data Science Tab -->
+        <div id="data-science" class="tab-content">
+            <h2>📈 Data Science in ML Projects</h2>
+            
+            <div class="concept-box">
+                <h3>What is Data Science?</h3>
+                <p><strong>Data Science</strong> is the field of extracting insights and knowledge from data using statistics, ML, and domain expertise. It's the foundation that ML models are built on.</p>
+            </div>
+
+            <h3>The Data Science Workflow</h3>
+            <div style="margin: 40px 0;">
+                <div class="pipeline-step">
+                    <strong>1. Problem Definition</strong><br>
+                    What business question are we answering?
+                </div>
+                <div class="pipeline-step">
+                    <strong>2. Data Collection</strong><br>
+                    Gather data from databases, APIs, logs, sensors
+                </div>
+                <div class="pipeline-step">
+                    <strong>3. Data Cleaning</strong><br>
+                    Handle missing values, remove duplicates, fix errors
+                </div>
+                <div class="pipeline-step">
+                    <strong>4. Exploratory Data Analysis (EDA)</strong><br>
+                    Visualize patterns, calculate statistics, understand relationships
+                </div>
+                <div class="pipeline-step">
+                    <strong>5. Feature Engineering</strong><br>
+                    Create meaningful input variables for models
+                </div>
+                <div class="pipeline-step">
+                    <strong>6. Model Building & Training</strong><br>
+                    Select algorithms, train, evaluate
+                </div>
+                <div class="pipeline-step">
+                    <strong>7. Deployment & Monitoring</strong><br>
+                    Put model in production, track performance
+                </div>
+            </div>
+
+            <h3>Data Types in ML</h3>
+            <table>
+                <tr>
+                    <th>Data Type</th>
+                    <th>Description</th>
+                    <th>Examples</th>
+                </tr>
+                <tr>
+                    <td>Structured</td>
+                    <td>Organized in tables with rows/columns</td>
+                    <td>SQL databases, CSV files, Excel spreadsheets</td>
+                </tr>
+                <tr>
+                    <td>Unstructured</td>
+                    <td>No predefined format</td>
+                    <td>Text, images, videos, audio, logs</td>
+                </tr>
+                <tr>
+                    <td>Semi-structured</td>
+                    <td>Some organizational properties</td>
+                    <td>JSON, XML, HTML, NoSQL data</td>
+                </tr>
+            </table>
+
+            <h3>Key Data Preprocessing Steps</h3>
+            
+            <h4>1. Data Cleaning</h4>
+            <div class="code-block"># Example: Handling missing data in Python
+import pandas as pd
+
+# Load data
+df = pd.read_csv('server_metrics.csv')
+
+# Check for missing values
+print(df.isnull().sum())
+
+# Fill missing values
+df['cpu_usage'].fillna(df['cpu_usage'].mean(), inplace=True)
+
+# Remove duplicates
+df.drop_duplicates(inplace=True)</div>
+
+            <h4>2. Feature Engineering</h4>
+            <div class="concept-box">
+                <p><strong>Feature Engineering</strong> is creating new input variables that better represent the underlying problem.</p>
+                <p><strong>Examples:</strong></p>
+                <ul>
+                    <li>From timestamp → hour_of_day, day_of_week, is_weekend</li>
+                    <li>From IP address → country, region, ISP</li>
+                    <li>From text → word count, sentiment score, key phrases</li>
+                    <li>From logs → error_rate, response_time_avg, request_count</li>
+                </ul>
+            </div>
+
+            <h4>3. Data Normalization/Scaling</h4>
+            <div class="code-block">from sklearn.preprocessing import StandardScaler, MinMaxScaler
+
+# StandardScaler: mean=0, std=1
+scaler = StandardScaler()
+scaled_data = scaler.fit_transform(data)
+
+# MinMaxScaler: scale to range [0, 1]
+scaler = MinMaxScaler()
+scaled_data = scaler.fit_transform(data)</div>
+
+            <h4>4. Train-Test Split</h4>
+            <div class="concept-box">
+                <p>Always split data into separate sets:</p>
+                <ul>
+                    <li><strong>Training Set (70-80%):</strong> Used to train the model</li>
+                    <li><strong>Validation Set (10-15%):</strong> Used to tune hyperparameters</li>
+                    <li><strong>Test Set (10-15%):</strong> Used to evaluate final model (never seen during training)</li>
+                </ul>
+            </div>
+
+            <div class="code-block">from sklearn.model_selection import train_test_split
+
+# Split data
+X_train, X_test, y_train, y_test = train_test_split(
+    features, labels, test_size=0.2, random_state=42
+)</div>
+
+            <h3>Data Storage for ML Projects</h3>
+            <table>
+                <tr>
+                    <th>Storage Type</th>
+                    <th>Use Case</th>
+                    <th>Azure Service</th>
+                </tr>
+                <tr>
+                    <td>Data Lake</td>
+                    <td>Store raw, unprocessed data at scale</td>
+                    <td>Azure Data Lake Storage Gen2</td>
+                </tr>
+                <tr>
+                    <td>Data Warehouse</td>
+                    <td>Structured, processed data for analytics</td>
+                    <td>Azure Synapse Analytics</td>
+                </tr>
+                <tr>
+                    <td>Blob Storage</td>
+                    <td>Unstructured data, model files, datasets</td>
+                    <td>Azure Blob Storage</td>
+                </tr>
+                <tr>
+                    <td>Database</td>
+                    <td>Transactional, structured data</td>
+                    <td>Azure SQL Database, Cosmos DB</td>
+                </tr>
+            </table>
+
+            <h3>DevOps Role in Data Science</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🔄 Data Pipelines</h4>
+                    <ul>
+                        <li>Automate data collection from sources</li>
+                        <li>Schedule ETL (Extract, Transform, Load) jobs</li>
+                        <li>Version control datasets</li>
+                        <li>Monitor data quality</li>
+                    </ul>
+                    <p><strong>Tools:</strong> Azure Data Factory, Apache Airflow, Databricks</p>
+                </div>
+                <div class="card">
+                    <h4>📦 Data Versioning</h4>
+                    <ul>
+                        <li>Track dataset changes over time</li>
+                        <li>Reproduce experiments with exact data versions</li>
+                        <li>Handle large files not suitable for Git</li>
+                    </ul>
+                    <p><strong>Tools:</strong> DVC (Data Version Control), MLflow, Azure ML Datasets</p>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ DevOps Engineer's Data Science Checklist</h4>
+                <ul>
+                    <li>Set up automated data pipelines</li>
+                    <li>Implement data quality checks</li>
+                    <li>Version control datasets alongside code</li>
+                    <li>Secure data access with RBAC and encryption</li>
+                    <li>Monitor pipeline health and data drift</li>
+                    <li>Optimize storage costs (hot/cool/archive tiers)</li>
+                </ul>
+            </div>
+        </div>
+
+
+        <!-- Training Tab -->
+        <div id="training" class="tab-content">
+            <h2>🏋️ Model Training Deep Dive</h2>
+            
+            <div class="concept-box">
+                <h3>What is Model Training?</h3>
+                <p><strong>Model Training</strong> is the process of feeding data to an ML algorithm so it can learn patterns and make predictions. The algorithm adjusts internal parameters (weights) to minimize prediction errors.</p>
+            </div>
+
+            <h3>Training Process Overview</h3>
+            <div style="margin: 40px 0;">
+                <div class="pipeline-step">
+                    <strong>1. Initialize Model</strong><br>
+                    Start with random weights/parameters
+                </div>
+                <div class="pipeline-step">
+                    <strong>2. Forward Pass</strong><br>
+                    Input data → Model → Predictions
+                </div>
+                <div class="pipeline-step">
+                    <strong>3. Calculate Loss</strong><br>
+                    Measure error between predictions and actual values
+                </div>
+                <div class="pipeline-step">
+                    <strong>4. Backward Pass (Backpropagation)</strong><br>
+                    Calculate gradients to update weights
+                </div>
+                <div class="pipeline-step">
+                    <strong>5. Update Weights</strong><br>
+                    Adjust parameters to reduce error
+                </div>
+                <div class="pipeline-step">
+                    <strong>6. Repeat</strong><br>
+                    Iterate through data multiple times (epochs)
+                </div>
+            </div>
+
+            <h3>Key Training Concepts</h3>
+            
+            <h4>Epochs, Batches, and Iterations</h4>
+            <div class="info-box">
+                <p><strong>Epoch:</strong> One complete pass through the entire training dataset</p>
+                <p><strong>Batch:</strong> A subset of the training data processed together</p>
+                <p><strong>Iteration:</strong> One update of the model weights (one batch processed)</p>
+                <br>
+                <p><strong>Example:</strong> 10,000 samples, batch size 100</p>
+                <ul>
+                    <li>Iterations per epoch: 10,000 / 100 = 100</li>
+                    <li>Training for 50 epochs = 5,000 total iterations</li>
+                </ul>
+            </div>
+
+            <h4>Learning Rate</h4>
+            <div class="concept-box">
+                <p><strong>Learning Rate</strong> controls how much to adjust weights during each update.</p>
+                <ul>
+                    <li><strong>Too high:</strong> Model oscillates and doesn't converge</li>
+                    <li><strong>Too low:</strong> Training is slow, may get stuck in local minima</li>
+                    <li><strong>Common values:</strong> 0.001, 0.01, 0.1</li>
+                </ul>
+            </div>
+
+            <h4>Loss Functions</h4>
+            <table>
+                <tr>
+                    <th>Loss Function</th>
+                    <th>Use Case</th>
+                    <th>Description</th>
+                </tr>
+                <tr>
+                    <td>Mean Squared Error (MSE)</td>
+                    <td>Regression</td>
+                    <td>Average squared difference between predicted and actual values</td>
+                </tr>
+                <tr>
+                    <td>Binary Cross-Entropy</td>
+                    <td>Binary Classification</td>
+                    <td>Measures error for two-class problems (spam/not spam)</td>
+                </tr>
+                <tr>
+                    <td>Categorical Cross-Entropy</td>
+                    <td>Multi-class Classification</td>
+                    <td>Error for multiple classes (cat/dog/bird)</td>
+                </tr>
+            </table>
+
+            <h3>Training Example (PyTorch)</h3>
+            <div class="code-block">import torch
+import torch.nn as nn
+import torch.optim as optim
+
+# Define model
+class SimpleNet(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(10, 64)
+        self.fc2 = nn.Linear(64, 32)
+        self.fc3 = nn.Linear(32, 1)
+        
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        return self.fc3(x)
+
+# Initialize
+model = SimpleNet()
+criterion = nn.MSELoss()
+optimizer = optim.Adam(model.parameters(), lr=0.001)
+
+# Training loop
+for epoch in range(100):
+    for batch_data, batch_labels in train_loader:
+        # Forward pass
+        predictions = model(batch_data)
+        loss = criterion(predictions, batch_labels)
+        
+        # Backward pass
+        optimizer.zero_grad()
+        loss.backward()
+        
+        # Update weights
+        optimizer.step()
+    
+    print(f'Epoch {epoch}, Loss: {loss.item()}')</div>
+
+            <h3>Hyperparameters</h3>
+            <div class="concept-box">
+                <p><strong>Hyperparameters</strong> are settings you configure before training (not learned from data):</p>
+                <ul>
+                    <li>Learning rate</li>
+                    <li>Number of epochs</li>
+                    <li>Batch size</li>
+                    <li>Number of layers/neurons</li>
+                    <li>Dropout rate</li>
+                    <li>Regularization strength</li>
+                </ul>
+                <p><strong>Hyperparameter Tuning:</strong> Finding the best combination through experimentation (Grid Search, Random Search, Bayesian Optimization)</p>
+            </div>
+
+            <h3>Training Infrastructure</h3>
+            <table>
+                <tr>
+                    <th>Component</th>
+                    <th>Purpose</th>
+                    <th>Azure Options</th>
+                </tr>
+                <tr>
+                    <td>CPU</td>
+                    <td>Basic models, data preprocessing</td>
+                    <td>Standard VMs (D-series)</td>
+                </tr>
+                <tr>
+                    <td>GPU</td>
+                    <td>Deep learning, large models</td>
+                    <td>NC-series VMs (NVIDIA)</td>
+                </tr>
+                <tr>
+                    <td>Memory</td>
+                    <td>Large datasets in RAM</td>
+                    <td>E-series VMs (memory optimized)</td>
+                </tr>
+            </table>
+
+            <h3>Training Metrics & Evaluation</h3>
+            <table>
+                <tr>
+                    <th>Metric</th>
+                    <th>What It Measures</th>
+                </tr>
+                <tr>
+                    <td>Accuracy</td>
+                    <td>% of correct predictions (good for balanced datasets)</td>
+                </tr>
+                <tr>
+                    <td>Precision</td>
+                    <td>Of positive predictions, how many were correct?</td>
+                </tr>
+                <tr>
+                    <td>Recall</td>
+                    <td>Of actual positives, how many did we find?</td>
+                </tr>
+                <tr>
+                    <td>F1 Score</td>
+                    <td>Harmonic mean of precision and recall</td>
+                </tr>
+            </table>
+
+            <h3>Overfitting and Underfitting</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>⚠️ Overfitting</h4>
+                    <p>Model learns training data too well, including noise</p>
+                    <ul>
+                        <li>High training accuracy, low test accuracy</li>
+                        <li>Solutions: More data, regularization, dropout, early stopping</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>⚠️ Underfitting</h4>
+                    <p>Model too simple to capture patterns</p>
+                    <ul>
+                        <li>Low training and test accuracy</li>
+                        <li>Solutions: More complex model, more features, train longer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ Automating Model Training</h4>
+                <ul>
+                    <li><strong>Azure ML Pipelines:</strong> Orchestrate training workflows</li>
+                    <li><strong>Experiment Tracking:</strong> MLflow to log metrics, parameters</li>
+                    <li><strong>Compute Management:</strong> Auto-scale GPU clusters, shut down when idle</li>
+                    <li><strong>CI/CD for Training:</strong> Trigger retraining on new data or code changes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- LLM Tab -->
+        <div id="llm" class="tab-content">
+            <h2>💬 Large Language Models (LLMs)</h2>
+            
+            <div class="concept-box">
+                <h3>What are LLMs?</h3>
+                <p><strong>Large Language Models</strong> are AI models trained on massive amounts of text data to understand and generate human-like language. Examples: GPT-4, Claude, Gemini, Llama.</p>
+            </div>
+
+            <h3>LLM Scale Comparison</h3>
+            <table>
+                <tr>
+                    <th>Model</th>
+                    <th>Parameters</th>
+                    <th>Context Window</th>
+                    <th>Provider</th>
+                </tr>
+                <tr>
+                    <td>GPT-4</td>
+                    <td>~1.7 trillion (estimated)</td>
+                    <td>128K tokens</td>
+                    <td>OpenAI</td>
+                </tr>
+                <tr>
+                    <td>Claude Sonnet 4</td>
+                    <td>Undisclosed</td>
+                    <td>200K tokens</td>
+                    <td>Anthropic</td>
+                </tr>
+                <tr>
+                    <td>Llama 3.1</td>
+                    <td>8B, 70B, 405B</td>
+                    <td>128K tokens</td>
+                    <td>Meta (Open Source)</td>
+                </tr>
+                <tr>
+                    <td>Gemini Pro</td>
+                    <td>Undisclosed</td>
+                    <td>1M tokens</td>
+                    <td>Google</td>
+                </tr>
+            </table>
+
+            <h3>Key LLM Concepts</h3>
+            
+            <h4>Tokens</h4>
+            <div class="concept-box">
+                <p><strong>Tokens</strong> are the basic units of text that LLMs process (roughly 3-4 characters or 0.75 words).</p>
+                <p><strong>Example:</strong> "Hello, world!" = ~4 tokens ["Hello", ",", " world", "!"]</p>
+                <p><strong>Why it matters:</strong> API costs and context limits are measured in tokens</p>
+            </div>
+
+            <h4>Context Window</h4>
+            <div class="concept-box">
+                <p><strong>Context Window</strong> is the maximum amount of text (in tokens) an LLM can process at once, including both input and output.</p>
+                <p><strong>Example:</strong> Claude Sonnet 4's 200K token window = ~150,000 words = ~500 pages</p>
+            </div>
+
+            <h4>Temperature</h4>
+            <div class="info-box">
+                <p><strong>Temperature</strong> controls randomness in outputs (0 to 1):</p>
+                <ul>
+                    <li><strong>Low (0.0-0.3):</strong> More focused, deterministic, consistent</li>
+                    <li><strong>Medium (0.4-0.7):</strong> Balanced creativity and consistency</li>
+                    <li><strong>High (0.8-1.0):</strong> More creative, random, diverse</li>
+                </ul>
+            </div>
+
+            <h4>Prompt Engineering</h4>
+            <div class="concept-box">
+                <p><strong>Prompt Engineering</strong> is the art of crafting effective instructions to get desired outputs from LLMs.</p>
+                <p><strong>Best Practices:</strong></p>
+                <ul>
+                    <li><strong>Be specific:</strong> "Write a Python function that..." instead of "Write code..."</li>
+                    <li><strong>Provide context:</strong> Explain the use case and constraints</li>
+                    <li><strong>Use examples:</strong> Show desired input-output pairs</li>
+                    <li><strong>Specify format:</strong> "Respond in JSON format"</li>
+                </ul>
+            </div>
+
+            <h3>Using LLMs via APIs</h3>
+            
+            <h4>OpenAI API Example</h4>
+            <div class="code-block">import openai
+
+openai.api_key = "your-api-key"
+
+response = openai.ChatCompletion.create(
+    model="gpt-4",
+    messages=[
+        {"role": "system", "content": "You are a DevOps expert."},
+        {"role": "user", "content": "Explain Kubernetes pods."}
+    ],
+    temperature=0.3,
+    max_tokens=100
+)
+
+print(response.choices[0].message.content)</div>
+
+            <h4>Anthropic Claude API Example</h4>
+            <div class="code-block">import anthropic
+
+client = anthropic.Anthropic(api_key="your-api-key")
+
+message = client.messages.create(
+    model="claude-sonnet-4-20250514",
+    max_tokens=1024,
+    messages=[
+        {"role": "user", "content": "Generate a Terraform script for AKS"}
+    ]
+)
+
+print(message.content)</div>
+
+            <h3>LLM Deployment Options</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>☁️ API Services (Managed)</h4>
+                    <p><strong>Pros:</strong></p>
+                    <ul>
+                        <li>No infrastructure management</li>
+                        <li>Always latest models</li>
+                        <li>Pay per use</li>
+                    </ul>
+                    <p><strong>Cons:</strong></p>
+                    <ul>
+                        <li>Recurring costs</li>
+                        <li>Data leaves your environment</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🖥️ Self-Hosted (Open Source)</h4>
+                    <p><strong>Pros:</strong></p>
+                    <ul>
+                        <li>Full data control</li>
+                        <li>No per-token costs</li>
+                        <li>Customizable</li>
+                    </ul>
+                    <p><strong>Cons:</strong></p>
+                    <ul>
+                        <li>High GPU costs</li>
+                        <li>Maintenance overhead</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>LLMs in DevOps Use Cases</h3>
+            <table>
+                <tr>
+                    <th>Use Case</th>
+                    <th>Description</th>
+                    <th>Example</th>
+                </tr>
+                <tr>
+                    <td>Code Generation</td>
+                    <td>Auto-generate scripts, IaC</td>
+                    <td>Generate Terraform from requirements</td>
+                </tr>
+                <tr>
+                    <td>Log Analysis</td>
+                    <td>Summarize and explain errors</td>
+                    <td>Parse application logs, identify root causes</td>
+                </tr>
+                <tr>
+                    <td>Documentation</td>
+                    <td>Auto-generate docs from code</td>
+                    <td>Create README files, API documentation</td>
+                </tr>
+                <tr>
+                    <td>Incident Response</td>
+                    <td>Automated troubleshooting</td>
+                    <td>Chatbot for deployment issues</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- RAG Tab -->
+        <div id="rag" class="tab-content">
+            <h2>🔍 RAG (Retrieval-Augmented Generation)</h2>
+            
+            <div class="concept-box">
+                <h3>What is RAG?</h3>
+                <p><strong>RAG</strong> combines LLMs with external knowledge retrieval. Instead of relying only on training data, the LLM retrieves relevant information from a knowledge base before generating responses.</p>
+                <p><strong>Why RAG?</strong> LLMs don't know your company's internal data. RAG solves this by fetching current, specific information on-demand.</p>
+            </div>
+
+            <h3>How RAG Works</h3>
+            <div style="margin: 40px 0;">
+                <div class="pipeline-step">
+                    <strong>1. User Query</strong><br>
+                    "What's our deployment process?"
+                </div>
+                <div class="pipeline-step">
+                    <strong>2. Query Embedding</strong><br>
+                    Convert question to vector representation
+                </div>
+                <div class="pipeline-step">
+                    <strong>3. Vector Search</strong><br>
+                    Find most relevant documents in knowledge base
+                </div>
+                <div class="pipeline-step">
+                    <strong>4. Retrieve Context</strong><br>
+                    Fetch top K most similar documents
+                </div>
+                <div class="pipeline-step">
+                    <strong>5. Augment Prompt</strong><br>
+                    Combine retrieved context + original query
+                </div>
+                <div class="pipeline-step">
+                    <strong>6. LLM Generation</strong><br>
+                    Generate answer using provided context
+                </div>
+            </div>
+
+            <h3>Key RAG Components</h3>
+            
+            <h4>Embeddings</h4>
+            <div class="concept-box">
+                <p><strong>Embeddings</strong> are numerical vector representations of text that capture semantic meaning. Similar concepts have similar vectors.</p>
+                <p><strong>Example:</strong></p>
+                <ul>
+                    <li>"dog" → [0.2, 0.8, 0.1, ...]</li>
+                    <li>"puppy" → [0.21, 0.79, 0.12, ...] (very close to "dog")</li>
+                    <li>"car" → [0.7, 0.1, 0.9, ...] (far from "dog")</li>
+                </ul>
+            </div>
+
+            <h4>Vector Databases</h4>
+            <table>
+                <tr>
+                    <th>Vector DB</th>
+                    <th>Type</th>
+                    <th>Best For</th>
+                </tr>
+                <tr>
+                    <td>Azure AI Search</td>
+                    <td>Managed Service</td>
+                    <td>Azure-native, hybrid search</td>
+                </tr>
+                <tr>
+                    <td>Pinecone</td>
+                    <td>Managed SaaS</td>
+                    <td>Dedicated vector search</td>
+                </tr>
+                <tr>
+                    <td>Chroma</td>
+                    <td>Open Source</td>
+                    <td>Lightweight, Python-friendly</td>
+                </tr>
+                <tr>
+                    <td>Weaviate</td>
+                    <td>Open Source</td>
+                    <td>GraphQL API, flexible</td>
+                </tr>
+            </table>
+
+            <h3>RAG Implementation Example</h3>
+            <div class="code-block"># Python RAG with LangChain
+
+from langchain.document_loaders import DirectoryLoader
+from langchain.text_splitter import RecursiveCharacterTextSplitter
+from langchain.embeddings import OpenAIEmbeddings
+from langchain.vectorstores import Chroma
+from langchain.chat_models import ChatOpenAI
+from langchain.chains import RetrievalQA
+
+# Load documents
+loader = DirectoryLoader('./docs', glob="**/*.md")
+documents = loader.load()
+
+# Chunk documents
+text_splitter = RecursiveCharacterTextSplitter(
+    chunk_size=1000,
+    chunk_overlap=200
+)
+chunks = text_splitter.split_documents(documents)
+
+# Create vector store
+embeddings = OpenAIEmbeddings()
+vectorstore = Chroma.from_documents(
+    documents=chunks,
+    embedding=embeddings
+)
+
+# Create retrieval chain
+llm = ChatOpenAI(model="gpt-4", temperature=0)
+qa_chain = RetrievalQA.from_chain_type(
+    llm=llm,
+    retriever=vectorstore.as_retriever(search_kwargs={"k": 4})
+)
+
+# Query
+response = qa_chain.run("How do we deploy to production?")
+print(response)</div>
+
+            <h3>RAG Use Cases in DevOps</h3>
+            <div class="success-box">
+                <h4>✅ DevOps RAG Applications</h4>
+                <ul>
+                    <li><strong>Documentation Assistant:</strong> Answer questions from runbooks and wikis</li>
+                    <li><strong>Incident Response:</strong> Retrieve similar past incidents</li>
+                    <li><strong>Code Search:</strong> Find relevant code examples</li>
+                    <li><strong>Compliance Checker:</strong> Query security policies</li>
+                    <li><strong>Onboarding Bot:</strong> Help new team members</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MCP Tab -->
+        <div id="mcp" class="tab-content">
+            <h2>🔌 MCP (Model Context Protocol)</h2>
+            
+            <div class="concept-box">
+                <h3>What is MCP?</h3>
+                <p><strong>MCP</strong> is an open standard created by Anthropic for connecting AI assistants to external data sources and tools. It's like a universal plugin system for LLMs.</p>
+                <p><strong>Analogy:</strong> MCP is to LLMs what USB is to computers — a standard way to connect different components.</p>
+            </div>
+
+            <h3>Why MCP Matters</h3>
+            <div class="info-box">
+                <p><strong>Problem MCP Solves:</strong></p>
+                <ul>
+                    <li>LLMs can't access your databases, APIs, or internal systems</li>
+                    <li>Each LLM provider had different integration methods</li>
+                    <li>Developers rebuilt integrations for each AI tool</li>
+                </ul>
+                <p><strong>MCP Solution:</strong></p>
+                <ul>
+                    <li>Standardized protocol for AI-to-tool communication</li>
+                    <li>Write once, use with any MCP-compatible LLM</li>
+                    <li>Pre-built servers for common data sources</li>
+                </ul>
+            </div>
+
+            <h3>MCP Architecture</h3>
+            <div style="margin: 40px 0;">
+                <div class="pipeline-step">
+                    <strong>MCP Host (Client)</strong><br>
+                    AI application (Claude Desktop, custom apps)
+                </div>
+                <div class="pipeline-step">
+                    <strong>MCP Protocol</strong><br>
+                    JSON-RPC messages over stdio/HTTP
+                </div>
+                <div class="pipeline-step">
+                    <strong>MCP Server</strong><br>
+                    Service exposing resources and tools
+                </div>
+                <div class="pipeline-step">
+                    <strong>Data Source</strong><br>
+                    Database, API, filesystem, cloud service
+                </div>
+            </div>
+
+            <h3>MCP Core Concepts</h3>
+            
+            <h4>Resources</h4>
+            <div class="concept-box">
+                <p><strong>Resources</strong> are data exposed by MCP servers (read-only).</p>
+                <p><strong>Examples:</strong> Files, database records, API responses, log entries</p>
+            </div>
+
+            <h4>Tools</h4>
+            <div class="concept-box">
+                <p><strong>Tools</strong> are functions the LLM can call to perform actions.</p>
+                <p><strong>Examples:</strong> Execute queries, send emails, create tickets, deploy infrastructure</p>
+            </div>
+
+            <h3>Popular MCP Servers</h3>
+            <table>
+                <tr>
+                    <th>Server</th>
+                    <th>Purpose</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>server-filesystem</td>
+                    <td>Access local files</td>
+                    <td>Read project docs, code files</td>
+                </tr>
+                <tr>
+                    <td>server-postgres</td>
+                    <td>Query PostgreSQL</td>
+                    <td>Fetch application data, metrics</td>
+                </tr>
+                <tr>
+                    <td>server-github</td>
+                    <td>GitHub integration</td>
+                    <td>Read repos, create PRs, issues</td>
+                </tr>
+                <tr>
+                    <td>server-slack</td>
+                    <td>Slack integration</td>
+                    <td>Send messages, read channels</td>
+                </tr>
+            </table>
+
+            <h3>MCP in DevOps Context</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>Infrastructure MCP Server</h4>
+                    <p><strong>Tools:</strong></p>
+                    <ul>
+                        <li>List AKS clusters</li>
+                        <li>Get pod status</li>
+                        <li>Check resource usage</li>
+                    </ul>
+                    <p><strong>Resources:</strong></p>
+                    <ul>
+                        <li>Terraform state files</li>
+                        <li>Kubernetes manifests</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Monitoring MCP Server</h4>
+                    <p><strong>Tools:</strong></p>
+                    <ul>
+                        <li>Query Azure Monitor</li>
+                        <li>Get metrics</li>
+                        <li>Check alert status</li>
+                    </ul>
+                    <p><strong>Resources:</strong></p>
+                    <ul>
+                        <li>Recent logs</li>
+                        <li>Performance metrics</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ MCP in Your DevOps Projects</h4>
+                <ol>
+                    <li>Identify data sources your team frequently queries</li>
+                    <li>Use existing MCP servers where available</li>
+                    <li>Build custom MCP servers for internal tools</li>
+                    <li>Deploy as Azure Container Apps for team access</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- Weights Tab -->
+        <div id="weights" class="tab-content">
+            <h2>⚖️ Model Weights & Parameters</h2>
+            
+            <div class="concept-box">
+                <h3>What are Model Weights?</h3>
+                <p><strong>Model weights</strong> are the numerical values learned during training that define how a model makes predictions. They're the "knowledge" stored in the model.</p>
+                <p><strong>Analogy:</strong> If a model is a brain, weights are the strength of connections between neurons.</p>
+            </div>
+
+            <h3>Parameter Count by Model Type</h3>
+            <table>
+                <tr>
+                    <th>Model Type</th>
+                    <th>Parameter Count</th>
+                    <th>Typical Size on Disk</th>
+                </tr>
+                <tr>
+                    <td>Simple Neural Net</td>
+                    <td>Thousands</td>
+                    <td>KB - MB</td>
+                </tr>
+                <tr>
+                    <td>ResNet-50 (Image)</td>
+                    <td>25 million</td>
+                    <td>~100 MB</td>
+                </tr>
+                <tr>
+                    <td>BERT-base (NLP)</td>
+                    <td>110 million</td>
+                    <td>~440 MB</td>
+                </tr>
+                <tr>
+                    <td>GPT-3</td>
+                    <td>175 billion</td>
+                    <td>~350 GB</td>
+                </tr>
+                <tr>
+                    <td>Llama 3.1 70B</td>
+                    <td>70 billion</td>
+                    <td>~140 GB</td>
+                </tr>
+            </table>
+
+            <h3>Model File Formats</h3>
+            
+            <h4>PyTorch</h4>
+            <div class="code-block"># Save model weights
+torch.save(model.state_dict(), 'model_weights.pth')
+
+# Load weights
+model = MyModel()
+model.load_state_dict(torch.load('model_weights.pth'))
+model.eval()</div>
+
+            <h4>TensorFlow/Keras</h4>
+            <div class="code-block"># Save weights
+model.save_weights('model_weights.h5')
+
+# Load weights
+model.load_weights('model_weights.h5')
+
+# Save entire model
+model.save('saved_model/')  # SavedModel format</div>
+
+            <h3>Model Quantization</h3>
+            <div class="concept-box">
+                <p><strong>Quantization</strong> reduces model size by using lower precision for weights.</p>
+            </div>
+
+            <table>
+                <tr>
+                    <th>Precision</th>
+                    <th>Size</th>
+                    <th>Use Case</th>
+                </tr>
+                <tr>
+                    <td>FP32 (32-bit)</td>
+                    <td>100%</td>
+                    <td>Training, research</td>
+                </tr>
+                <tr>
+                    <td>FP16 (16-bit)</td>
+                    <td>50%</td>
+                    <td>GPU inference</td>
+                </tr>
+                <tr>
+                    <td>INT8 (8-bit)</td>
+                    <td>25%</td>
+                    <td>Edge devices</td>
+                </tr>
+                <tr>
+                    <td>INT4 (4-bit)</td>
+                    <td>12.5%</td>
+                    <td>Resource-constrained</td>
+                </tr>
+            </table>
+
+            <h3>Model Storage & Versioning</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>Azure Options</h4>
+                    <ul>
+                        <li><strong>Azure Blob Storage:</strong> Large models</li>
+                        <li><strong>Azure ML Registry:</strong> Versioned models</li>
+                        <li><strong>Azure Container Registry:</strong> Containerized models</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>Third-Party</h4>
+                    <ul>
+                        <li><strong>Hugging Face Hub:</strong> Open-source sharing</li>
+                        <li><strong>MLflow:</strong> Model registry</li>
+                        <li><strong>DVC:</strong> Git-like versioning</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>⚠️ Important DevOps Considerations</h4>
+                <ul>
+                    <li><strong>Don't commit large models to Git:</strong> Use Git LFS or external storage</li>
+                    <li><strong>Version everything:</strong> Code + data + model weights</li>
+                    <li><strong>Access control:</strong> Not all models should be public</li>
+                    <li><strong>Cost optimization:</strong> Use cool/archive storage tiers</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Inference Tab -->
+        <div id="inference" class="tab-content">
+            <h2>⚡ Model Inference</h2>
+            
+            <div class="concept-box">
+                <h3>What is Inference?</h3>
+                <p><strong>Inference</strong> is using a trained model to make predictions on new, unseen data. It's the "production use" phase after training.</p>
+                <p><strong>Training:</strong> Data → Model (learning)</p>
+                <p><strong>Inference:</strong> New Data + Model → Predictions</p>
+            </div>
+
+            <h3>Inference vs Training</h3>
+            <table>
+                <tr>
+                    <th>Aspect</th>
+                    <th>Training</th>
+                    <th>Inference</th>
+                </tr>
+                <tr>
+                    <td>Purpose</td>
+                    <td>Learn patterns from data</td>
+                    <td>Make predictions</td>
+                </tr>
+                <tr>
+                    <td>Frequency</td>
+                    <td>Periodic (weekly, monthly)</td>
+                    <td>Continuous (thousands/sec)</td>
+                </tr>
+                <tr>
+                    <td>Compute</td>
+                    <td>Heavy (GPUs, hours/days)</td>
+                    <td>Light (CPUs, milliseconds)</td>
+                </tr>
+                <tr>
+                    <td>Latency</td>
+                    <td>Not critical</td>
+                    <td>Critical (real-time SLAs)</td>
+                </tr>
+                <tr>
+                    <td>Scalability</td>
+                    <td>Single job</td>
+                    <td>High concurrency needed</td>
+                </tr>
+            </table>
+
+            <h3>Types of Inference</h3>
+            
+            <h4>1. Batch Inference</h4>
+            <div class="info-box">
+                <p><strong>Process large datasets in batches</strong></p>
+                <p><strong>Use Cases:</strong></p>
+                <ul>
+                    <li>Daily fraud detection on all transactions</li>
+                    <li>Nightly recommendations update</li>
+                    <li>Weekly churn prediction</li>
+                </ul>
+            </div>
+
+            <h4>2. Real-Time Inference</h4>
+            <div class="info-box">
+                <p><strong>Serve predictions immediately</strong></p>
+                <p><strong>Characteristics:</strong></p>
+                <ul>
+                    <li>Low latency (< 100ms)</li>
+                    <li>High availability (99.9%+)</li>
+                    <li>Auto-scaling for variable load</li>
+                </ul>
+                <p><strong>Use Cases:</strong></p>
+                <ul>
+                    <li>Credit card fraud during transaction</li>
+                    <li>Real-time product recommendations</li>
+                    <li>Chatbots and assistants</li>
+                </ul>
+            </div>
+
+            <h3>Inference Serving Example</h3>
+            <div class="code-block"># Flask REST API for Model Serving
+
+from flask import Flask, request, jsonify
+import torch
+
+app = Flask(__name__)
+
+# Load model at startup
+model = torch.load('model.pth')
+model.eval()
+
+@app.route('/predict', methods=['POST'])
+def predict():
+    data = request.json
+    input_tensor = torch.tensor(data['features'])
+    
+    # Inference
+    with torch.no_grad():
+        prediction = model(input_tensor)
+    
+    return jsonify({
+        'prediction': prediction.tolist()
+    })
+
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)</div>
+
+            <h3>Deployment Options on Azure</h3>
+            <table>
+                <tr>
+                    <th>Service</th>
+                    <th>Use Case</th>
+                    <th>Scaling</th>
+                </tr>
+                <tr>
+                    <td>Azure ML Endpoints</td>
+                    <td>Managed ML deployment</td>
+                    <td>Auto-scale, blue-green</td>
+                </tr>
+                <tr>
+                    <td>AKS (Kubernetes)</td>
+                    <td>High-control</td>
+                    <td>HPA, cluster autoscaler</td>
+                </tr>
+                <tr>
+                    <td>Azure Container Apps</td>
+                    <td>Simplified containers</td>
+                    <td>Built-in auto-scale</td>
+                </tr>
+                <tr>
+                    <td>Azure Functions</td>
+                    <td>Serverless</td>
+                    <td>Automatic from 0</td>
+                </tr>
+            </table>
+
+            <h3>Optimizing Inference</h3>
+            <ul>
+                <li><strong>Model Optimization:</strong> Quantization, pruning, ONNX Runtime</li>
+                <li><strong>Batching:</strong> Group requests for better throughput</li>
+                <li><strong>Caching:</strong> Store frequent predictions in Redis</li>
+                <li><strong>Hardware:</strong> Use GPUs for deep learning models</li>
+            </ul>
+
+            <div class="success-box">
+                <h4>✅ Key Metrics to Track</h4>
+                <ul>
+                    <li><strong>Latency:</strong> P50, P95, P99 response times</li>
+                    <li><strong>Throughput:</strong> Requests per second</li>
+                    <li><strong>Error Rate:</strong> Failed predictions / total</li>
+                    <li><strong>Model Drift:</strong> Prediction distribution changes</li>
+                    <li><strong>Cost:</strong> Inference cost per 1000 requests</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- MLOps Tab -->
+        <div id="mlops" class="tab-content">
+            <h2>🔄 MLOps (ML + DevOps)</h2>
+            
+            <div class="concept-box">
+                <h3>What is MLOps?</h3>
+                <p><strong>MLOps</strong> applies DevOps principles to ML systems: automating the ML lifecycle from data preparation through model deployment and monitoring.</p>
+                <p><strong>Goal:</strong> Productionize ML models reliably, reproducibly, and at scale.</p>
+            </div>
+
+            <h3>Why MLOps is Needed</h3>
+            <div class="warning-box">
+                <h4>⚠️ Challenges Without MLOps</h4>
+                <ul>
+                    <li>Models trained on laptops (not reproducible)</li>
+                    <li>Manual deployment (slow, error-prone)</li>
+                    <li>No versioning of datasets or models</li>
+                    <li>Models degrade over time without monitoring</li>
+                    <li>Can't rollback to previous versions</li>
+                </ul>
+            </div>
+
+            <h3>MLOps vs DevOps</h3>
+            <table>
+                <tr>
+                    <th>Aspect</th>
+                    <th>DevOps</th>
+                    <th>MLOps</th>
+                </tr>
+                <tr>
+                    <td>What's deployed</td>
+                    <td>Code</td>
+                    <td>Code + Data + Model</td>
+                </tr>
+                <tr>
+                    <td>Testing</td>
+                    <td>Unit, integration</td>
+                    <td>+ Data validation, model performance</td>
+                </tr>
+                <tr>
+                    <td>Versioning</td>
+                    <td>Git for code</td>
+                    <td>Git + DVC + Model registry</td>
+                </tr>
+                <tr>
+                    <td>Monitoring</td>
+                    <td>Uptime, errors</td>
+                    <td>+ Model drift, data quality</td>
+                </tr>
+            </table>
+
+            <h3>MLOps Lifecycle</h3>
+            <div style="margin: 40px 0;">
+                <div class="pipeline-step">
+                    <strong>1. Data Engineering</strong><br>
+                    Collect, clean, version data
+                </div>
+                <div class="pipeline-step">
+                    <strong>2. Model Development</strong><br>
+                    Experiment, train, track with MLflow
+                </div>
+                <div class="pipeline-step">
+                    <strong>3. Model Validation</strong><br>
+                    Test accuracy, fairness, performance
+                </div>
+                <div class="pipeline-step">
+                    <strong>4. Model Registration</strong><br>
+                    Version and store in registry
+                </div>
+                <div class="pipeline-step">
+                    <strong>5. Model Deployment</strong><br>
+                    CI/CD pipeline to production
+                </div>
+                <div class="pipeline-step">
+                    <strong>6. Monitoring & Retraining</strong><br>
+                    Track drift, trigger retraining
+                </div>
+            </div>
+
+            <h3>Key MLOps Components</h3>
+            
+            <h4>Experiment Tracking</h4>
+            <div class="code-block">import mlflow
+
+with mlflow.start_run():
+    # Log parameters
+    mlflow.log_param("learning_rate", 0.01)
+    
+    # Train model
+    model = train_model(data)
+    
+    # Log metrics
+    accuracy = evaluate(model)
+    mlflow.log_metric("accuracy", accuracy)
+    
+    # Log model
+    mlflow.sklearn.log_model(model, "model")</div>
+
+            <h4>Data Versioning with DVC</h4>
+            <div class="code-block"># DVC Usage
+
+# Track dataset
+dvc add data/training_data.csv
+
+# Commit metadata to Git
+git add data/training_data.csv.dvc
+git commit -m "Add training dataset v1"
+
+# Push data to remote storage
+dvc push</div>
+
+            <h3>Model Monitoring</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>Data Drift</h4>
+                    <p>Input data distribution changes over time</p>
+                    <p><strong>Detection:</strong> Compare feature distributions</p>
+                </div>
+                <div class="card">
+                    <h4>Concept Drift</h4>
+                    <p>Relationship between inputs/outputs changes</p>
+                    <p><strong>Detection:</strong> Monitor prediction accuracy</p>
+                </div>
+            </div>
+
+            <h3>MLOps Best Practices</h3>
+            <div class="success-box">
+                <h4>✅ MLOps Checklist</h4>
+                <ul>
+                    <li><strong>Version Everything:</strong> Code, data, models</li>
+                    <li><strong>Automate Pipelines:</strong> Training, evaluation, deployment</li>
+                    <li><strong>Track Experiments:</strong> Every run logged with MLflow</li>
+                    <li><strong>Test Models:</strong> Performance tests before production</li>
+                    <li><strong>Monitor Production:</strong> Drift detection, dashboards</li>
+                    <li><strong>Reproducibility:</strong> Anyone can rebuild any model</li>
+                    <li><strong>Rollback Plan:</strong> Easy revert to previous version</li>
+                </ul>
+            </div>
+
+            <h3>MLOps Maturity Levels</h3>
+            <table>
+                <tr>
+                    <th>Level</th>
+                    <th>Characteristics</th>
+                </tr>
+                <tr>
+                    <td>Level 0: Manual</td>
+                    <td>All steps manual, notebooks</td>
+                </tr>
+                <tr>
+                    <td>Level 1: ML Pipeline</td>
+                    <td>Automated training, manual deployment</td>
+                </tr>
+                <tr>
+                    <td>Level 2: CI/CD</td>
+                    <td>Automated training, testing, deployment</td>
+                </tr>
+                <tr>
+                    <td>Level 3: Full MLOps</td>
+                    <td>Auto-retraining on drift, governance</td>
+                </tr>
+            </table>
+        </div>
+
+        <!-- DevOps Integration Tab -->
+        <div id="devops" class="tab-content">
+            <h2>🛠️ DevOps Integration with AI/ML</h2>
+            
+            <h3>Your Role as a DevOps Engineer</h3>
+            <div class="concept-box">
+                <p>As a DevOps engineer working with AI/ML, you're the bridge between data scientists and production. You don't need to build models, but you need to understand how to:</p>
+                <ul>
+                    <li>Deploy them reliably</li>
+                    <li>Scale them efficiently</li>
+                    <li>Monitor their performance</li>
+                    <li>Automate their lifecycle</li>
+                </ul>
+            </div>
+
+            <h3>Complete Azure ML Stack</h3>
+            <div class="code-block">Azure MLOps Architecture:
+
+├── Data Layer
+│   ├── Azure Data Lake (raw data)
+│   ├── Azure Blob Storage (processed datasets)
+│   └── DVC (data versioning)
+│
+├── Development
+│   ├── Azure ML Workspace
+│   ├── VS Code + Azure ML Extension
+│   └── Git + GitHub
+│
+├── Training
+│   ├── Azure ML Compute Clusters
+│   ├── Azure ML Pipelines
+│   └── MLflow (experiment tracking)
+│
+├── Model Management
+│   ├── Azure ML Model Registry
+│   └── Feature Store
+│
+├── Deployment
+│   ├── Azure ML Endpoints
+│   ├── AKS (Kubernetes)
+│   └── Azure Container Apps
+│
+├── Monitoring
+│   ├── Azure Monitor
+│   ├── Application Insights
+│   └── Model Data Collector
+│
+└── CI/CD
+    ├── Azure DevOps Pipelines
+    ├── GitHub Actions
+    └── Automated testing</div>
+
+            <h3>CI/CD Pipeline for ML</h3>
+            <div class="code-block"># azure-pipelines.yml
+
+trigger:
+  - main
+
+stages:
+- stage: DataValidation
+  jobs:
+  - job: ValidateData
+    steps:
+    - script: python scripts/validate_data.py
+
+- stage: ModelTraining
+  jobs:
+  - job: TrainModel
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        scriptType: 'bash'
+        inlineScript: |
+          az ml job create --file training-job.yml
+
+- stage: ModelEvaluation
+  jobs:
+  - job: EvaluateModel
+    steps:
+    - script: python scripts/evaluate_model.py
+    - script: |
+        if [ $(cat metrics.json | jq '.accuracy') < 0.85 ]; then
+          echo "Model accuracy too low"
+          exit 1
+        fi
+
+- stage: Deployment
+  jobs:
+  - deployment: DeployToStaging
+    environment: 'ML-Staging'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: AzureCLI@2
+            inputs:
+              inlineScript: |
+                az ml online-deployment create \
+                  -f deployment-staging.yml</div>
+
+            <h3>Infrastructure as Code for ML</h3>
+            <div class="code-block"># Terraform for Azure ML Workspace
+
+resource "azurerm_machine_learning_workspace" "ml_workspace" {
+  name                = "ml-workspace-prod"
+  location            = azurerm_resource_group.rg.location
+  resource_group_name = azurerm_resource_group.rg.name
+  application_insights_id = azurerm_application_insights.ai.id
+  key_vault_id        = azurerm_key_vault.kv.id
+  storage_account_id  = azurerm_storage_account.storage.id
+  
+  identity {
+    type = "SystemAssigned"
+  }
+}
+
+resource "azurerm_machine_learning_compute_cluster" "gpu_cluster" {
+  name                          = "gpu-cluster"
+  machine_learning_workspace_id = azurerm_machine_learning_workspace.ml_workspace.id
+  location                      = azurerm_resource_group.rg.location
+  vm_size                       = "Standard_NC6"
+  vm_priority                   = "LowPriority"
+  
+  scale_settings {
+    min_node_count                       = 0
+    max_node_count                       = 4
+    scale_down_nodes_after_idle_duration = "PT30M"
+  }
+}</div>
+
+            <h3>Monitoring ML in Production</h3>
+            <div class="code-block"># Azure Monitor KQL for Model Monitoring
+
+requests
+| where url contains "/predict"
+| summarize 
+    AvgLatency = avg(duration),
+    P95Latency = percentile(duration, 95),
+    ErrorRate = countif(resultCode >= 400) * 100.0 / count()
+by bin(timestamp, 5m)
+
+customMetrics
+| where name == "prediction_drift"
+| where value > 0.1
+| project timestamp, value
+| render timechart</div>
+
+            <h3>Security Best Practices</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>🔐 Data Security</h4>
+                    <ul>
+                        <li>Encrypt data at rest and in transit</li>
+                        <li>Use Azure Key Vault for secrets</li>
+                        <li>Implement RBAC for data access</li>
+                        <li>Enable Azure Private Link</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>🛡️ Model Security</h4>
+                    <ul>
+                        <li>Version and audit all models</li>
+                        <li>Implement model access controls</li>
+                        <li>Monitor for model poisoning</li>
+                        <li>Validate input data</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>✅ DevOps Engineer's ML Toolkit</h4>
+                <ul>
+                    <li><strong>Azure ML:</strong> End-to-end ML platform</li>
+                    <li><strong>Azure DevOps:</strong> CI/CD pipelines</li>
+                    <li><strong>Terraform:</strong> Infrastructure as code</li>
+                    <li><strong>Docker:</strong> Model containerization</li>
+                    <li><strong>Kubernetes:</strong> Model orchestration</li>
+                    <li><strong>MLflow:</strong> Experiment tracking</li>
+                    <li><strong>DVC:</strong> Data versioning</li>
+                    <li><strong>Azure Monitor:</strong> Observability</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Project Example Tab -->
+        <div id="project" class="tab-content">
+            <h2>📦 End-to-End Project Example</h2>
+            
+            <h3>Project: Fraud Detection System</h3>
+            <div class="concept-box">
+                <p><strong>Scenario:</strong> Build a real-time fraud detection system for financial transactions using Azure ML and AKS.</p>
+                <p><strong>Your Role:</strong> DevOps engineer responsible for the entire ML infrastructure and deployment pipeline.</p>
+            </div>
+
+            <h3>Project Architecture</h3>
+            <div class="code-block">Fraud Detection System Architecture:
+
+User Transaction
+    ↓
+Azure API Management
+    ↓
+AKS Inference Service (FastAPI)
+    ↓
+ML Model (PyTorch/ONNX)
+    ↓
+Prediction + Logging
+    ↓
+Azure Monitor + Storage
+
+Training Pipeline:
+Azure Data Factory → Azure Blob Storage
+    ↓
+Azure ML Training Job (GPU Cluster)
+    ↓
+Model Evaluation
+    ↓
+Azure ML Model Registry
+    ↓
+Azure DevOps Pipeline
+    ↓
+AKS Deployment (Blue-Green)</div>
+
+            <h3>Implementation Steps</h3>
+            
+            <h4>Step 1: Data Pipeline</h4>
+            <div class="code-block"># Azure Data Factory Pipeline (JSON)
+{
+  "name": "FraudDataPipeline",
+  "properties": {
+    "activities": [
+      {
+        "name": "CopyTransactionData",
+        "type": "Copy",
+        "source": {
+          "type": "AzureSqlSource",
+          "sqlReaderQuery": "SELECT * FROM transactions WHERE date >= DATEADD(day, -1, GETDATE())"
+        },
+        "sink": {
+          "type": "DelimitedTextSink",
+          "storeSettings": {
+            "type": "AzureBlobStorageWriteSettings",
+            "containerName": "training-data"
+          }
+        }
+      }
+    ]
+  }
+}</div>
+
+            <h4>Step 2: Model Training</h4>
+            <div class="code-block"># training.py
+
+import torch
+import torch.nn as nn
+from azureml.core import Run
+import mlflow
+
+# Get run context
+run = Run.get_context()
+
+# Load data
+data = load_transaction_data()
+
+# Define model
+class FraudDetector(nn.Module):
+    def __init__(self):
+        super().__init__()
+        self.fc1 = nn.Linear(20, 64)
+        self.fc2 = nn.Linear(64, 32)
+        self.fc3 = nn.Linear(32, 1)
+    
+    def forward(self, x):
+        x = torch.relu(self.fc1(x))
+        x = torch.relu(self.fc2(x))
+        return torch.sigmoid(self.fc3(x))
+
+# Train
+model = FraudDetector()
+optimizer = torch.optim.Adam(model.parameters())
+criterion = nn.BCELoss()
+
+for epoch in range(epochs):
+    for batch in data_loader:
+        loss = train_step(model, batch)
+        mlflow.log_metric("loss", loss, step=epoch)
+
+# Save model
+torch.save(model.state_dict(), "fraud_model.pth")
+run.upload_file("model.pth", "fraud_model.pth")</div>
+
+            <h4>Step 3: Model Deployment</h4>
+            <div class="code-block"># Dockerfile for Inference
+
+FROM python:3.11-slim
+
+WORKDIR /app
+
+# Install dependencies
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy model and code
+COPY fraud_model.pth .
+COPY inference.py .
+
+# Health check
+HEALTHCHECK CMD curl -f http://localhost:8000/health
+
+# Run FastAPI server
+CMD ["uvicorn", "inference:app", "--host", "0.0.0.0", "--port", "8000"]</div>
+
+            <div class="code-block"># inference.py (FastAPI)
+
+from fastapi import FastAPI
+import torch
+
+app = FastAPI()
+
+# Load model at startup
+model = torch.load("fraud_model.pth")
+model.eval()
+
+@app.post("/predict")
+async def predict(transaction: dict):
+    # Preprocess
+    features = preprocess(transaction)
+    
+    # Inference
+    with torch.no_grad():
+        prediction = model(features)
+    
+    is_fraud = prediction.item() > 0.5
+    
+    # Log
+    log_prediction(transaction, is_fraud, prediction.item())
+    
+    return {
+        "is_fraud": is_fraud,
+        "confidence": prediction.item()
+    }
+
+@app.get("/health")
+async def health():
+    return {"status": "healthy"}</div>
+
+            <h4>Step 4: Kubernetes Deployment</h4>
+            <div class="code-block"># k8s/deployment.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: fraud-detection
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: fraud-detection
+  template:
+    metadata:
+      labels:
+        app: fraud-detection
+    spec:
+      containers:
+      - name: inference
+        image: myacr.azurecr.io/fraud-detection:latest
+        ports:
+        - containerPort: 8000
+        resources:
+          requests:
+            cpu: "500m"
+            memory: "1Gi"
+          limits:
+            cpu: "1000m"
+            memory: "2Gi"
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: 8000
+          initialDelaySeconds: 30
+          periodSeconds: 10
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: fraud-detection-svc
+spec:
+  selector:
+    app: fraud-detection
+  ports:
+  - port: 80
+    targetPort: 8000
+  type: LoadBalancer
+
+---
+apiVersion: autoscaling/v2
+kind: HorizontalPodAutoscaler
+metadata:
+  name: fraud-detection-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: fraud-detection
+  minReplicas: 3
+  maxReplicas: 10
+  metrics:
+  - type: Resource
+    resource:
+      name: cpu
+      target:
+        type: Utilization
+        averageUtilization: 70</div>
+
+            <h4>Step 5: CI/CD Pipeline</h4>
+            <div class="code-block"># azure-pipelines.yml
+
+trigger:
+  - main
+
+variables:
+  imageRepository: 'fraud-detection'
+  containerRegistry: 'myacr.azurecr.io'
+  aksCluster: 'aks-ml-prod'
+  resourceGroup: 'rg-ml-prod'
+
+stages:
+- stage: Train
+  jobs:
+  - job: TrainModel
+    pool:
+      vmImage: 'ubuntu-latest'
+    steps:
+    - task: AzureCLI@2
+      inputs:
+        azureSubscription: 'Azure-ML-Connection'
+        scriptType: 'bash'
+        scriptLocation: 'inlineScript'
+        inlineScript: |
+          az ml job create \
+            --file training-job.yml \
+            --workspace-name ml-workspace
+
+- stage: Build
+  dependsOn: Train
+  jobs:
+  - job: BuildImage
+    steps:
+    - task: Docker@2
+      inputs:
+        containerRegistry: 'ACR-Connection'
+        repository: $(imageRepository)
+        command: buildAndPush
+        tags: |
+          $(Build.BuildId)
+          latest
+
+- stage: Deploy
+  dependsOn: Build
+  jobs:
+  - deployment: DeployToAKS
+    environment: 'Production'
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+          - task: KubernetesManifest@0
+            inputs:
+              action: deploy
+              kubernetesServiceConnection: 'AKS-Connection'
+              manifests: |
+                k8s/deployment.yaml
+                k8s/service.yaml
+                k8s/hpa.yaml
+              containers: |
+                $(containerRegistry)/$(imageRepository):$(Build.BuildId)</div>
+
+            <h4>Step 6: Monitoring</h4>
+            <div class="code-block"># Azure Monitor Dashboard KQL Queries
+
+// Request Rate
+requests
+| where name contains "predict"
+| summarize RequestsPerMinute = count() by bin(timestamp, 1m)
+| render timechart
+
+// Model Performance
+customMetrics
+| where name == "fraud_detection_accuracy"
+| summarize avg(value) by bin(timestamp, 1h)
+| render timechart
+
+// Prediction Distribution
+customMetrics
+| where name == "fraud_prediction"
+| summarize 
+    FraudCount = countif(value > 0.5),
+    LegitCount = countif(value <= 0.5)
+by bin(timestamp, 5m)
+| render timechart
+
+// Latency P95
+requests
+| where name contains "predict"
+| summarize P95 = percentile(duration, 95) by bin(timestamp, 5m)
+| render timechart</div>
+
+            <h3>Project Deliverables</h3>
+            <div class="grid-2">
+                <div class="card">
+                    <h4>✅ Infrastructure</h4>
+                    <ul>
+                        <li>AKS cluster with auto-scaling</li>
+                        <li>Azure ML workspace</li>
+                        <li>Blob storage for data/models</li>
+                        <li>Azure Monitor dashboards</li>
+                        <li>API Management gateway</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h4>✅ Automation</h4>
+                    <ul>
+                        <li>Data pipeline (Azure Data Factory)</li>
+                        <li>Training pipeline (Azure ML)</li>
+                        <li>CI/CD pipeline (Azure DevOps)</li>
+                        <li>Monitoring alerts</li>
+                        <li>Auto-retraining on drift</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="success-box">
+                <h4>🎯 Success Metrics</h4>
+                <ul>
+                    <li><strong>Latency:</strong> P95 < 50ms for predictions</li>
+                    <li><strong>Availability:</strong> 99.9% uptime</li>
+                    <li><strong>Accuracy:</strong> > 95% fraud detection rate</li>
+                    <li><strong>Deployment:</strong> < 10 minutes from commit to production</li>
+                    <li><strong>Cost:</strong> < $500/month infrastructure cost</li>
+                </ul>
+            </div>
+
+            <h3>Next Steps for You</h3>
+            <div class="info-box">
+                <h4>🚀 Your Learning Path</h4>
+                <ol>
+                    <li><strong>Build a simple ML project:</strong> Start with a basic prediction model</li>
+                    <li><strong>Set up MLflow:</strong> Track your first experiments</li>
+                    <li><strong>Deploy to Azure:</strong> Create an Azure ML workspace</li>
+                    <li><strong>Build a pipeline:</strong> Automate training with Azure DevOps</li>
+                    <li><strong>Deploy to AKS:</strong> Containerize and serve your model</li>
+                    <li><strong>Monitor everything:</strong> Set up Azure Monitor dashboards</li>
+                    <li><strong>Implement CI/CD:</strong> Full automation from training to deployment</li>
+                </ol>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        function openTab(evt, tabName) {
+            // Hide all tab content
+            const tabContents = document.getElementsByClassName('tab-content');
+            for (let i = 0; i < tabContents.length; i++) {
+                tabContents[i].classList.remove('active');
+            }
+
+            // Remove active class from all buttons
+            const tabButtons = document.getElementsByClassName('tab-button');
+            for (let i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].classList.remove('active');
+            }
+
+            // Show the selected tab and mark button as active
+            document.getElementById(tabName).classList.add('active');
+            evt.currentTarget.classList.add('active');
+        }
+    </script>
+</body>
+</html>
